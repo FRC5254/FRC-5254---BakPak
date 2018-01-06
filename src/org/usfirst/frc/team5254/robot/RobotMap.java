@@ -11,6 +11,5 @@ public class RobotMap {
 	// CAN Talons
 	
 	// Joysticks
-	public static final int DRIVER_JOYSTICK = 0;
-	public static final int OPERATOR_JOYSTICK = 1;
+
 }
