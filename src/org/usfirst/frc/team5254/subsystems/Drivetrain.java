@@ -17,8 +17,9 @@ public class Drivetrain extends Subsystem {
 		
 	}
 	public void drive(double Throttle,double Turn) {
-		drivetrain.arcadeDrive(Throttle,Turn);
+		drivetrain.arcadeDrive(Throttle, Turn);
 	}
+
 	public void stop() {
 		drivetrain.arcadeDrive(0.0,0.0);
 	}

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftDown extends Command {
 
     public ShiftDown() {
-    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
