@@ -3,7 +3,7 @@ package org.usfirst.frc.team5254.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team5254.subsystems.*;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -14,7 +14,7 @@ import org.usfirst.frc.team5254.subsystems.*;
 public class Robot extends IterativeRobot {
 	
 	static Timer timer = new Timer();
-	public static Drivetrain Drivetrain = new Drivetrain();
+	
 	public static OI oi;
 	/**
 	 * This function is run when the robot is first started up and should be
