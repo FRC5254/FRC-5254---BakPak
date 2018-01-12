@@ -6,21 +6,21 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team5254.commands.ShiftDown;
 import org.usfirst.frc.team5254.commands.ShiftUp;
-import org.usfirst.frc.team5254.robot.RobotMap.*;
+
 public class OI {
+	
 	//defining controllers
 	public Joystick driverJoystick = new Joystick(RobotMap.DRIVER_JOYSTICK);
 	public Joystick operatorJoystick = new Joystick(RobotMap.OPERATOR_JOYSTICK);
-	
-	@SuppressWarnings("unused")
 	
 	public OI() {
 		
 		// Defining driver buttons
 		Button DriverButtonRB = new JoystickButton(driverJoystick,5);
+		
 		// Defining operator buttons
 		
-		//driver subcommands
+		// Driver subcommands
 		DriverButtonRB.whenPressed(new ShiftUp());
 		DriverButtonRB.whenInactive(new ShiftDown());
 	}

@@ -8,14 +8,17 @@ public class RobotMap {
 	
 	// Gyro
 	
-	// CAN Talons
-	public static final int DRIVETRAIN_LEFT1_MOTOR = 0;
-	public static final int DRIVETRAIN_LEFT2_MOTOR = 1;
-	public static final int DRIVETRAIN_RIGHT1_MOTOR = 2;
-	public static final int DRIVETRAIN_RIGHT2_MOTOR = 3;
+	// MotorControllers
+	public static final int DRIVETRAIN_LEFT_ENCODER = 0;
+	public static final int DRIVETRAIN_RIGHT_ENCODER = 1;
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
 	public static final int DRIVER_THROTTLE_AXIS = 0;
 	public static final int DRIVER_TURN_AXIS = 5;
+	// Motors
+	public static final int DRIVETRAIN_LEFT1_MOTOR = 0;
+	public static final int DRIVETRAIN_LEFT2_MOTOR = 1;
+	public static final int DRIVETRAIN_RIGHT1_MOTOR = 2;
+	public static final int DRIVETRAIN_RIGHT2_MOTOR = 3;
 }

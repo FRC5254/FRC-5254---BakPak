@@ -2,7 +2,6 @@ package org.usfirst.frc.team5254.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5254.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -63,6 +62,5 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
 	}
 }
