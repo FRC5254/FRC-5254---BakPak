@@ -14,6 +14,7 @@ public class Robot extends IterativeRobot {
 	
 	static Timer timer = new Timer();
 	public static Drivetrain Drivetrain = new Drivetrain();
+	public static CubeMech CubeMech = new CubeMech();
 	public static OI oi;
 	/**
 	 * This function is run when the robot is first started up and should be

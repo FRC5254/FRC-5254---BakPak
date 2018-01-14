@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftUp extends Command {
+public class CubeMechStopFlywheels extends Command {
 
-    public ShiftUp() {
+    public CubeMechStopFlywheels() {
+    	requires(Robot.CubeMech);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,7 +21,7 @@ public class ShiftUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Drivetrain.shiftUp();
+    	Robot.CubeMech.StopFlywheels();
     }
 
     // Make this return true when this Command no longer needs to run execute()
