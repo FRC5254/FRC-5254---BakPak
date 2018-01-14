@@ -1,10 +1,10 @@
 package org.usfirst.frc.team5254.robot;
 
+import org.usfirst.frc.team5254.robot.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.usfirst.frc.team5254.commands.*;
 
 public class OI {
 	

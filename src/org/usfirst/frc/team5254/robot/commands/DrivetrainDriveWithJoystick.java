@@ -1,26 +1,31 @@
-package org.usfirst.frc.team5254.commands;
+package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DrivetrainShiftDown extends Command {
+public class DrivetrainDriveWithJoystick extends Command {
 
-    public DrivetrainShiftDown() {
+    public DrivetrainDriveWithJoystick() {
+    	requires(Robot.Drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("Boy it works");
+    	Robot.Drivetrain.shiftDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Drivetrain.shiftDown();
+    	Robot.Drivetrain.drive(Robot.oi.driverJoystick.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
+				Robot.oi.driverJoystick.getRawAxis(RobotMap.DRIVER_TURN_AXIS));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,6 +35,7 @@ public class DrivetrainShiftDown extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.Drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same

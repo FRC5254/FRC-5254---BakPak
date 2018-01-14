@@ -1,17 +1,15 @@
-package org.usfirst.frc.team5254.commands;
+package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CubeMechSlideLadder extends Command {
+public class DrivetrainShiftDown extends Command {
 
-    public CubeMechSlideLadder() {
-    	requires(Robot.CubeMech);
+    public DrivetrainShiftDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,7 +20,7 @@ public class CubeMechSlideLadder extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.CubeMech.SlideLadder(Robot.oi.operatorJoystick.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+    	Robot.Drivetrain.shiftDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()

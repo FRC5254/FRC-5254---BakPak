@@ -22,10 +22,10 @@ public class RobotMap {
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
 	
-	public static final int DRIVER_THROTTLE_AXIS = 0;
-	public static final int DRIVER_TURN_AXIS = 5;
+	public static final int DRIVER_THROTTLE_AXIS = 1;
+	public static final int DRIVER_TURN_AXIS = 4;
 	
-	public static final int OPERATOR_THROTTLE_AXIS = 4;
+	public static final int OPERATOR_THROTTLE_AXIS = 0;
 	// Motors
 	public static final int DRIVETRAIN_LEFT1_MOTOR = 0;
 	public static final int DRIVETRAIN_LEFT2_MOTOR = 1;

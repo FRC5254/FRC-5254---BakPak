@@ -1,7 +1,7 @@
-package org.usfirst.frc.team5254.subsystems;
+package org.usfirst.frc.team5254.robot.subsystems;
 
-import org.usfirst.frc.team5254.commands.CubeMechStopLadder;
 import org.usfirst.frc.team5254.robot.RobotMap;
+import org.usfirst.frc.team5254.robot.commands.CubeMechStopLadder;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;

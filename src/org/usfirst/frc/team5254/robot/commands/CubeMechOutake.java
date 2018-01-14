@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5254.commands;
+package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CubeMechPopOut extends Command {
+public class CubeMechOutake extends Command {
 
-    public CubeMechPopOut() {
+    public CubeMechOutake() {
     	requires(Robot.CubeMech);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,7 +21,7 @@ public class CubeMechPopOut extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.CubeMech.ArmsDown();
+    	Robot.CubeMech.Outake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

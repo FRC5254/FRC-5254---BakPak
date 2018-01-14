@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5254.robot;
 
+import org.usfirst.frc.team5254.robot.subsystems.*;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
-import org.usfirst.frc.team5254.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
