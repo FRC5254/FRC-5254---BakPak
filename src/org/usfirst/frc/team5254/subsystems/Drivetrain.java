@@ -7,12 +7,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drivetrain extends Subsystem {
-	public static Spark driveControllerLeft = new Spark(RobotMap.DRIVETRAIN_LEFT_TALON);
-	public static Spark driveControllerRight = new Spark(RobotMap.DRIVETRAIN_RIGHT_TALON);
+	public static VictorSP driveControllerLeft = new VictorSP(RobotMap.DRIVETRAIN_LEFT_TALON);
+	public static VictorSP driveControllerRight = new VictorSP(RobotMap.DRIVETRAIN_RIGHT_TALON);
 	public static DifferentialDrive drivetrain = new DifferentialDrive(driveControllerLeft, driveControllerRight); 
 	public static Solenoid shiftingPiston = new Solenoid(RobotMap.SHIFTING_PISTON);
 	
