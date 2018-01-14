@@ -14,8 +14,10 @@ public class RobotMap {
 	// MotorControllers
 	public static final int DRIVETRAIN_LEFT_TALON = 0;
 	public static final int DRIVETRAIN_RIGHT_TALON = 1;
-	public static final int CUBE_MECH_LADDER = 2; // Get the actual use for this from Harrison
-	public static final int CUBE_MECH_FLYWHEELS = 3;
+	public static final int DRIVETRAIN_LEFT_TALON2 = 2;
+	public static final int DRIVETRAIN_RIGHT_TALON2 = 3;
+	public static final int CUBE_MECH_LADDER = 4; // Get the actual use for this from Harrison
+	public static final int CUBE_MECH_FLYWHEELS = 5;
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;

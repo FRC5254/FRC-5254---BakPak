@@ -40,7 +40,7 @@ public class OI {
 		OperatorButtonA.whenPressed(new CubeMechIntake());
 		OperatorButtonX.whenPressed(new CubeMechOutake());
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
-		OperatorButtonB.whenPressed(new CubeMechPopOut());
-		OperatorButtonB.whenInactive(new CubeMechPopIn());
+		OperatorButtonRB.whenPressed(new CubeMechPopOut());
+		OperatorButtonRB.whenInactive(new CubeMechPopIn());
 	}
 }
