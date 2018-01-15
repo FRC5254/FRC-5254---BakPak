@@ -29,7 +29,7 @@ public class OI {
 		Button OperatorButtonStart = new JoystickButton(operatorJoystick, 7);
 		
 		// Driver subcommands
-		DriverButtonRB.whenPressed(new DrivetrainShiftUp());
+		DriverButtonRB.whenActive(new DrivetrainShiftUp());
 		DriverButtonRB.whenInactive(new DrivetrainShiftDown());
 		DriverButtonLB.whenPressed(new DrivetrainShiftUp());
 		DriverButtonLB.whenInactive(new DrivetrainShiftDown());
