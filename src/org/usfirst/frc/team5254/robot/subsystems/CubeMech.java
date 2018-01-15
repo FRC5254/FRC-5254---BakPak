@@ -50,6 +50,7 @@ public class CubeMech extends Subsystem {
 	public void StopFlywheels() {
 		cubeMechFlywheels.set(0);
 	}
+
 	
     public void initDefaultCommand() {
     	
