@@ -18,7 +18,6 @@ public class DrivetrainDriveWithJoystick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Boy it works");
     	Robot.Drivetrain.shiftDown();
     }
 

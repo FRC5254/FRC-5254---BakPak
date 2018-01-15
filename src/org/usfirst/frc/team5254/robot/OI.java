@@ -15,21 +15,21 @@ public class OI {
 	public OI() {
 		
 		// Defining driver buttons
-		Button DriverButtonLB = new JoystickButton(driverJoystick, 4);
-		Button DriverButtonRB = new JoystickButton(driverJoystick, 5);
-		Button DriverButtonStart = new JoystickButton(driverJoystick, 7);
-		Button DriverButtonRJC = new JoystickButton(driverJoystick, 9);
+		Button DriverButtonLB = new JoystickButton(driverJoystick, 5);
+		Button DriverButtonRB = new JoystickButton(driverJoystick, 6);
+		Button DriverButtonStart = new JoystickButton(driverJoystick, 8);
+		Button DriverButtonRJC = new JoystickButton(driverJoystick, 10);
 		
 		// Defining operator buttons
-		Button OperatorButtonA = new JoystickButton(operatorJoystick, 0);
-		Button OperatorButtonX = new JoystickButton(operatorJoystick, 2);
-		Button OperatorButtonB = new JoystickButton(operatorJoystick, 1);
-		Button OperatorButtonRB = new JoystickButton(operatorJoystick, 5);
-		Button OperatorButtonBack = new JoystickButton(operatorJoystick, 6);
-		Button OperatorButtonStart = new JoystickButton(operatorJoystick, 7);
+		Button OperatorButtonA = new JoystickButton(operatorJoystick, 1);
+		Button OperatorButtonX = new JoystickButton(operatorJoystick, 3);
+		Button OperatorButtonB = new JoystickButton(operatorJoystick, 2);
+		Button OperatorButtonRB = new JoystickButton(operatorJoystick, 6);
+		Button OperatorButtonBack = new JoystickButton(operatorJoystick, 7);
+		Button OperatorButtonStart = new JoystickButton(operatorJoystick, 8);
 		
 		// Driver subcommands
-		DriverButtonRB.whenActive(new DrivetrainShiftUp());
+		DriverButtonRB.whenPressed(new DrivetrainShiftUp());
 		DriverButtonRB.whenInactive(new DrivetrainShiftDown());
 		DriverButtonLB.whenPressed(new DrivetrainShiftUp());
 		DriverButtonLB.whenInactive(new DrivetrainShiftDown());
