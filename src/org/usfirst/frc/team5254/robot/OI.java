@@ -19,6 +19,9 @@ public class OI {
 		Button DriverButtonRB = new JoystickButton(driverJoystick, 6);
 		Button DriverButtonStart = new JoystickButton(driverJoystick, 8);
 		Button DriverButtonRJC = new JoystickButton(driverJoystick, 10);
+		Button DriverButtonA = new JoystickButton(driverJoystick, 1);
+		Button DriverButtonX = new JoystickButton(driverJoystick, 3);
+		Button DriverButtonB = new JoystickButton(driverJoystick, 2);
 		
 		// Defining operator buttons
 		Button OperatorButtonA = new JoystickButton(operatorJoystick, 1);
@@ -37,13 +40,16 @@ public class OI {
 		DriverButtonStart.whenInactive(new DrivetrainDriveWithJoystick());
 		DriverButtonRJC.whenPressed(new DrivetrainSlowTurn());
 		DriverButtonRJC.whenInactive(new DrivetrainDriveWithJoystick());
+		DriverButtonA.whenPressed(new CubeMechIntake());
+		DriverButtonX.whenPressed(new CubeMechOutake());
+		DriverButtonB.whenPressed(new CubeMechStopFlywheels());
 		
 		// Operator Subcommands
 		OperatorButtonBack.whenPressed(new CubeMechClamp());
 		OperatorButtonStart.whenPressed(new CubeMechRelease());
-		OperatorButtonA.whenPressed(new CubeMechIntake());
-		OperatorButtonX.whenPressed(new CubeMechOutake());
-		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
+		//OperatorButtonA.whenPressed(new CubeMechIntake());
+		//OperatorButtonX.whenPressed(new CubeMechOutake());
+		//OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
 		OperatorButtonRB.whenPressed(new CubeMechPopOut());
 		OperatorButtonRB.whenInactive(new CubeMechPopIn());
 	}
