@@ -40,17 +40,17 @@ public class OI {
 		DriverButtonStart.whenInactive(new DrivetrainDriveWithJoystick());
 		DriverButtonRJC.whenPressed(new DrivetrainSlowTurn());
 		DriverButtonRJC.whenInactive(new DrivetrainDriveWithJoystick());
-		DriverButtonA.whenPressed(new CubeMechIntake());
-		DriverButtonX.whenPressed(new CubeMechOutake());
-		DriverButtonB.whenPressed(new CubeMechStopFlywheels());
+//		DriverButtonA.whenPressed(new CubeMechIntake());
+//		DriverButtonX.whenPressed(new CubeMechOutake());
+//		DriverButtonB.whenPressed(new CubeMechStopFlywheels());
 		
 		// Operator Subcommands
 		OperatorButtonBack.whenPressed(new CubeMechClamp());
 		OperatorButtonStart.whenPressed(new CubeMechRelease());
-		//OperatorButtonA.whenPressed(new CubeMechIntake());
-		//OperatorButtonX.whenPressed(new CubeMechOutake());
-		//OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
-		OperatorButtonRB.whenPressed(new CubeMechPopOut());
+		OperatorButtonA.whenPressed(new CubeMechIntake());
+		OperatorButtonX.whenPressed(new CubeMechOutake());
+		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
+		OperatorButtonRB.whenActive(new CubeMechPopOut());
 		OperatorButtonRB.whenInactive(new CubeMechPopIn());
 	}
 }

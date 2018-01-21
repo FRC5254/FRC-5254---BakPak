@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CubeMechStopLadder extends Command {
+public class ElevatorStop extends Command {
 
-    public CubeMechStopLadder() {
+    public ElevatorStop() {
     	
-    	requires(Robot.CubeMech);
+    	requires(Robot.Elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,7 +22,7 @@ public class CubeMechStopLadder extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.CubeMech.StopLadder();
+    	Robot.Elevator.StopLadder();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CubeMechSlideLadder extends Command {
+public class ElevatorOn extends Command {
 
-    public CubeMechSlideLadder() {
-    	requires(Robot.CubeMech);
+    public ElevatorOn() {
+    	requires(Robot.Elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,7 +22,7 @@ public class CubeMechSlideLadder extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.CubeMech.SlideLadder(Robot.oi.operatorJoystick.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+    	Robot.Elevator.SlideLadder(Robot.oi.operatorJoystick.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,6 +32,7 @@ public class CubeMechSlideLadder extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.Elevator.StopLadder();
     }
 
     // Called when another command which requires one or more of the same

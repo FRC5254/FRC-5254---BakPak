@@ -2,6 +2,7 @@ package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team5254.robot.subsystems.CubeMech;
+import org.usfirst.frc.team5254.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,6 +21,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Drivetrain Drivetrain = new Drivetrain();
 	public static CubeMech CubeMech = new CubeMech();
+	public static Elevator Elevator = new Elevator();
 
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 

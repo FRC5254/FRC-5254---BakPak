@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drivetrain extends Subsystem {
 	
-	public static VictorSP driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT_TALON);
-	public static VictorSP driveControllerLeft2 = new VictorSP(RobotMap.DRIVETRAIN_LEFT_TALON2);
+	public static VictorSP driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT);
+	public static VictorSP driveControllerLeft2 = new VictorSP(RobotMap.DRIVETRAIN_LEFT2);
 	public static SpeedControllerGroup driveControllersLeft = new SpeedControllerGroup(driveControllerLeft1, driveControllerLeft2);
 	
-	public static VictorSP driveControllerRight1 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT_TALON);
-	public static VictorSP driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT_TALON2);
+	public static VictorSP driveControllerRight1 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT);
+	public static VictorSP driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT2);
 	public static SpeedControllerGroup driveControllersRight = new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
 	
 	public static DifferentialDrive drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight); 
@@ -25,7 +25,7 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {	
 	}
 	public void drive(double Throttle,double Turn) {
-		drivetrain.arcadeDrive(Throttle, Turn);
+		drivetrain.arcadeDrive(Throttle, -Turn);
 	}
 
 	public void stop() {
