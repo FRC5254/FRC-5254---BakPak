@@ -33,4 +33,10 @@ public class RobotMap {
 	
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 	// Motors
+	
+	// Misc
+	public static final int WHEEL_DIAMETER = 6;
+	public static final int ENCODER_TICKS = 256;
+	public static final double GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0));
+	public static final double Kp = 0.3;
 }
