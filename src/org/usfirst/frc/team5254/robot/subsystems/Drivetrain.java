@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
+import org.usfirst.frc.team5254.robot.Robot;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.DrivetrainDriveWithJoystick;
 
@@ -11,8 +12,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends PIDSubsystem {
 	
 	//Initializing left drivetrain controllers
 	public static VictorSP driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT);
@@ -24,7 +26,7 @@ public class Drivetrain extends Subsystem {
 	public static VictorSP driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT2);
 	public static SpeedControllerGroup driveControllersRight = new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
 	
-	//Initalizing drivetrain
+	//Initializing drivetrain
 	public static DifferentialDrive drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight); 
 	
 	//Initializing shifting piston
@@ -45,6 +47,9 @@ public class Drivetrain extends Subsystem {
 	private double finalThrottle;
 	
 	public Drivetrain() {	
+		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
+		setAbsoluteTolerance(3.0);
+		getPIDController().setContinuous(true);
 	}
 	
 	//TeliOp Methods
@@ -144,9 +149,31 @@ public class Drivetrain extends Subsystem {
 		return remainingTicks < 21;
 	}
 	
+	public void autoDistanceDriveFast() {
+		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
+		drive(-Throttle, -gyro.getAngle() + this.angle);
+	}
+	
+	public void PIDTurnInit() {
+		Robot.Drivetrain.setSetpoint(gyro.getAngle() + this.angle);
+		Robot.Drivetrain.enable();
+	}
+	
+	@Override
+	protected double returnPIDInput() {
+		return gyro.getAngle();
+	}
+	
+	@Override
+	protected void usePIDOutput(double output) {
+		drive(0.0, output);
+	}
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
 		
 	}
+
+	
+	
 }

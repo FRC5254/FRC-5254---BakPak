@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * This auto is a personal favorite of mine :)
  */
-public class ExampleAuto extends CommandGroup {
+public class NothingAuto extends CommandGroup {
 
-	public ExampleAuto() {
+	public NothingAuto() {
 		// Robot do nothing
 	}
 }
