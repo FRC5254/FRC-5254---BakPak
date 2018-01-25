@@ -13,14 +13,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class CubeMech extends Subsystem {
+	
+	//Initializing controllers
 	public static Spark cubeMechLeftFlywheels = new Spark(RobotMap.CUBE_MECH_LEFT_FLYWHEEL);
 	public static Spark cubeMechRightFlywheels = new Spark(RobotMap.CUBE_MECH_RIGHT_FLYWHEEL);
+	
+	//Initializing solenoids
 	public static Solenoid cubeMechArms = new Solenoid(RobotMap.CUBE_MECH_ARMS);
 	public static DoubleSolenoid cubeMechHinge = new DoubleSolenoid(RobotMap.CUBE_MECH_HINGE_UP, RobotMap.CUBE_MECH_HINGE_DOWN);
 	
 	public CubeMech() {
 	}
 	
+	//TeleOp Methods
 	public void ArmsDown() {
 		cubeMechHinge.set(DoubleSolenoid.Value.kReverse);
 	}
@@ -46,7 +51,7 @@ public class CubeMech extends Subsystem {
 		cubeMechRightFlywheels.set(0);
 	}
 
-	
+	//Default command
     public void initDefaultCommand() {
     	setDefaultCommand(new CubeMechStopFlywheels());
     }

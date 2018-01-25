@@ -19,7 +19,6 @@ public class Robot extends IterativeRobot {
 
 	static Timer timer = new Timer();
 	
-	NetworkTable table;
 	String gameData;
 	public static OI oi;
 	public static Drivetrain Drivetrain = new Drivetrain();
@@ -31,8 +30,6 @@ public class Robot extends IterativeRobot {
 	// Auto modes
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
-	
-	public final String SmartDashboard = "SmartDashboard";
 	
 	private final String[] AutoModes = {
 			NothingAuto, CrossAutoLine
