@@ -24,7 +24,14 @@ public class Elevator extends Subsystem {
     
     //TeleOp Methods
     public void SlideLadder(double Throttle) {
-		elevator.set(Throttle);
+		if(Throttle >= 0.10) {
+			elevator.set(Throttle);
+		} 
+		if(Throttle <= -0.10) {
+			elevator.set(Throttle);
+		} else {
+			elevator.set(0.0);
+		}
 	}
 	public void StopLadder() {
 		elevator.set(0.0);
