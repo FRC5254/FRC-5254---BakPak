@@ -19,6 +19,7 @@ public class Robot extends IterativeRobot {
 
 	static Timer timer = new Timer();
 	
+	NetworkTable table;
 	String gameData;
 	public static OI oi;
 	public static Drivetrain Drivetrain = new Drivetrain();
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	// Auto modes
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
+	private final String SwitchAuto = "SwitchAuto";
 	
 	private final String[] AutoModes = {
 			NothingAuto, CrossAutoLine
@@ -64,39 +66,52 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable chooser
-	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-	 * remove all of the chooser code and uncomment the getString code to get the
-	 * auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons to
-	 * the switch structure below with additional strings & commands.
-	 */
-
 	@Override
 	public void autonomousInit() {
 		
 		String autoSelected = SmartDashboard.getString("Auto Selector", NothingAuto);
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData.charAt(0) == 'L')
+		{
+			switch (autoSelected) {
+			
+			default:
+				autonomousCommand = new NothingAuto();
+				break;
+
+			case CrossAutoLine:
+				autonomousCommand = new CrossAutoLine();
+				break;
+				
+			case SwitchAuto:
+				autonomousCommand = new PlaceOnSwitchLeft();
+				break;
+			}
+			
+		} else {
+			
+			switch (autoSelected) {
+			
+			default:
+				autonomousCommand = new NothingAuto();
+				break;
+
+			case CrossAutoLine:
+				autonomousCommand = new CrossAutoLine();
+				break;
+				
+			case SwitchAuto:
+				autonomousCommand = new PlaceOnSwitchRight();
+				break;
+			}
+		}
 		
 		timer.reset();
 		timer.start();
 
 		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
 		
-		switch (autoSelected) {
 		
-		default:
-			autonomousCommand = new NothingAuto();
-			break;
-
-		case CrossAutoLine:
-			autonomousCommand = new CrossAutoLine();
-			break;
-		}
 		
 		// Schedule the autonomous command (example)
 		if (autonomousCommand != null) {
@@ -112,12 +127,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		/**
-		 * This makes sure that the autonomous stops running when teleop starts running.
-		 * If you want the autonomous to continue until interrupted by another command,
-		 * remove this line or comment it out.
-		 */
-
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}

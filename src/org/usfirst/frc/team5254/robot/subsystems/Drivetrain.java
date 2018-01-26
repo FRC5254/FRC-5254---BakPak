@@ -83,7 +83,7 @@ public class Drivetrain extends PIDSubsystem {
 	public void autoDistanceDriveInit(double Throttle, double Distance) {
 		
 		this.Throttle = Throttle;
-		finalTicks = (int) ((Distance / (RobotMap.WHEEL_DIAMETER * Math.PI)) * RobotMap.ENCODER_TICKS * RobotMap.GEAR_RATIO);
+		finalTicks = (int) ((Distance / (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI)) * RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO);
 		if (Throttle > 0) {
 			initEncoder(true);
 		} else {
@@ -95,9 +95,10 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	
 	public void autoDriveToDistance() {
+		
 		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
-		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.GEAR_RATIO))
-				* (RobotMap.WHEEL_DIAMETER * Math.PI);
+		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO))
+				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI);
 
 		if (Throttle > 0) {
 			if (remainingDistance < Throttle * 15) {
