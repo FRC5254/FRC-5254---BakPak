@@ -47,16 +47,17 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
-		setAbsoluteTolerance(3.0);
+		setAbsoluteTolerance(10.0);
 		getPIDController().setContinuous(true);
-		getPIDController().setOutputRange(-1.0, 1.0);
+		getPIDController().setOutputRange(-360.0, 360.0);
 		getPIDController().setInputRange(-360.0, 360.0);
 	}
 	
 	//TeliOp Methods
 	public void drive(double Throttle,double Turn) {
-		drivetrain.arcadeDrive(-Throttle, -Turn);
+		//drivetrain.arcadeDrive(-Throttle, -Turn);
 		System.out.println("drive" + Throttle + Turn);
+		//throw new java.lang.RuntimeException("Drivetrain.drive() called");
 	}
 
 	public void stop() {
@@ -107,7 +108,7 @@ public class Drivetrain extends PIDSubsystem {
 
 		if (Throttle > 0) {
 			if (remainingDistance < Throttle * 15) {
-				finalThrottle = remainingDistance / 15;// TODO time these values
+				finalThrottle = remainingDistance / 15;
 			} else {
 				finalThrottle = Throttle;
 			}
@@ -155,6 +156,7 @@ public class Drivetrain extends PIDSubsystem {
 	public void autoDistanceDriveFast() {
 		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
 		drive(-Throttle, -gyro.getAngle() + this.angle);
+		System.out.println("Auto Drive Fast");
 	}
 	
 	public void PIDTurnInit(double angle) {
@@ -170,13 +172,13 @@ public class Drivetrain extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		return gyro.getAngle();
+		return gyro.getAngle() % 360;
 	}
 
 	
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, output);
+		drivetrain.arcadeDrive(0.0, 0.1 * output, false);
 		System.out.format("usePIDOutput %f \n" , output);
 		System.out.println("Angle: " + gyro.getAngle());
 	}
@@ -184,7 +186,7 @@ public class Drivetrain extends PIDSubsystem {
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
-		
+		System.out.println("Default Command");
 	}
 	
 
