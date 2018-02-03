@@ -3,8 +3,6 @@ package org.usfirst.frc.team5254.robot.subsystems;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ElevatorOn;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -30,18 +28,17 @@ public class Elevator extends Subsystem {
     
     //TeleOp Methods
     public void SlideLadder(double Speed) {
-		if(Speed >= 0.10) {
-			elevator.set(Speed);
-		} 
-		if(Speed<= -0.10) {
-			elevator.set(Speed);
-		} else {
-			elevator.set(0.0);
+		if(Speed >= 0.25) {
+			elevator.set(Speed / 2.0); // Divided by 2.0 for speed issues
 		}
-	}
-	public void StopLadder() {
-		elevator.set(0.0);
-	}
+		if(Speed <= -0.25) {
+			elevator.set(Speed / 2.0);
+		}
+    }
+    
+    public void StopLadder() {
+    	elevator.set(0.0);
+    }
 	
 	//Auto Methods
 	public void initEncoder(boolean direction) {

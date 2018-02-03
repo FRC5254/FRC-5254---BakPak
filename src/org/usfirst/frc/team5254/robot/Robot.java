@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		
-		String autoSelected = SmartDashboard.getString("Auto Selector", NothingAuto);
+		String autoSelected = SmartDashboard.getString("Auto Selector", SwitchAuto);
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if(gameData.charAt(0) == 'L')
 		{

@@ -47,10 +47,9 @@ public class OI {
 		// Operator Subcommands
 		OperatorButtonBack.whenPressed(new CubeMechClamp());
 		OperatorButtonStart.whenPressed(new CubeMechRelease());
-		OperatorButtonA.whenPressed(new CubeMechIntake());
-		OperatorButtonX.whenPressed(new CubeMechOutake());
+		OperatorButtonX.whenPressed(new CubeMechIntake());
+		OperatorButtonA.whenPressed(new CubeMechOutake());
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
-		OperatorButtonRB.whenActive(new CubeMechArmsDown());
-		OperatorButtonRB.whenInactive(new CubeMechArmsUp());
+
 	}
 }

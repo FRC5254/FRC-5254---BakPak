@@ -4,7 +4,6 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 
 import org.usfirst.frc.team5254.robot.commands.CubeMechStopFlywheels;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,18 +19,12 @@ public class CubeMech extends Subsystem {
 	
 	//Initializing solenoids
 	public static Solenoid cubeMechArms = new Solenoid(RobotMap.CUBE_MECH_ARMS);
-	public static DoubleSolenoid cubeMechHinge = new DoubleSolenoid(RobotMap.CUBE_MECH_HINGE_UP, RobotMap.CUBE_MECH_HINGE_DOWN);
 	
 	public CubeMech() {
 	}
 	
 	//TeleOp Methods
-	public void ArmsDown() {
-		cubeMechHinge.set(DoubleSolenoid.Value.kReverse);
-	}
-	public void ArmsUp() {
-		cubeMechHinge.set(DoubleSolenoid.Value.kForward);
-	}
+
 	public void Clamp() {
 		cubeMechArms.set(true);
 	}

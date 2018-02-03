@@ -53,7 +53,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	//TeliOp Methods
 	public void drive(double Throttle,double Turn) {
-		drivetrain.arcadeDrive(Throttle, -Turn);
+		drivetrain.arcadeDrive(-Throttle, -Turn);
 	}
 
 	public void stop() {
@@ -140,9 +140,7 @@ public class Drivetrain extends PIDSubsystem {
 		}
 		
 		drive(-finalThrottle, -gyro.getAngle() * RobotMap.Kp);
-		 System.out.println(gyro.getAngle() + " " + Throttle + " " +
-		 remainingDistance + " " + finalThrottle + " " + encoder.get() + " " +
-		 remainingTicks);
+		 System.out.println("Remaining Distance: " + remainingDistance);
 	}	
 	
 	public boolean driveAutoIsFinished() {
@@ -154,25 +152,36 @@ public class Drivetrain extends PIDSubsystem {
 		drive(-Throttle, -gyro.getAngle() + this.angle);
 	}
 	
-	public void PIDTurnInit() {
+	public void PIDTurnInit(double angle) {
+		this.angle = angle;
 		Robot.Drivetrain.setSetpoint(gyro.getAngle() + this.angle);
 		Robot.Drivetrain.enable();
+		System.out.println("Get angle: " + gyro.getAngle());
+		System.out.println("Set angle: " + this.angle);
+		}
+	
+	public boolean PIDTurnIsFinished() {
+		return onTarget();
 	}
 	
 	@Override
 	protected double returnPIDInput() {
+		System.out.println("Return PID Input: " + gyro.getAngle());
 		return gyro.getAngle();
+		
 	}
 	
 	@Override
 	protected void usePIDOutput(double output) {
 		drive(0.0, output);
+		System.out.println("Output: " + output);
 	}
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
 		
 	}
+	
 
 	
 	

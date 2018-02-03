@@ -35,6 +35,7 @@ public class DriveToDistance extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	System.out.println("Drive Done");
     	Robot.Drivetrain.stop();
     }
 
