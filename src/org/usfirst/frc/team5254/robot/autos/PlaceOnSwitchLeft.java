@@ -21,11 +21,11 @@ public class PlaceOnSwitchLeft extends CommandGroup {
     	timer.reset();
     	timer.start();
     	
-    	addSequential(new DriveToDistance(1.0, 17));
+    	//addSequential(new DriveToDistance(1.0, 17));
     	//addSequential(new ElevatorToSetPoint(1.0, 0.8));
-    	addSequential(new PIDTurn(-25));
-    	addSequential(new DriveToDistance(1.0, 80));
     	addSequential(new PIDTurn(25));
+    	addSequential(new DriveToDistance(1.0, 17));
+    	addSequential(new PIDTurn(-25));
     	addSequential(new DriveToDistance(1.0, 17));
     	
     	if(timer.get() >= 10) {

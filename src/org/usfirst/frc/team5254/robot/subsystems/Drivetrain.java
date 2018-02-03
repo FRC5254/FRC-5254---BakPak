@@ -50,16 +50,18 @@ public class Drivetrain extends PIDSubsystem {
 		setAbsoluteTolerance(3.0);
 		getPIDController().setContinuous(true);
 		getPIDController().setOutputRange(-1.0, 1.0);
-		getPIDController().setInputRange(-360, 360);
+		getPIDController().setInputRange(-360.0, 360.0);
 	}
 	
 	//TeliOp Methods
 	public void drive(double Throttle,double Turn) {
 		drivetrain.arcadeDrive(-Throttle, -Turn);
+		System.out.println("drive" + Throttle + Turn);
 	}
 
 	public void stop() {
 		drivetrain.arcadeDrive(0.0,0.0);
+		System.out.println("stop");
 	}
 	public void shiftDown() {
 		shiftingPiston.set(true);
@@ -69,6 +71,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	public void slowTurn(double Throttle, double Turn) {
 		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
+		System.out.println("slowTurn" + Throttle + 0.5 * Turn);
 	}
 	
 	//Auto Methods
@@ -177,6 +180,7 @@ public class Drivetrain extends PIDSubsystem {
 		System.out.format("usePIDOutput %f \n" , output);
 		System.out.println("Angle: " + gyro.getAngle());
 	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
