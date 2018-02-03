@@ -49,6 +49,8 @@ public class Drivetrain extends PIDSubsystem {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(3.0);
 		getPIDController().setContinuous(true);
+		getPIDController().setOutputRange(-1.0, 1.0);
+		getPIDController().setInputRange(-360, 360);
 	}
 	
 	//TeliOp Methods
@@ -156,9 +158,8 @@ public class Drivetrain extends PIDSubsystem {
 		this.angle = angle;
 		Robot.Drivetrain.setSetpoint(gyro.getAngle() + this.angle);
 		Robot.Drivetrain.enable();
-		System.out.println("Get angle: " + gyro.getAngle());
-		System.out.println("Set angle: " + this.angle);
-		}
+	}
+	
 	
 	public boolean PIDTurnIsFinished() {
 		return onTarget();
@@ -166,15 +167,15 @@ public class Drivetrain extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		System.out.println("Return PID Input: " + gyro.getAngle());
 		return gyro.getAngle();
-		
 	}
+
 	
 	@Override
 	protected void usePIDOutput(double output) {
-		drive(0.0, output);
-		System.out.println("Output: " + output);
+		drivetrain.arcadeDrive(0.0, output);
+		System.out.format("usePIDOutput %f \n" , output);
+		System.out.println("Angle: " + gyro.getAngle());
 	}
 	@Override
 	protected void initDefaultCommand() {

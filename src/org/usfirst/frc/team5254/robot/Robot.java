@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends IterativeRobot {
 
@@ -46,6 +47,9 @@ public class Robot extends IterativeRobot {
 		
 		// Send auto modes
 		SmartDashboard.putStringArray("Auto List", AutoModes);
+		NetworkTableInstance inst = NetworkTableInstance.getDefault();
+	    NetworkTable table = inst.getTable("SmartDashboard");
+	    
 
 		// Initializing cameras
 		CameraServer.getInstance().startAutomaticCapture(1);
