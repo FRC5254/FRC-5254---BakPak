@@ -14,6 +14,7 @@ public class DriveToDistance extends Command {
 	
     public DriveToDistance(double Throttle, double Distance) {
     	
+    	requires(Robot.Drivetrain);
         this.Throttle = Throttle;
         this.Distance = Distance;
     }

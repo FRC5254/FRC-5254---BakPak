@@ -47,17 +47,16 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
-		setAbsoluteTolerance(10.0);
+		setAbsoluteTolerance(2.0);
 		getPIDController().setContinuous(true);
-		getPIDController().setOutputRange(-360.0, 360.0);
-		getPIDController().setInputRange(-360.0, 360.0);
+		getPIDController().setInputRange(-360.0 , 360.0);
+		getPIDController().setOutputRange(-1, 1);
 	}
 	
 	//TeliOp Methods
 	public void drive(double Throttle,double Turn) {
-		//drivetrain.arcadeDrive(-Throttle, -Turn);
-		System.out.println("drive" + Throttle + Turn);
-		//throw new java.lang.RuntimeException("Drivetrain.drive() called");
+		drivetrain.arcadeDrive(Throttle, Turn);
+		//System.out.println("drive: " + Throttle + ", "+ Turn);
 	}
 
 	public void stop() {
@@ -156,13 +155,14 @@ public class Drivetrain extends PIDSubsystem {
 	public void autoDistanceDriveFast() {
 		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
 		drive(-Throttle, -gyro.getAngle() + this.angle);
-		System.out.println("Auto Drive Fast");
 	}
 	
 	public void PIDTurnInit(double angle) {
+		gyro.reset();
 		this.angle = angle;
-		Robot.Drivetrain.setSetpoint(gyro.getAngle() + this.angle);
+		Robot.Drivetrain.setSetpoint(gyro.getAngle() + angle);
 		Robot.Drivetrain.enable();
+		//System.out.println("Setpoint: " + angle);
 	}
 	
 	
@@ -172,21 +172,20 @@ public class Drivetrain extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		return gyro.getAngle() % 360;
+		return gyro.getAngle();
 	}
 
 	
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, 0.1 * output, false);
-		System.out.format("usePIDOutput %f \n" , output);
+		drivetrain.arcadeDrive(0.0, -output);
+		//System.out.println("Output: " + -output);
 		System.out.println("Angle: " + gyro.getAngle());
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
-		System.out.println("Default Command");
 	}
 	
 

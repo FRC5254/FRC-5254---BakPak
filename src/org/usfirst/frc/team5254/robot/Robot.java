@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	private final String SwitchAuto = "SwitchAuto";
 	
 	private final String[] AutoModes = {
-			NothingAuto, CrossAutoLine
+			NothingAuto, CrossAutoLine,
 	};
 	
 	Command autonomousCommand;
@@ -74,6 +74,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		
 		String autoSelected = SmartDashboard.getString("Auto Selector", SwitchAuto);
+		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if(gameData.charAt(0) == 'L')
 		{
