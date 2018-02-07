@@ -47,7 +47,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
-		setAbsoluteTolerance(2.0);
+		setAbsoluteTolerance(4.0);
 		getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-360.0 , 360.0);
 		getPIDController().setOutputRange(-1, 1);
@@ -178,9 +178,9 @@ public class Drivetrain extends PIDSubsystem {
 	
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, -output);
-		//System.out.println("Output: " + -output);
-		System.out.println("Angle: " + gyro.getAngle());
+			drivetrain.arcadeDrive(0.0, -output * 0.9);
+			System.out.println("Angle: " + gyro.getAngle());
+			System.out.println("Output" + -output);
 	}
 	
 	@Override

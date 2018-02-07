@@ -32,10 +32,11 @@ public class Robot extends IterativeRobot {
 	// Auto modes
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
-	private final String SwitchAuto = "SwitchAuto";
+	private final String SwitchAuto = "Switch Auto";
+	private final String TestAuto = "Test Auto";
 	
 	private final String[] AutoModes = {
-			NothingAuto, CrossAutoLine,
+			NothingAuto, CrossAutoLine, SwitchAuto, TestAuto,
 	};
 	
 	Command autonomousCommand;
@@ -91,6 +92,10 @@ public class Robot extends IterativeRobot {
 			case SwitchAuto:
 				autonomousCommand = new PlaceOnSwitchLeft();
 				break;
+				
+			case TestAuto:
+				autonomousCommand = new TestAuto();
+				break;
 			}
 			
 		} else {
@@ -107,6 +112,10 @@ public class Robot extends IterativeRobot {
 				
 			case SwitchAuto:
 				autonomousCommand = new PlaceOnSwitchRight();
+				break;
+				
+			case TestAuto:
+				autonomousCommand = new TestAuto();
 				break;
 			}
 		}

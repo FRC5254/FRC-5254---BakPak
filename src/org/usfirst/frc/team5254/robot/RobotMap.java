@@ -45,6 +45,6 @@ public class RobotMap {
 	public static final double Kp = 0.3;
 	public static final double TURN_P = 0.1;
 	public static final double TURN_I = 0.002;
-	public static final double TURN_D = 0.2;
+	public static final double TURN_D = 0.3;
 	 
 }

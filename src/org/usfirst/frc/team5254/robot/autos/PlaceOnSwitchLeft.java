@@ -23,9 +23,9 @@ public class PlaceOnSwitchLeft extends CommandGroup {
     	
     	addSequential(new DriveToDistance(1.0, 17));
     	//addSequential(new ElevatorToSetPoint(1.0, 0.8));
-    	addSequential(new PIDTurn(27));
+    	addSequential(new PIDTurn(-29));
     	addSequential(new DriveToDistance(1.0, 17));
-    	addSequential(new PIDTurn(-27));
+    	addSequential(new PIDTurn(27));
     	addSequential(new DriveToDistance(1.0, 17));
     	System.out.println("Auto Done");
     	
