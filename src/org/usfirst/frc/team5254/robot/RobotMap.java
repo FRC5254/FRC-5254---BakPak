@@ -13,6 +13,7 @@ public class RobotMap {
 	
 	// Gyro
 	public static final int GYRO = 1;
+	
 	// MotorControllers
 	public static final int DRIVETRAIN_LEFT = 0;
 	public static final int DRIVETRAIN_LEFT2 = 1;
@@ -32,6 +33,7 @@ public class RobotMap {
 	public static final int DRIVER_TURN_AXIS = 4;
 	
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
+	
 	// Motors
 	
 	// Misc
@@ -43,8 +45,8 @@ public class RobotMap {
 	public static final int ENCODER_TICKS = 256;
 	
 	public static final double Kp = 0.3;
-	public static final double TURN_P = 0.1;
-	public static final double TURN_I = 0.002;
-	public static final double TURN_D = 0.3;
+	public static final double TURN_P = 0.8;
+	public static final double TURN_I = 0.001;
+	public static final double TURN_D = 0.66;
 	 
 }

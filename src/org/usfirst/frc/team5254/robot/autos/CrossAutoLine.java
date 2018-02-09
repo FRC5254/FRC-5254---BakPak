@@ -14,6 +14,6 @@ public class CrossAutoLine extends CommandGroup {
     	
     	requires(Robot.Drivetrain);
     	
-    	addSequential(new DriveToDistance(1.0, 17));
+    	addSequential(new DriveToDistance(1.0, 50));
     }
 }

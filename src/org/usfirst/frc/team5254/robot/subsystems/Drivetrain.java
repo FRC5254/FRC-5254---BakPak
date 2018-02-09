@@ -47,7 +47,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
-		setAbsoluteTolerance(4.0);
+		setAbsoluteTolerance(0.1);
 		getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-360.0 , 360.0);
 		getPIDController().setOutputRange(-1, 1);
