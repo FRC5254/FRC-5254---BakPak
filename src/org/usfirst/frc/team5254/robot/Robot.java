@@ -8,6 +8,8 @@ import org.usfirst.frc.team5254.robot.autos.*;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,6 +17,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends IterativeRobot {
+
+	static Timer timer = new Timer();
 	
 	NetworkTable table;
 	String gameData;
@@ -23,6 +27,8 @@ public class Robot extends IterativeRobot {
 	public static CubeMech CubeMech = new CubeMech();
 	public static Elevator Elevator = new Elevator();
 
+	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+
 	// Auto modes
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
@@ -30,11 +36,7 @@ public class Robot extends IterativeRobot {
 	private final String TestAuto = "Test Auto";
 	
 	private final String[] AutoModes = {
-			
-			NothingAuto,
-			CrossAutoLine, 
-			SwitchAuto, 
-			TestAuto,
+			NothingAuto, CrossAutoLine, SwitchAuto, TestAuto,
 	};
 	
 	Command autonomousCommand;
@@ -57,8 +59,13 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
+
 	}
-	
+
+	public static void stopTimer() {
+		System.out.println(timer.get());
+	}
+
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
@@ -75,6 +82,9 @@ public class Robot extends IterativeRobot {
 		{
 			switch (autoSelected) {
 			
+			default:
+				autonomousCommand = new NothingAuto();
+				break;
 
 			case CrossAutoLine:
 				autonomousCommand = new CrossAutoLine();
@@ -87,16 +97,16 @@ public class Robot extends IterativeRobot {
 			case TestAuto:
 				autonomousCommand = new TestAuto();
 				break;
-				
-			default:
-				autonomousCommand = new NothingAuto();
-				break;
 			}
 			
 		} else {
 			
 			switch (autoSelected) {
 			
+			default:
+				autonomousCommand = new NothingAuto();
+				break;
+
 			case CrossAutoLine:
 				autonomousCommand = new CrossAutoLine();
 				break;
@@ -108,13 +118,11 @@ public class Robot extends IterativeRobot {
 			case TestAuto:
 				autonomousCommand = new TestAuto();
 				break;
-				
-			default:
-				autonomousCommand = new NothingAuto();
-				break;
-
 			}
 		}
+		
+		timer.reset();
+		timer.start();
 
 		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
 		

@@ -49,6 +49,8 @@ public class Drivetrain extends PIDSubsystem {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(0.1);
 		getPIDController().setContinuous(true);
+		getPIDController().setInputRange(-360.0 , 360.0);
+		getPIDController().setOutputRange(-1, 1);
 	}
 	
 	//TeliOp Methods
@@ -69,7 +71,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	public void slowTurn(double Throttle, double Turn) {
 		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
-//		System.out.println("slowTurn" + Throttle + 0.5 * Turn);
+		System.out.println("slowTurn" + Throttle + 0.5 * Turn);
 	}
 	
 	//Auto Methods
@@ -142,8 +144,8 @@ public class Drivetrain extends PIDSubsystem {
 			}
 		}
 		
-		drive(-finalThrottle, gyro.getAngle() * RobotMap.Kp);
-//		 System.out.println("Remaining Distance: " + remainingDistance);
+		drive(-finalThrottle, -gyro.getAngle() * RobotMap.Kp);
+		 System.out.println("Remaining Distance: " + remainingDistance);
 	}	
 	
 	public boolean driveAutoIsFinished() {
@@ -152,7 +154,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void autoDistanceDriveFast() {
 		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
-		drive(-Throttle, gyro.getAngle() + this.angle);
+		drive(-Throttle, -gyro.getAngle() + this.angle);
 	}
 	
 	public void PIDTurnInit(double angle) {
@@ -173,11 +175,12 @@ public class Drivetrain extends PIDSubsystem {
 		return gyro.getAngle();
 	}
 
+	
 	@Override
 	protected void usePIDOutput(double output) {
-			drivetrain.arcadeDrive(0.0, -output);
-//			System.out.println("Angle: " + gyro.getAngle());
-//			System.out.println("Output" + -output);
+			drivetrain.arcadeDrive(0.0, -output * 0.9);
+			System.out.println("Angle: " + gyro.getAngle());
+			System.out.println("Output" + -output);
 	}
 	
 	@Override

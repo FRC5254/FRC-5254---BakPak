@@ -37,7 +37,7 @@ public class RobotMap {
 	// Motors
 	
 	// Misc
-	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0) * (100.0 / 103.0));
+	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0));
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
 	
 	public static final int ELEVATOR_GEAR_RATIO = 1;
@@ -45,8 +45,8 @@ public class RobotMap {
 	public static final int ENCODER_TICKS = 256;
 	
 	public static final double Kp = 0.3;
-	public static final double TURN_P = 0.05;
-	public static final double TURN_I = 0.0;
-	public static final double TURN_D = 0.08;
+	public static final double TURN_P = 0.8;
+	public static final double TURN_I = 0.001;
+	public static final double TURN_D = 0.66;
 	 
 }
