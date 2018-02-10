@@ -12,10 +12,10 @@ public class TestAuto extends CommandGroup {
 	
     public TestAuto() {
 
-    	//addSequential(new PIDTurn(50));
-    	//addSequential(new DriveToDistanceFast(1.0, 100));
-    	addSequential(new PIDTurn(-60));
-		//addSequential(new DriveToDistanceFast(1.0, 25));
+    	addSequential(new PIDTurn(90));
+//    	addSequential(new DriveToDistance(0.75, 50));
+//    	addSequential(new PIDTurn(25));
+//		addSequential(new DriveToDistanceFast(0.75, 25));
 
     	
     	//addSequential(new PIDTurn(180));
