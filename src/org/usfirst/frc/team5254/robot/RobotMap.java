@@ -15,15 +15,15 @@ public class RobotMap {
 	public static final int GYRO = 1;
 	
 	// MotorControllers
-	public static final int DRIVETRAIN_LEFT = 0;
-	public static final int DRIVETRAIN_LEFT2 = 1;
-	public static final int DRIVETRAIN_RIGHT = 2;
-	public static final int DRIVETRAIN_RIGHT2 = 3;
+	public static final int DRIVETRAIN_LEFT = 2;
+	public static final int DRIVETRAIN_LEFT2 = 3;
+	public static final int DRIVETRAIN_RIGHT = 0;
+	public static final int DRIVETRAIN_RIGHT2 = 1;
 	public static final int ELEVATOR = 9; // was 4
 	public static final int CUBE_MECH_LEFT_FLYWHEEL = 6;
 	public static final int CUBE_MECH_RIGHT_FLYWHEEL = 7;
-	public static final int CLIMBER_LEFT = 8;
-	public static final int CLIMBER_RIGHT = 4;// was 9
+//	public static final int CLIMBER_LEFT = 8;
+//	public static final int CLIMBER_RIGHT = 4;// was 9
 	
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
@@ -38,7 +38,7 @@ public class RobotMap {
 	
 	// Misc
 	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0));
-	public static final double DRIVETRAIN_WHEEL_DIAMETER = 3.5;
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
 	
 	public static final int ELEVATOR_GEAR_RATIO = 1;
 	public static final int ELEVATOR_AXIS_DIAMETER = 1;

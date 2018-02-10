@@ -77,6 +77,7 @@ public class Robot extends IterativeRobot {
 		String autoSelected = SmartDashboard.getString("Auto Selector", SwitchAuto);
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		gameData = ("L");
 		if(gameData.charAt(0) == 'L')
 		{
 			switch (autoSelected) {
