@@ -71,7 +71,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 	public void slowTurn(double Throttle, double Turn) {
 		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
-		System.out.println("slowTurn" + Throttle + 0.5 * Turn);
+		//System.out.println("slowTurn" + Throttle + 0.5 * Turn);
 	}
 	
 	//Auto Methods
@@ -97,6 +97,12 @@ public class Drivetrain extends PIDSubsystem {
 		gyro.reset();
 		timer.reset();
 		timer.start();
+	}
+	public void timeDrive(double Throttle) {
+		drive(-Throttle, gyro.getAngle() * RobotMap.Kp);
+	}
+	public void timeDriveInit() {
+		gyro.reset();
 	}
 	
 	public void autoDriveToDistance() {
@@ -145,7 +151,7 @@ public class Drivetrain extends PIDSubsystem {
 		}
 		
 		drive(-finalThrottle, gyro.getAngle() * RobotMap.Kp);
-		 System.out.println("Remaining Distance: " + remainingDistance);
+		 //System.out.println("Remaining Distance: " + remainingDistance);
 	}	
 	
 	public boolean driveAutoIsFinished() {
@@ -178,7 +184,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	@Override
 	protected void usePIDOutput(double output) {
-			drivetrain.arcadeDrive(0.0, -output * 0.9);
+			drivetrain.arcadeDrive(0.0, -output * 0.6);
 			System.out.println("Angle: " + gyro.getAngle());
 			System.out.println("Output" + -output);
 	}
@@ -187,8 +193,5 @@ public class Drivetrain extends PIDSubsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DrivetrainDriveWithJoystick());
 	}
-	
-
-	
 	
 }

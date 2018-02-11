@@ -3,10 +3,8 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int CUBE_MECH_ARMS = 1;
-	public static final int CUBE_MECH_HINGE_UP = 2;
-	public static final int CUBE_MECH_HINGE_DOWN = 3;
-	public static final int SHIFTING_PISTON = 7;
+	public static final int SHIFTING_PISTON = 7;// is 0 for the comp bot 
+//	public static final int RACHET_PISTON = 
 	
 	
 	// Sensors
@@ -23,7 +21,6 @@ public class RobotMap {
 	public static final int CUBE_MECH_LEFT_FLYWHEEL = 6;
 	public static final int CUBE_MECH_RIGHT_FLYWHEEL = 7;
 //	public static final int CLIMBER_LEFT = 8;
-//	public static final int CLIMBER_RIGHT = 4;// was 9
 	
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
@@ -34,7 +31,8 @@ public class RobotMap {
 	
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 	
-	// Motors
+	// CAN Talon
+	// Compbot Talon is a 7
 	
 	// Misc
 	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0) * (100.0 / 103.0));

@@ -16,21 +16,12 @@ public class CubeMech extends Subsystem {
 	//Initializing controllers
 	public static Spark cubeMechLeftFlywheels = new Spark(RobotMap.CUBE_MECH_LEFT_FLYWHEEL);
 	public static Spark cubeMechRightFlywheels = new Spark(RobotMap.CUBE_MECH_RIGHT_FLYWHEEL);
-	
-	//Initializing solenoids
-	public static Solenoid cubeMechArms = new Solenoid(RobotMap.CUBE_MECH_ARMS);
+
 	
 	public CubeMech() {
 	}
 	
 	//TeleOp Methods
-
-	public void Clamp() {
-		cubeMechArms.set(true);
-	}
-	public void Release() {
-		cubeMechArms.set(false);
-	}
 	public void Intake() {
 		cubeMechLeftFlywheels.set(1);
 		cubeMechRightFlywheels.set(1);

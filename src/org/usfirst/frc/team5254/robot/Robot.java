@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
 				break;
 				
 			case SwitchAuto:
-				autonomousCommand = new PlaceOnSwitchLeft();
+				autonomousCommand = new PlaceOnSwitchRight();
 				break;
 				
 			case TestAuto:

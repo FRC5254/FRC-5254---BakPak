@@ -45,8 +45,6 @@ public class OI {
 //		DriverButtonB.whenPressed(new CubeMechStopFlywheels());
 		
 		// Operator Subcommands
-		OperatorButtonBack.whenPressed(new CubeMechClamp());
-		OperatorButtonStart.whenPressed(new CubeMechRelease());
 		OperatorButtonX.whenPressed(new CubeMechIntake());
 		OperatorButtonA.whenPressed(new CubeMechOutake());
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());

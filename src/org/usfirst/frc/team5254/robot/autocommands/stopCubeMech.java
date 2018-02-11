@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5254.robot.commands;
+package org.usfirst.frc.team5254.robot.autocommands;
 
 import org.usfirst.frc.team5254.robot.Robot;
 
@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CubeMechClamp extends Command {
+public class stopCubeMech extends Command {
 
-    public CubeMechClamp() {
-    	requires(Robot.CubeMech);
+    public stopCubeMech() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.CubeMech);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class CubeMechClamp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.CubeMech.Clamp();
+    	Robot.CubeMech.StopFlywheels();
     }
 
     // Make this return true when this Command no longer needs to run execute()
