@@ -47,7 +47,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
-		setAbsoluteTolerance(0.1);
+		setAbsoluteTolerance(1.0);
 		getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-360.0 , 360.0);
 		getPIDController().setOutputRange(-1, 1);
@@ -144,7 +144,7 @@ public class Drivetrain extends PIDSubsystem {
 			}
 		}
 		
-		drive(-finalThrottle, -gyro.getAngle() * RobotMap.Kp);
+		drive(-finalThrottle, gyro.getAngle() * RobotMap.Kp);
 		 System.out.println("Remaining Distance: " + remainingDistance);
 	}	
 	
@@ -154,7 +154,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void autoDistanceDriveFast() {
 		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
-		drive(-Throttle, -gyro.getAngle() + this.angle);
+		drive(-Throttle, gyro.getAngle() + this.angle);
 	}
 	
 	public void PIDTurnInit(double angle) {
