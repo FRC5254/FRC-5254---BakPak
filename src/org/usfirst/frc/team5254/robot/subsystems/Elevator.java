@@ -2,17 +2,21 @@ package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ElevatorOn;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 
-/**
- *
- */
-public class Elevator extends Subsystem {
+public class Elevator extends PIDSubsystem {
 	
+	public Elevator() {
+		super("Elevator", RobotMap.ELEVATOR_P, RobotMap.ELEVATOR_I, RobotMap.ELEVATOR_D);
+		setAbsoluteTolerance(0.0);
+		getPIDController().setContinuous(true);
+		getPIDController().setInputRange(-360.0, 360.0);
+		getPIDController().setOutputRange(-1,1);
+	}
+
 	//Initializing auto Controllers
 	public static Victor elevator = new Victor(RobotMap.ELEVATOR);// TODO figure out if were using a CAN TALON or a VICTOR??
 	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
@@ -28,7 +32,12 @@ public class Elevator extends Subsystem {
     
     //TeleOp Methods
     public void SlideLadder(double Speed) {
-			elevator.set(Speed);
+		if(Speed >= 0.25) {
+			elevator.set(Speed / 2.0); // Divided by 2.0 for speed issues
+		}
+		if(Speed <= -0.25) {
+			elevator.set(Speed / 2.0);
+		}
     }
     
     public void StopLadder() {
@@ -46,6 +55,7 @@ public class Elevator extends Subsystem {
 		encoder.setSamplesToAverage(7);
 		
 	}
+	
 	public void autoTimedRaiseInit(double Speed, double Distance) {
 		
 		this.Speed = Speed;
@@ -118,6 +128,16 @@ public class Elevator extends Subsystem {
 		 
 	    setDefaultCommand(new ElevatorOn());
 	    
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		
 	}
 }
 

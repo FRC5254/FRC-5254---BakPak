@@ -47,6 +47,10 @@ public class RobotMap {
 	public static final double TURN_P = 0.4;
 	public static final double TURN_I = 0.032;
 	public static final double TURN_D = 1.28;
+	
+	public static final double ELEVATOR_P = 0.0;
+	public static final double ELEVATOR_I = 0.0;
+	public static final double ELEVATOR_D = 0.0;
 }
 
 
