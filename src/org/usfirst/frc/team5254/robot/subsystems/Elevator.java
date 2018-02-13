@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Elevator extends PIDSubsystem {
 	
@@ -13,14 +14,14 @@ public class Elevator extends PIDSubsystem {
 		super("Elevator", RobotMap.ELEVATOR_P, RobotMap.ELEVATOR_I, RobotMap.ELEVATOR_D);
 		setAbsoluteTolerance(0.0);
 		getPIDController().setContinuous(true);
-		getPIDController().setInputRange(-360.0, 360.0);
-		getPIDController().setOutputRange(-1,1);
 	}
 
 	//Initializing auto Controllers
 	public static Victor elevator = new Victor(RobotMap.ELEVATOR);// TODO figure out if were using a CAN TALON or a VICTOR??
 	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
 	
+	////Initializing Rachet piston
+	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
 	//Define other variables
 	public static Timer timer = new Timer();
 	private static int finalTicks;
@@ -42,6 +43,12 @@ public class Elevator extends PIDSubsystem {
     
     public void StopLadder() {
     	elevator.set(0.0);
+    }
+    public void Ratchet() {
+    	rachetingPiston.set(DoubleSolenoid.Value.kForward);
+    }
+    public void Unrachet() {
+    	rachetingPiston.set(DoubleSolenoid.Value.kReverse);
     }
 	
 	//Auto Methods
