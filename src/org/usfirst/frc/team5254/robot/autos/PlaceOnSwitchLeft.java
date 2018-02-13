@@ -16,25 +16,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PlaceOnSwitchRight extends CommandGroup {
+public class PlaceOnSwitchLeft extends CommandGroup {
 
 	private static Timer timer = new Timer();
 	
-    public PlaceOnSwitchRight() {
+    public PlaceOnSwitchLeft() {
     	
     	timer.reset();
     	timer.start();
     	
     	addSequential(new DriveToDistance(1.0, 10));
     	addSequential(new AutoTimerWait(.5));
-    	addSequential(new PIDTurn(25));
+    	addSequential(new PIDTurn(-35));
     	addSequential(new AutoTimerWait(.5));
-    	addSequential(new DriveToDistance(0.75, 85));// 87 was good
-    	addSequential(new PIDTurn(-25));
+    	addSequential(new DriveToDistance(0.75, 95));// 87 was good
+    	addSequential(new PIDTurn(35));
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new TimedDrive(0.5, .75));
     	addSequential(new IntakeCube());
-    	addSequential(new AutoTimerWait(.5));
+    	addSequential(new AutoTimerWait(2));
     	addSequential(new stopCubeMech());
     	
     }

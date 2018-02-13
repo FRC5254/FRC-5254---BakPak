@@ -81,21 +81,21 @@ public class Robot extends IterativeRobot {
 		if(gameData.charAt(0) == 'L')
 		{
 			switch (autoSelected) {
-			
-			default:
-				autonomousCommand = new NothingAuto();
-				break;
 
 			case CrossAutoLine:
 				autonomousCommand = new CrossAutoLine();
 				break;
 				
 			case SwitchAuto:
-				autonomousCommand = new PlaceOnSwitchRight();
+				autonomousCommand = new PlaceOnSwitchLeft();
 				break;
 				
 			case TestAuto:
 				autonomousCommand = new TestAuto();
+				break;
+				
+			default:
+				autonomousCommand = new NothingAuto();
 				break;
 			}
 			
@@ -103,10 +103,6 @@ public class Robot extends IterativeRobot {
 			
 			switch (autoSelected) {
 			
-			default:
-				autonomousCommand = new NothingAuto();
-				break;
-
 			case CrossAutoLine:
 				autonomousCommand = new CrossAutoLine();
 				break;
@@ -117,6 +113,10 @@ public class Robot extends IterativeRobot {
 				
 			case TestAuto:
 				autonomousCommand = new TestAuto();
+				break;
+				
+			default:
+				autonomousCommand = new NothingAuto();
 				break;
 			}
 		}

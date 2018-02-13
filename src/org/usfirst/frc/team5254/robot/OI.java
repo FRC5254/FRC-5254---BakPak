@@ -48,6 +48,8 @@ public class OI {
 		OperatorButtonX.whenPressed(new CubeMechIntake());
 		OperatorButtonA.whenPressed(new CubeMechOutake());
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
+		OperatorButtonBack.whenPressed(new ElevatorStop());
+		OperatorButtonBack.whenReleased(new ElevatorOn());
 
 	}
 }

@@ -28,12 +28,7 @@ public class Elevator extends Subsystem {
     
     //TeleOp Methods
     public void SlideLadder(double Speed) {
-		if(Speed >= 0.25) {
-			elevator.set(Speed / 2.0); // Divided by 2.0 for speed issues
-		}
-		if(Speed <= -0.25) {
-			elevator.set(Speed / 2.0);
-		}
+			elevator.set(Speed);
     }
     
     public void StopLadder() {
