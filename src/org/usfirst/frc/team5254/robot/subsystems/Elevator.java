@@ -2,6 +2,8 @@ package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ElevatorOn;
+import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -132,7 +134,7 @@ public class Elevator extends PIDSubsystem {
 	
 	//Defualt Command
 	public void initDefaultCommand() {
-		 
+		setDefaultCommand(new ElevatorRachet());
 	    setDefaultCommand(new ElevatorOn());
 	    
 	}

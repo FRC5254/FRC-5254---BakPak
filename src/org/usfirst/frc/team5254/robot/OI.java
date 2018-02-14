@@ -9,27 +9,34 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	// Defining controllers
-	public Joystick driverJoystick = new Joystick(RobotMap.DRIVER_JOYSTICK);
-	public Joystick operatorJoystick = new Joystick(RobotMap.OPERATOR_JOYSTICK);
+	public Joystick driver = new Joystick(RobotMap.DRIVER_JOYSTICK);
+	public Joystick operator = new Joystick(RobotMap.OPERATOR_JOYSTICK);
 	
 	public OI() {
 		
 		// Defining driver buttons
-		Button DriverButtonLB = new JoystickButton(driverJoystick, 5);
-		Button DriverButtonRB = new JoystickButton(driverJoystick, 6);
-		Button DriverButtonStart = new JoystickButton(driverJoystick, 8);
-		Button DriverButtonRJC = new JoystickButton(driverJoystick, 10);
-		Button DriverButtonA = new JoystickButton(driverJoystick, 1);
-		Button DriverButtonX = new JoystickButton(driverJoystick, 3);
-		Button DriverButtonB = new JoystickButton(driverJoystick, 2);
-		
+		Button DriverButtonA = new JoystickButton(driver, 1);
+		Button DriverButtonB = new JoystickButton(driver, 2);
+		Button DriverButtonX = new JoystickButton(driver, 3);
+		Button DriverButtonY = new JoystickButton(driver, 4);
+		Button DriverButtonLB= new JoystickButton(driver, 5);
+		Button DriverButtonRB = new JoystickButton(driver, 6);
+		Button DriverButtonBack = new JoystickButton(driver, 7);
+		Button DriverButtonStart = new JoystickButton(driver, 8);
+		Button DriverButtonLJC = new JoystickButton(driver, 9);
+		Button DriverButtonRJC = new JoystickButton(driver, 10);
+
 		// Defining operator buttons
-		Button OperatorButtonA = new JoystickButton(operatorJoystick, 1);
-		Button OperatorButtonX = new JoystickButton(operatorJoystick, 3);
-		Button OperatorButtonB = new JoystickButton(operatorJoystick, 2);
-		Button OperatorButtonRB = new JoystickButton(operatorJoystick, 6);
-		Button OperatorButtonBack = new JoystickButton(operatorJoystick, 7);
-		Button OperatorButtonStart = new JoystickButton(operatorJoystick, 8);
+		Button OperatorButtonA = new JoystickButton(operator, 1);
+		Button OperatorButtonB = new JoystickButton(operator, 2);
+		Button OperatorButtonX = new JoystickButton(operator, 3);
+		Button OperatorButtonY = new JoystickButton(operator, 4);
+		Button OperatorButtonLB = new JoystickButton(operator, 5);
+		Button OperatorButtonRB = new JoystickButton(operator, 6);
+		Button OperatorButtonBack = new JoystickButton(operator, 7);
+		Button OperatorButtonStart = new JoystickButton(operator, 8);
+		Button OperatorButtonLJC = new JoystickButton(operator, 9);
+		Button OperatorButtonRJC = new JoystickButton(operator, 10);
 		
 		// Driver subcommands
 		DriverButtonRB.whenPressed(new DrivetrainShiftUp());
@@ -50,6 +57,8 @@ public class OI {
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
 		OperatorButtonBack.whenPressed(new ElevatorStop());
 		OperatorButtonBack.whenReleased(new ElevatorOn());
+		OperatorButtonRB.whenPressed(new ElevatorRachet());
+		OperatorButtonRB.whenReleased(new ElevatorUnrachet());
 
 	}
 }

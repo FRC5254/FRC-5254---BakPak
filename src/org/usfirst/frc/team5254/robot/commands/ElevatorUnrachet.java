@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorUnrachet extends Command {
 
     public ElevatorUnrachet() {
-        requires(Robot.Elevator);
+//        requires(Robot.Elevator);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class ElevatorUnrachet extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -34,5 +34,6 @@ public class ElevatorUnrachet extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

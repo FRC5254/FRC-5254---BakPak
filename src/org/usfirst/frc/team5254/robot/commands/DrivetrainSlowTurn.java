@@ -20,8 +20,8 @@ public class DrivetrainSlowTurn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Drivetrain.slowTurn(Robot.oi.driverJoystick.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
-    			Robot.oi.driverJoystick.getRawAxis(RobotMap.DRIVER_TURN_AXIS));
+    	Robot.Drivetrain.slowTurn(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
+    			Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS));
     }
 
     // Make this return true when this Command no longer needs to run execute()

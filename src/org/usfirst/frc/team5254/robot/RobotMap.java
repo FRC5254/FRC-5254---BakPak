@@ -4,7 +4,7 @@ public class RobotMap {
 
 	// Solenoids
 	public static final int SHIFTING_PISTON = 7;// is 0 for the comp bot 
-	public static final int RACHET_PISTON = 0; 
+	public static final int RACHET_PISTON = 3; 
 	public static final int UNRACHET_PISTON = 2;
 	
 	// Sensors
