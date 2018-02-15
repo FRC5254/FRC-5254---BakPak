@@ -8,7 +8,9 @@ import org.usfirst.frc.team5254.robot.autocommands.IntakeCube;
 import org.usfirst.frc.team5254.robot.autocommands.OutakeCube;
 import org.usfirst.frc.team5254.robot.autocommands.PIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.TimedDrive;
+import org.usfirst.frc.team5254.robot.autocommands.TimedElevatorRaise;
 import org.usfirst.frc.team5254.robot.autocommands.stopCubeMech;
+import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -18,13 +20,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PlaceOnSwitchLeft extends CommandGroup {
 
-	private static Timer timer = new Timer();
 	
     public PlaceOnSwitchLeft() {
     	
-    	timer.reset();
-    	timer.start();
-    	
+    	addSequential(new TimedElevatorRaise(1));
+    	addSequential(new ElevatorRachet());
     	addSequential(new DriveToDistance(1.0, 10));
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new PIDTurn(-35));

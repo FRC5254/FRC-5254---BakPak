@@ -57,8 +57,8 @@ public class OI {
 		OperatorButtonB.whenPressed(new CubeMechStopFlywheels());
 		OperatorButtonBack.whenPressed(new ElevatorStop());
 		OperatorButtonBack.whenReleased(new ElevatorOn());
-		OperatorButtonRB.whenPressed(new ElevatorRachet());
-		OperatorButtonRB.whenReleased(new ElevatorUnrachet());
+		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
+		OperatorButtonRB.whenReleased(new ElevatorRachet());
 
 	}
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.autocommands.*;
+import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,7 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TestAuto extends CommandGroup {
 	
     public TestAuto() {
-
+    	
+    	addSequential(new TimedElevatorRaise(1));
+    	addSequential(new ElevatorRachet());
     	//addSequential(new DriveToDistanceFast(1.0, 100));
 //    	addSequential(new PIDTurn(25));
 //    	addSequential(new AutoTimerWait(1));
@@ -19,7 +22,7 @@ public class TestAuto extends CommandGroup {
 //    	addSequential(new PIDTurn(-25));
    
 		//addSequential(new DriveToDistanceFast(1.0, 25));
-    	addSequential(new TimedDrive(0.5, 3));
+//    	addSequential(new TimedDrive(0.5, 3));
     	
     	//addSequential(new PIDTurn(180));
     	//addSequential(new DriveToDistance(1.0, 15));
