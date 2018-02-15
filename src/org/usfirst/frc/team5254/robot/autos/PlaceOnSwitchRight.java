@@ -8,9 +8,7 @@ import org.usfirst.frc.team5254.robot.autocommands.IntakeCube;
 import org.usfirst.frc.team5254.robot.autocommands.OutakeCube;
 import org.usfirst.frc.team5254.robot.autocommands.PIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.TimedDrive;
-import org.usfirst.frc.team5254.robot.autocommands.TimedElevatorRaise;
 import org.usfirst.frc.team5254.robot.autocommands.stopCubeMech;
-import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -19,11 +17,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class PlaceOnSwitchRight extends CommandGroup {
+
+	private static Timer timer = new Timer();
 	
     public PlaceOnSwitchRight() {
-
-    	addSequential(new TimedElevatorRaise(1));
-    	addSequential(new ElevatorRachet());
+    	
+    	timer.reset();
+    	timer.start();
+    	
     	addSequential(new DriveToDistance(1.0, 10));
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new PIDTurn(25));
@@ -32,7 +33,7 @@ public class PlaceOnSwitchRight extends CommandGroup {
     	addSequential(new PIDTurn(-25));
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new TimedDrive(0.5, .75));
-    	addSequential(new IntakeCube()); // TODO this is weird
+    	addSequential(new IntakeCube());
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new stopCubeMech());
     	
