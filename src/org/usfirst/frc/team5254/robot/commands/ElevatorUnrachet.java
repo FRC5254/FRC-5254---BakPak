@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,13 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ElevatorUnrachet extends Command {
-
+	
     public ElevatorUnrachet() {
-//        requires(Robot.Elevator);
+        requires(Robot.Elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.Elevator.RatchetInit();
     }
 
     // Called repeatedly when this Command is scheduled to run

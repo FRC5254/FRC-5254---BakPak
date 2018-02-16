@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.commands.ElevatorOn;
+import org.usfirst.frc.team5254.robot.commands.ElevatorJoystickControl;
 import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -24,6 +24,7 @@ public class Elevator extends PIDSubsystem {
 	
 	////Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
+	
 	//Define other variables
 	public static Timer timer = new Timer();
 	private static int finalTicks;
@@ -40,6 +41,15 @@ public class Elevator extends PIDSubsystem {
     
     public void StopLadder() {
     	elevator.set(0.0);
+    }
+     
+    public void RatchetInit() {
+    	timer.reset();
+    	timer.start();
+    	if (timer.get() >= 0.25) {
+    		Unrachet();
+    		timer.stop();
+    	}
     }
     public void Ratchet() {
     	rachetingPiston.set(DoubleSolenoid.Value.kForward);
@@ -130,7 +140,7 @@ public class Elevator extends PIDSubsystem {
 	//Defualt Command
 	public void initDefaultCommand() {
 		setDefaultCommand(new ElevatorRachet());
-	    setDefaultCommand(new ElevatorOn());
+	    setDefaultCommand(new ElevatorJoystickControl());
 	    
 	}
 
