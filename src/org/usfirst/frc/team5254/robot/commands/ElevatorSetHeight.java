@@ -1,32 +1,39 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
- /**
+/**
  *
  */
-public class ElevatorUnrachet extends Command {
+public class ElevatorSetHeight extends Command {
 	
-    public ElevatorUnrachet() {
+	double height;
+	int ticks;
+	
+    public ElevatorSetHeight(double height) {
         requires(Robot.Elevator);
+        
+        this.height = height;
+        
+        int ticks =(int) ((height) / (1.273 * Math.PI)) * 256;
+        
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Elevator.Unrachet();
-    	Robot.Elevator.SlideLadder(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+    	Robot.Elevator.setToHeight(ticks);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.Elevator.endSetHeight();
     }
 
     // Called once after isFinished returns true
