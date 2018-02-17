@@ -9,15 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElevatorSetHeight extends Command {
 	
-	double height;
 	int ticks;
 	
-    public ElevatorSetHeight(double height) {
+    public ElevatorSetHeight(int ticks) {
         requires(Robot.Elevator);
         
-        this.height = height;
-        
-        int ticks =(int) ((height) / (1.273 * Math.PI)) * 256;
+        this.ticks = ticks;
         
     }
 

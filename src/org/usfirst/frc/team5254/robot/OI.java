@@ -59,8 +59,9 @@ public class OI {
 		OperatorButtonBack.whenReleased(new ElevatorJoystickControl());
 		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
 		OperatorButtonRB.whenReleased(new ElevatorRachet());
-		OperatorButtonLB.whenPressed(new ElevatorSetHeight(24));
+		OperatorButtonLB.whenPressed(new ElevatorSetHeight(42000)); // 40,000
 		OperatorButtonStart.whenPressed(new ElevatorEncoderReset());
+		OperatorButtonRJC.whenPressed(new ElevatorSetHeight(15254));
 
 	}
 }

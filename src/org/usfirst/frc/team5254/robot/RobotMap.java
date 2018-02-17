@@ -51,7 +51,7 @@ public class RobotMap {
 	public static final double ELEVATOR_I = 0.0;
 	public static final double ELEVATOR_D = 0.0;
 	
-	public static final int kTimeoutMs = 0;
+	public static final int kTimeoutMs = 10;
 	public static final int kSlotIdx = 0;
 	public static final int kPIDLoopIdx = 0;
 }
