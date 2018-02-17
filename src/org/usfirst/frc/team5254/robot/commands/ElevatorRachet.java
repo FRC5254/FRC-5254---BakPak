@@ -21,7 +21,7 @@ public class ElevatorRachet extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.Elevator.Ratchet();
-    	Robot.Elevator.SlideLadder(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+    	Robot.Elevator.slideLadder(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -2,6 +2,10 @@ package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,8 +18,8 @@ public class Elevator extends Subsystem {
 	
 
 	//Initializing auto Controllers
-	public static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);// TODO figure out if were using a CAN TALON or a VICTOR??
-	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+	public  static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
+	public static TalonSRX elevatorEncoder = new TalonSRX(RobotMap.ELEVATOR_ENCODER);
 	
 	////Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
@@ -30,31 +34,40 @@ public class Elevator extends Subsystem {
 	public double Distance;
 	public int ticks;
     
-    //TeleOp Methods
-    public void SlideLadder(double Speed) {
+	
+	public Elevator() {    
+		elevatorEncoder.set(ControlMode.Position, elevatorEncoder.getSelectedSensorPosition(10));
+		elevator.follow(elevatorEncoder);
+	}
+	
+	public void initEncoder(boolean direction) {
+		elevatorEncoder.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);   
+		elevatorEncoder.setSensorPhase(true);   
+		elevatorEncoder.setInverted(direction);   
+		
+		/* zero the sensor */   
+		  elevator.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
+	}
+	
+	public void zeroEncoder() {  
+		  elevator.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
+	}
+	
+    //TeleOp Method
+    public void slideLadder(double Speed) {
 		elevator.set(null, Speed);
-		System.out.println(encoder.get());
 		
     }
     
-    public void ResetEncoder(){
-    	encoder.reset();
-		encoder.setMaxPeriod(0.1);
-		encoder.setMinRate(1);
-		encoder.setDistancePerPulse(1);
-		encoder.setReverseDirection(false);
-		encoder.setSamplesToAverage(7);
-    }
-    
     public boolean endSetHeight(){
-    	return (encoder.get()> ticks);
+    	return (elevatorEncoder.getSelectedSensorPosition(10) > ticks);
     }
     
     public void setToHeight(int ticks){
     	
     	this.ticks=ticks;
     	
-    	if (ticks > Math.abs(encoder.get())){
+    	if (ticks > Math.abs(elevatorEncoder.getSelectedSensorPosition(10))){
     		elevator.set(null,-.75);
     	}else{
     		StopLadder();
@@ -66,7 +79,7 @@ public class Elevator extends Subsystem {
     	elevator.set(null,0.0);
     }
      
-    public void RatchetInit() {
+    public void UnratchetInit() { //TODO does this even work
     	timer.reset();
     	timer.start();
     	if (timer.get() >= 0.25) {
@@ -82,17 +95,7 @@ public class Elevator extends Subsystem {
     }
 	
 	//Auto Methods
-	public void initEncoder(boolean direction) {
-		
-		encoder.reset();
-		encoder.setMaxPeriod(0.1);
-		encoder.setMinRate(1);
-		encoder.setDistancePerPulse(1);
-		encoder.setReverseDirection(direction);
-		encoder.setSamplesToAverage(7);
-		
-	}
-	
+
 	public void autoTimedRaiseInit(double Speed, double Distance) {
 		
 		this.Speed = Speed;
@@ -109,7 +112,7 @@ public class Elevator extends Subsystem {
 	
 	public void autoRaiseDistance(double Speed, double Distance) {
 		
-		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
+		remainingTicks = Math.abs(finalTicks) - Math.abs(elevatorEncoder.getSelectedSensorPosition(10));
 		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.ELEVATOR_GEAR_RATIO))
 				* (RobotMap.ELEVATOR_AXIS_DIAMETER * Math.PI);
 
@@ -152,7 +155,7 @@ public class Elevator extends Subsystem {
 			}
 		}
 		
-		elevator.set(null,  -finalSpeed);
+		elevator.set(null,  -finalSpeed); //TODO what do the null mean
 
 		}	
 	
@@ -163,7 +166,7 @@ public class Elevator extends Subsystem {
 	//Defualt Command
 	public void initDefaultCommand() {
 		
-	    
+	    // TODO add elevator off here or StopLadder whatever
 	}
 
 	
