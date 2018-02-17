@@ -20,7 +20,6 @@ public class Elevator extends Subsystem {
 
 	//Initializing auto Controllers
 	public  static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
-	public static TalonSRX elevatorEncoder = new TalonSRX(RobotMap.ELEVATOR_ENCODER);
 	
 	////Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
@@ -37,10 +36,9 @@ public class Elevator extends Subsystem {
     
 	
 	public Elevator() {
-		elevator.follow(elevatorEncoder);
 		
-		elevatorEncoder.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		elevatorEncoder.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		elevator.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+		elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 	}
 	
 	public void initEncoder(boolean direction) {
@@ -54,21 +52,21 @@ public class Elevator extends Subsystem {
 	
     //TeleOp Method
     public void slideLadder(double Speed) {
-		elevatorEncoder.set(ControlMode.PercentOutput, Speed);
-		System.out.println(elevatorEncoder.getSelectedSensorPosition(0));
-		System.out.println(((elevatorEncoder.getSelectedSensorPosition(0))  / 256) * (1.273 * Math.PI));
+		elevator.set(ControlMode.PercentOutput, Speed);
+		System.out.println(elevator.getSelectedSensorPosition(0));
+		System.out.println(((elevator.getSelectedSensorPosition(0))  / 256) * (1.273 * Math.PI));
     }
     
     public boolean endSetHeight(){
-    	return (elevatorEncoder.getSelectedSensorPosition(0) > ticks);
+    	return (elevator.getSelectedSensorPosition(0) > ticks);
     }
     
     public void setToHeight(int ticks){
     	
     	this.ticks=ticks;
     	
-    	if (ticks > Math.abs(elevatorEncoder.getSelectedSensorPosition(0))){
-    		elevatorEncoder.set(ControlMode.PercentOutput,-1);
+    	if (ticks > Math.abs(elevator.getSelectedSensorPosition(0))){
+    		elevator.set(ControlMode.PercentOutput,-1);
     	}else{
     		StopLadder();
     	}
@@ -76,7 +74,7 @@ public class Elevator extends Subsystem {
     }
     
     public void StopLadder() {
-    	elevatorEncoder.set(ControlMode.PercentOutput,0.0);
+    	elevator.set(ControlMode.PercentOutput,0.0);
     }
      
     public void UnratchetInit() { //TODO does this even work
@@ -112,7 +110,7 @@ public class Elevator extends Subsystem {
 	
 	public void autoRaiseDistance(double Speed, double Distance) {
 		
-		remainingTicks = Math.abs(finalTicks) - Math.abs(elevatorEncoder.getSelectedSensorPosition(10));
+		remainingTicks = Math.abs(finalTicks) - Math.abs(elevator.getSelectedSensorPosition(10));
 		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.ELEVATOR_GEAR_RATIO))
 				* (RobotMap.ELEVATOR_AXIS_DIAMETER * Math.PI);
 
@@ -155,7 +153,7 @@ public class Elevator extends Subsystem {
 			}
 		}
 		
-		elevatorEncoder.set(ControlMode.PercentOutput,  -finalSpeed); //TODO what do the null mean
+		elevator.set(ControlMode.PercentOutput,  -finalSpeed);
 
 		}	
 	
