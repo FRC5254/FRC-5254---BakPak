@@ -1,16 +1,17 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
+ /**
  *
  */
 public class ElevatorUnrachet extends Command {
-
+	
     public ElevatorUnrachet() {
-//        requires(Robot.Elevator);
+        requires(Robot.Elevator);
     }
 
     // Called just before this Command runs the first time
@@ -20,6 +21,7 @@ public class ElevatorUnrachet extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.Elevator.Unrachet();
+    	Robot.Elevator.SlideLadder(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
     }
 
     // Make this return true when this Command no longer needs to run execute()

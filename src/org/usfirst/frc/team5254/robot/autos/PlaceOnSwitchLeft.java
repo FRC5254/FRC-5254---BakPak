@@ -23,8 +23,7 @@ public class PlaceOnSwitchLeft extends CommandGroup {
 	
     public PlaceOnSwitchLeft() {
     	
-    	addSequential(new TimedElevatorRaise(1));
-    	addSequential(new ElevatorRachet());
+    	addSequential(new TimedElevatorRaise(1)); 
     	addSequential(new DriveToDistance(1.0, 10));
     	addSequential(new AutoTimerWait(.5));
     	addSequential(new PIDTurn(-35));

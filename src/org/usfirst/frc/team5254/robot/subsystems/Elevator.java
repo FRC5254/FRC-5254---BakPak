@@ -1,29 +1,25 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.commands.ElevatorOn;
-import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class Elevator extends PIDSubsystem {
+public class Elevator extends Subsystem {
 	
-	public Elevator() {
-		super("Elevator", RobotMap.ELEVATOR_P, RobotMap.ELEVATOR_I, RobotMap.ELEVATOR_D);
-		setAbsoluteTolerance(0.0);
-		getPIDController().setContinuous(true);
-	}
 
 	//Initializing auto Controllers
-	public static Victor elevator = new Victor(RobotMap.ELEVATOR);// TODO figure out if were using a CAN TALON or a VICTOR??
+	public static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);// TODO figure out if were using a CAN TALON or a VICTOR??
 	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
 	
 	////Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
+	
 	//Define other variables
 	public static Timer timer = new Timer();
 	private static int finalTicks;
@@ -32,14 +28,51 @@ public class Elevator extends PIDSubsystem {
 	public double remainingDistance;
 	public double Speed;
 	public double Distance;
+	public int ticks;
     
     //TeleOp Methods
     public void SlideLadder(double Speed) {
-		elevator.set(Speed);
+		elevator.set(null, Speed);
+		System.out.println(encoder.get());
+		
+    }
+    
+    public void ResetEncoder(){
+    	encoder.reset();
+		encoder.setMaxPeriod(0.1);
+		encoder.setMinRate(1);
+		encoder.setDistancePerPulse(1);
+		encoder.setReverseDirection(false);
+		encoder.setSamplesToAverage(7);
+    }
+    
+    public boolean endSetHeight(){
+    	return (encoder.get()> ticks);
+    }
+    
+    public void setToHeight(int ticks){
+    	
+    	this.ticks=ticks;
+    	
+    	if (ticks > Math.abs(encoder.get())){
+    		elevator.set(null,-.75);
+    	}else{
+    		StopLadder();
+    	}
+    	
     }
     
     public void StopLadder() {
-    	elevator.set(0.0);
+    	elevator.set(null,0.0);
+    }
+     
+    public void RatchetInit() {
+    	timer.reset();
+    	timer.start();
+    	if (timer.get() >= 0.25) {
+    		Unrachet();
+    		timer.stop();
+    	}
     }
     public void Ratchet() {
     	rachetingPiston.set(DoubleSolenoid.Value.kForward);
@@ -119,7 +152,7 @@ public class Elevator extends PIDSubsystem {
 			}
 		}
 		
-		elevator.set(-finalSpeed);
+		elevator.set(null,  -finalSpeed);
 
 		}	
 	
@@ -129,19 +162,10 @@ public class Elevator extends PIDSubsystem {
 	
 	//Defualt Command
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorRachet());
-	    setDefaultCommand(new ElevatorOn());
+		
 	    
 	}
 
-	@Override
-	protected double returnPIDInput() {
-		return 0;
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		
-	}
+	
 }
 
