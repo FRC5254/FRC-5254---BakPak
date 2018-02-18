@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorUnrachet extends Command {
 
 	public ElevatorUnrachet() {
+		requires(Robot.Elevator);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.Elevator.initElevator();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

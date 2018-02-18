@@ -10,7 +10,7 @@ public class ElevatorSetDown extends CommandGroup {
 	public ElevatorSetDown() {
 
 		addSequential(new ElevatorRelease());
-		addSequential(new ElevatorDown());
+		addParallel(new ElevatorUnrachet());
 		end();
 
 		// TODO work?

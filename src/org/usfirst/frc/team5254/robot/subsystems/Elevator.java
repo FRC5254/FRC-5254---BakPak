@@ -22,9 +22,6 @@ public class Elevator extends Subsystem {
 	//// Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
 	
-	// Defining button
-	public static DigitalInput eleButton = new DigitalInput(RobotMap.ELE_BUTTON);
-	
 	// Define other variables
 	public static Timer timer = new Timer();
 	public double finalSpeed;
@@ -33,7 +30,7 @@ public class Elevator extends Subsystem {
 	public double Distance;
 	public int ticks;
 
-	public Elevator() {
+	public void initElevator() {
 		
 		elevatorEncoder.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		elevatorEncoder.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -43,7 +40,7 @@ public class Elevator extends Subsystem {
 
 	// TeleOp Method
 	public void on(double Speed) {
-		elevatorEncoder.set(ControlMode.PercentOutput, -Speed);
+		elevatorEncoder.set(ControlMode.PercentOutput, Speed);
 //		System.out.println(elevator.getSelectedSensorPosition(0));
 //		System.out.println(((elevator.getSelectedSensorPosition(0)) / 256) * (1.273 * Math.PI));
 	}
@@ -52,7 +49,7 @@ public class Elevator extends Subsystem {
 		this.ticks = ticks;
 		
 			if (ticks > Math.abs(elevatorEncoder.getSelectedSensorPosition(0))) {
-				elevatorEncoder.set(ControlMode.PercentOutput, 1);
+				elevatorEncoder.set(ControlMode.PercentOutput, -1);
 			} else {
 				off();
 		}
@@ -72,7 +69,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public boolean elevatorDownEnd() {
-		return (eleButton.get() == true);
+		return false;
 	}
 
 	public void off() {

@@ -6,6 +6,8 @@ public class RobotMap {
 	public static final int SHIFTING_PISTON = 7;
 	public static final int RACHET_PISTON = 2;
 	public static final int UNRACHET_PISTON = 3;
+	public static final int FIRE_CROSSBOW = 5;
+	public static final int NO_FIRE_CROSSBOW = 4;
 
 	// Sensors
 	public static final int ELE_BUTTON = 4;
@@ -20,7 +22,7 @@ public class RobotMap {
 	public static final int DRIVETRAIN_RIGHT2 = 1;
 	public static final int CUBE_MECH_LEFT_FLYWHEEL = 6;
 	public static final int CUBE_MECH_RIGHT_FLYWHEEL = 7;
-	// public static final int CLIMBER_LEFT = 8;
+	public static final int CLIMBER = 8;
 
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;

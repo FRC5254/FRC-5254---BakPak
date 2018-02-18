@@ -15,6 +15,7 @@ public class ElevatorEncoderReset extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.Elevator.initElevator();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -1,9 +1,8 @@
 package org.usfirst.frc.team5254.robot;
 
-import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team5254.robot.subsystems.Intake;
-import org.usfirst.frc.team5254.robot.subsystems.Elevator;
+import org.usfirst.frc.team5254.robot.subsystems.*;
 import org.usfirst.frc.team5254.robot.autos.*;
+import org.usfirst.frc.team5254.robot.commands.ClimberOn;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -27,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain Drivetrain = new Drivetrain();
 	public static Intake Intake = new Intake();
 	public static Elevator Elevator = new Elevator();
+	public static Climber Climber = new Climber();
 
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 

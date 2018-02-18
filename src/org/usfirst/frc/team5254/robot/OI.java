@@ -44,6 +44,11 @@ public class OI {
 		DoubleButton OperatorLBandX = new DoubleButton(operator, 5, 3);
 		DoubleButton OperatorLBandY = new DoubleButton(operator, 5, 4);
 		
+		DoubleButton OperatorRBandA = new DoubleButton(operator, 6, 1);
+		DoubleButton OperatorRBandB = new DoubleButton(operator, 6, 2);
+		DoubleButton OperatorRBandX = new DoubleButton(operator, 6, 3);
+		DoubleButton OperatorRBandY = new DoubleButton(operator, 6, 4);
+		
 
 		// Driver subcommands
 		// DriverButtonA.whenPressed(command);
@@ -54,31 +59,37 @@ public class OI {
 		DriverLB.whenInactive(new DrivetrainShiftDown());
 		DriverRB.whenPressed(new DrivetrainShiftUp());
 		DriverRB.whenInactive(new DrivetrainShiftDown());
-		// DriverButtonBack.whenPressed(command);
-		DriverButtonStart.whenPressed(new DrivetrainSlowTurn());
-		DriverButtonStart.whenInactive(new DrivetrainDriveWithJoystick());
+		// DriverButtonStart.whenPressed(command);
+		DriverButtonBack.whenPressed(new DrivetrainSlowTurn());
+		DriverButtonBack.whenInactive(new DrivetrainDriveWithJoystick());
 		// DriverLJC.whenPressed(command);
 		DriverRJC.whenPressed(new DrivetrainSlowTurn());
 		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
 		// Operator Subcommands
-		OperatorButtonA.whenPressed(new IntakeOn(true));
-		OperatorButtonB.whenPressed(new IntakeOff());
-		OperatorButtonX.whenPressed(new IntakeOn(false));
-		OperatorButtonY.whenPressed(new ElevatorSetDown());
+//		OperatorButtonA.whenPressed(new IntakeOn(true));
+//		OperatorButtonB.whenPressed(new IntakeOff());
+//		OperatorButtonX.whenPressed(new IntakeOn(false));
+//		OperatorButtonY.whenPressed(new ElevatorSetDown());
 		// OperatorButtonLB.whenPressed(command); Dont use this button
-		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
-		// OperatorButtonRB.whenReleased(new ElevatorRachet());
+//		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
+//		OperatorButtonRB.whenReleased(new ElevatorRachet());
 		OperatorButtonBack.whenPressed(new ElevatorStop());
 		OperatorButtonBack.whenReleased(new ElevatorJoystickControl());
 		OperatorButtonStart.whenPressed(new ElevatorEncoderReset());
 		// OperatorLJC.whenPressed(command);
 		OperatorRJC.whenPressed(new ElevatorSetHeight(15254));
 		
-		OperatorLBandA.toggleWhenActive(new ElevatorSetDown()); //TODO test these
-		OperatorLBandB.toggleWhenActive(new ElevatorStop());
-		OperatorLBandX.toggleWhenActive(new ElevatorSetHeight(15254));
-		OperatorLBandY.toggleWhenActive(new ElevatorSetHeight(41000));
+
+		OperatorLBandA.toggleWhenActive(new IntakeOn(true));
+		OperatorLBandB.toggleWhenActive(new IntakeOff());
+		OperatorLBandX.toggleWhenActive(new IntakeOn(false));
+		OperatorLBandY.toggleWhenActive(new ElevatorSetDown());
+		
+		OperatorRBandA.toggleWhenActive(new ElevatorSetDown()); //TODO test these
+		OperatorRBandB.toggleWhenActive(new ElevatorStop());
+		OperatorRBandX.toggleWhenActive(new ElevatorSetHeight(15254));
+		OperatorRBandY.toggleWhenActive(new ElevatorSetHeight(40000));
 
 	}
 }
