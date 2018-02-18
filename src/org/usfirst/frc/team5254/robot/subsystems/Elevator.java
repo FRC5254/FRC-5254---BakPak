@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Elevator extends Subsystem {
@@ -23,7 +24,7 @@ public class Elevator extends Subsystem {
 	
 	////Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
-	
+		
 	//Define other variables
 	public static Timer timer = new Timer();
 	private static int finalTicks;
@@ -52,7 +53,7 @@ public class Elevator extends Subsystem {
 	
     //TeleOp Method
     public void slideLadder(double Speed) {
-		elevator.set(ControlMode.PercentOutput, Speed);
+		elevator.set(ControlMode.PercentOutput, -Speed);
 		System.out.println(elevator.getSelectedSensorPosition(0));
 		System.out.println(((elevator.getSelectedSensorPosition(0))  / 256) * (1.273 * Math.PI));
     }
@@ -61,16 +62,29 @@ public class Elevator extends Subsystem {
     	return (elevator.getSelectedSensorPosition(0) > ticks);
     }
     
-    public void setToHeight(int ticks){
+    public void setToHeight(int ticks) {
     	
     	this.ticks=ticks;
     	
     	if (ticks > Math.abs(elevator.getSelectedSensorPosition(0))){
-    		elevator.set(ControlMode.PercentOutput,-1);
+    		elevator.set(ControlMode.PercentOutput,1);
     	}else{
     		StopLadder();
     	}
     	
+    }
+    
+    public void elevatorDown() {
+    	if (elevator.getSelectedSensorPosition(0) > 100) {
+    		elevator.set(ControlMode.PercentOutput,-.25);
+    		
+    	}else {
+    		StopLadder();
+    	}
+    }
+    
+    public boolean elevatorDownEnd(){
+    	return (elevator.getSelectedSensorPosition(0) < 1000);
     }
     
     public void StopLadder() {
@@ -85,7 +99,7 @@ public class Elevator extends Subsystem {
     		timer.stop();
     	}
     }
-    public void Ratchet() {
+    public void Rachet() {
     	rachetingPiston.set(DoubleSolenoid.Value.kForward);
     }
     public void Unrachet() {

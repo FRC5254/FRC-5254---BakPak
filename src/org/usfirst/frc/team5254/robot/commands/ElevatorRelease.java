@@ -1,36 +1,40 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ElevatorRachet extends Command {
+public class ElevatorRelease extends Command {
 
-    public ElevatorRachet() {
-        requires(Robot.Elevator);
+    public ElevatorRelease() {
+    	requires(Robot.Elevator);
+ 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.Elevator.Unrachet();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Elevator.Rachet();
-    	Robot.Elevator.slideLadder(-Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+    	Robot.Elevator.Unrachet();
+    	Robot.Elevator.setToHeight(Robot.Elevator.elevator.getSelectedSensorPosition(0) + 1000);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.Elevator.endSetHeight();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.Elevator.Unrachet();
+
     }
 
     // Called when another command which requires one or more of the same

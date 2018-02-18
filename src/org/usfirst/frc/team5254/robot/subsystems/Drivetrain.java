@@ -48,7 +48,7 @@ public class Drivetrain extends PIDSubsystem {
 	public Drivetrain() {	
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(1.0);
-		getPIDController().setContinuous(true);
+//		getPIDController().setContinuous(true); TODO does commenting this harm autos?
 		getPIDController().setInputRange(-360.0 , 360.0);
 		getPIDController().setOutputRange(-1, 1);
 	}
