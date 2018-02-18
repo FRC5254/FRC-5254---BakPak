@@ -7,38 +7,34 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ElevatorDown extends Command {
+public class ElevatorDown extends Command {// TODO is this still needed
+	public ElevatorDown() {
+		requires(Robot.Elevator);
+	}
 
-    public ElevatorDown() {
-        
-    	requires(Robot.Elevator);
-    	
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.Elevator.unrachet();
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.Elevator.Unrachet();
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.Elevator.Unrachet();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return Robot.Elevator.elevatorDownEnd();
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return Robot.Elevator.elevatorDownEnd();
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.Elevator.rachet();
+		Robot.Elevator.off();
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.Elevator.Rachet();
-    	Robot.Elevator.slideLadder(0);
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		end();
+	}
 }

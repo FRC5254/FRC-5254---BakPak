@@ -12,8 +12,6 @@ public class AutoTimerWait extends Command {
 	Timer timer = new Timer();
 
 	public AutoTimerWait(double time) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		this.time = time;
 	}
 

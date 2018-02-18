@@ -7,9 +7,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ElevatorSetDown extends CommandGroup {
 
-    public ElevatorSetDown() {
-        
-    	addSequential(new ElevatorRelease());
-    	addSequential(new ElevatorDown());
-    }
+	public ElevatorSetDown() {
+
+		addSequential(new ElevatorRelease());
+		addSequential(new ElevatorDown());
+		end();
+
+		// TODO work?
+	}
 }

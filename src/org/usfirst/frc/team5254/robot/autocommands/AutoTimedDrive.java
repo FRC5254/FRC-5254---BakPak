@@ -5,14 +5,16 @@ import org.usfirst.frc.team5254.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TimedDrive extends Command {
+public class AutoTimedDrive extends Command {
 
 	double Throttle;
 	double stopTime;
-	public static Timer timer = new Timer();
-	
 
-	public TimedDrive(double Throttle, double stopTime) {
+	public static Timer timer = new Timer();
+
+	public AutoTimedDrive(double Throttle, double stopTime) {
+		requires(Robot.Drivetrain);
+
 		this.Throttle = Throttle;
 		this.stopTime = stopTime;
 	}
@@ -31,11 +33,7 @@ public class TimedDrive extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if(timer.get() > stopTime) {
-			return true;
-		} else {
-			return false;
-		}
+		return timer.get() > stopTime;
 	}
 
 	@Override
