@@ -32,7 +32,8 @@ public class RobotMap {
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 
 	// CAN Talon
-	public static final int ELEVATOR = 6;
+	public static final int ELEVATOR = 11;
+	public static final int ELEVATOR_ENCODER = 4;
 
 	// Misc
 	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0)

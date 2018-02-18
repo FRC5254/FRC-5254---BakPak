@@ -17,6 +17,7 @@ public class Elevator extends Subsystem {
 
 	// Initializing auto Controllers
 	public static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
+	public static TalonSRX elevatorEncoder = new TalonSRX(RobotMap.ELEVATOR_ENCODER);
 
 	//// Initializing Rachet piston
 	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
@@ -33,14 +34,16 @@ public class Elevator extends Subsystem {
 	public int ticks;
 
 	public Elevator() {
-
-		elevator.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		
+		elevatorEncoder.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+		elevatorEncoder.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		
+		elevator.follow(elevatorEncoder);
 	}
 
 	// TeleOp Method
 	public void on(double Speed) {
-		elevator.set(ControlMode.PercentOutput, -Speed);
+		elevatorEncoder.set(ControlMode.PercentOutput, -Speed);
 //		System.out.println(elevator.getSelectedSensorPosition(0));
 //		System.out.println(((elevator.getSelectedSensorPosition(0)) / 256) * (1.273 * Math.PI));
 	}
@@ -48,20 +51,20 @@ public class Elevator extends Subsystem {
 	public void setToHeight(int ticks) {
 		this.ticks = ticks;
 		
-			if (ticks > Math.abs(elevator.getSelectedSensorPosition(0))) {
-				elevator.set(ControlMode.PercentOutput, 1);
+			if (ticks > Math.abs(elevatorEncoder.getSelectedSensorPosition(0))) {
+				elevatorEncoder.set(ControlMode.PercentOutput, 1);
 			} else {
 				off();
 		}
 	}
 
 	public boolean endSetHeight() {
-		return (elevator.getSelectedSensorPosition(0) > ticks);
+		return (elevatorEncoder.getSelectedSensorPosition(0) > ticks);
 	}
 
 	public void elevatorDown() {
-		if (elevator.getSelectedSensorPosition(0) > 100) {
-			elevator.set(ControlMode.PercentOutput, -.25);
+		if (elevatorEncoder.getSelectedSensorPosition(0) > 100) {
+			elevatorEncoder.set(ControlMode.PercentOutput, -.25);
 
 		} else {
 			off();
@@ -86,11 +89,11 @@ public class Elevator extends Subsystem {
 
 	// Auto Methods
 	public void initEncoder(boolean direction) { // TODO boolean doesn't do anything
-		elevator.setSelectedSensorPosition(0, 0, 10);
+		elevatorEncoder.setSelectedSensorPosition(0, 0, 10);
 	}
 
 	public void zeroEncoder() {
-		elevator.setSelectedSensorPosition(0, 0, 10);
+		elevatorEncoder.setSelectedSensorPosition(0, 0, 10);
 	}
 
 	public void autoTimedRaiseInit(double Speed, int ticks) { // TODO it oaky?
