@@ -8,7 +8,7 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimedDrive;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimedElevatorRaise;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOff;
-import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
+import org.usfirst.frc.team5254.robot.commands.ElevatorRatchet;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;

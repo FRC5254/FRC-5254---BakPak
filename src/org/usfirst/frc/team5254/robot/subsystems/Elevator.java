@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.commands.ElevatorRachet;
+import org.usfirst.frc.team5254.robot.commands.ElevatorRatchet;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -16,10 +16,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class Elevator extends Subsystem {
 
 	// Initializing auto Controllers
-	public static TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
+	public TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
 
 	//// Initializing Rachet piston
-	public static DoubleSolenoid rachetingPiston = new DoubleSolenoid(RobotMap.RACHET_PISTON, RobotMap.UNRACHET_PISTON);
+	public static DoubleSolenoid ratchetingPiston = new DoubleSolenoid(RobotMap.RATCHET_PISTON, RobotMap.UNRATCHET_PISTON);
 	
 	// Init Button
 	DigitalInput eleButton = new DigitalInput(RobotMap.ELE_BUTTON);
@@ -90,19 +90,19 @@ public class Elevator extends Subsystem {
 		elevator.set(ControlMode.PercentOutput, 0.0);// sets elevator motor to 0% power
 	}
 
-	public void rachet() {
-		rachetingPiston.set(DoubleSolenoid.Value.kReverse); // extend pision to allow gearbox to rachet
+	public void ratchet() {
+		ratchetingPiston.set(DoubleSolenoid.Value.kReverse); // extend pision to allow gearbox to rachet
 	}
 
-	public void unrachet() {
-		rachetingPiston.set(DoubleSolenoid.Value.kForward); // retacts pistion to pull strin allowing GB to freely spin
+	public void unratchet() {
+		ratchetingPiston.set(DoubleSolenoid.Value.kForward); // retacts pistion to pull string allowing GB to freely spin
 	}
 
 	// Auto Methods
 	
 	// Defualt Command
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorRachet()); //the piston 
+		setDefaultCommand(new ElevatorRatchet()); //the piston 
 	}
 
 }

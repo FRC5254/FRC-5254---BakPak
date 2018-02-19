@@ -6,11 +6,11 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
- */
-public class ElevatorRachet extends Command {
+*
+*/
+public class ElevatorUnratchet extends Command {
 
-	public ElevatorRachet() {
+	public ElevatorUnratchet() {
 		requires(Robot.Elevator);
 	}
 
@@ -21,13 +21,13 @@ public class ElevatorRachet extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Elevator.rachet();
+		Robot.Elevator.unratchet();
 		Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return false;// TODO y cant i just say true, i have a hold button not toggle?
 	}
 
 	// Called once after isFinished returns true

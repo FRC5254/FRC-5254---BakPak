@@ -4,8 +4,8 @@ public class RobotMap {
 
 	// Solenoids
 	public static final int SHIFTING_PISTON = 7;
-	public static final int RACHET_PISTON = 2;
-	public static final int UNRACHET_PISTON = 3;
+	public static final int RATCHET_PISTON = 2;
+	public static final int UNRATCHET_PISTON = 3;
 	public static final int FIRE_CROSSBOW = 5;
 	public static final int NO_FIRE_CROSSBOW = 4;
 
@@ -37,6 +37,7 @@ public class RobotMap {
 
 	// CAN Talon
 	public static final int ELEVATOR = 6;
+	public static final double ELE_DOWN_SPEED = 0.3;
 
 	// Misc
 	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0)

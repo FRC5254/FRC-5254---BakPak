@@ -62,32 +62,24 @@ public class OI {
 		// DriverButtonStart.whenPressed(command);
 		DriverButtonBack.whenPressed(new DrivetrainSlowTurn());
 		DriverButtonBack.whenInactive(new DrivetrainDriveWithJoystick());
-		// DriverLJC.whenPressed(command);
-		DriverRJC.whenPressed(new DrivetrainSlowTurn());
-		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
+//		// DriverLJC.whenPressed(command);
+//		DriverRJC.whenPressed(new DrivetrainSlowTurn());
+//		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
 		// Operator Subcommands
-//		OperatorButtonA.whenPressed(new IntakeOn(true));
-//		OperatorButtonB.whenPressed(new IntakeOff());
-//		OperatorButtonX.whenPressed(new IntakeOn(false));
-//		OperatorButtonY.whenPressed(new ElevatorSetDown());
-//		OperatorButtonLB.whenPressed(command); Dont use this button
-//		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
-//		OperatorButtonRB.whenReleased(new ElevatorRachet());
-		OperatorButtonStart.whenPressed(new ElevatorUnrachet());
-		OperatorButtonStart.whenReleased(new ElevatorRachet());
+		OperatorButtonA.whenPressed(new ElevatorSetDown());
+		OperatorButtonB.whenPressed(new ElevatorStop());
+		OperatorButtonB.whenPressed(new IntakeOff());
+		OperatorButtonX.whenPressed(new ElevatorSetHeight(15254));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(40000));
+		OperatorButtonRB.whenPressed(new IntakeOn(true));
+		OperatorButtonRB.whenReleased(new IntakeOff());
+		OperatorButtonLB.whenPressed(new IntakeOn(false));
+		OperatorButtonLB.whenReleased(new IntakeOff());
+		OperatorButtonStart.whenPressed(new ElevatorUnratchet());
+		OperatorButtonStart.whenReleased(new ElevatorRatchet());
+		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
 //		OperatorLJC.whenPressed(command);
-		OperatorRJC.whenPressed(new ElevatorOn(-0.25));
-
-		OperatorLBandA.toggleWhenActive(new IntakeOn(true));
-		OperatorLBandB.toggleWhenActive(new IntakeOff());
-		OperatorLBandX.toggleWhenActive(new IntakeOn(false));
-		OperatorLBandY.toggleWhenActive(new ElevatorSetDown());
-		
-		OperatorRBandA.toggleWhenActive(new ElevatorSetDown());
-		OperatorRBandB.toggleWhenActive(new ElevatorStop());
-		OperatorRBandX.toggleWhenActive(new ElevatorSetHeight(15254));
-		OperatorRBandY.toggleWhenActive(new ElevatorSetHeight(40000));
-
+//		OperatorRJC.whenPressed(new ElevatorOn(.14));
 	}
 }

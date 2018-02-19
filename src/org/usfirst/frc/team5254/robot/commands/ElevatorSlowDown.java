@@ -36,6 +36,7 @@ public class ElevatorSlowDown extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.Elevator.off();
+		Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
     }
 
     // Called when another command which requires one or more of the same

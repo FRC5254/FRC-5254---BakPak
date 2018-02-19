@@ -176,7 +176,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+//		System.out.println(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 	}
 
 	@Override
