@@ -22,11 +22,11 @@ public class Intake extends Subsystem {
 	// TeleOp Methods
 	public void on(boolean direction) {
 		if (direction == true) {
-			intakeLeftFlywheels.set(1);
-			intakeRightFlywheels.set(1);
-		} else {
 			intakeLeftFlywheels.set(-1);
 			intakeRightFlywheels.set(-1);
+		} else {
+			intakeLeftFlywheels.set(1);
+			intakeRightFlywheels.set(1);
 		}
 	}
 

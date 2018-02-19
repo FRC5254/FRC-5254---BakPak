@@ -51,7 +51,7 @@ public class OI {
 		
 
 		// Driver subcommands
-		// DriverButtonA.whenPressed(command);
+		 DriverButtonA.whenPressed(new ClimberFire());
 		// DriverButtonB.whenPressed(command);
 		// DriverButtonX.whenPressed(command);
 		// DriverButtonY.whenPressed(commnd);
@@ -71,22 +71,20 @@ public class OI {
 //		OperatorButtonB.whenPressed(new IntakeOff());
 //		OperatorButtonX.whenPressed(new IntakeOn(false));
 //		OperatorButtonY.whenPressed(new ElevatorSetDown());
-		// OperatorButtonLB.whenPressed(command); Dont use this button
+//		OperatorButtonLB.whenPressed(command); Dont use this button
 //		OperatorButtonRB.whenPressed(new ElevatorUnrachet());
 //		OperatorButtonRB.whenReleased(new ElevatorRachet());
-		OperatorButtonBack.whenPressed(new ElevatorStop());
-		OperatorButtonBack.whenReleased(new ElevatorJoystickControl());
-		OperatorButtonStart.whenPressed(new ElevatorEncoderReset());
-		// OperatorLJC.whenPressed(command);
-		OperatorRJC.whenPressed(new ElevatorSetHeight(15254));
-		
+		OperatorButtonStart.whenPressed(new ElevatorUnrachet());
+		OperatorButtonStart.whenReleased(new ElevatorRachet());
+//		OperatorLJC.whenPressed(command);
+		OperatorRJC.whenPressed(new ElevatorOn(-0.25));
 
 		OperatorLBandA.toggleWhenActive(new IntakeOn(true));
 		OperatorLBandB.toggleWhenActive(new IntakeOff());
 		OperatorLBandX.toggleWhenActive(new IntakeOn(false));
 		OperatorLBandY.toggleWhenActive(new ElevatorSetDown());
 		
-		OperatorRBandA.toggleWhenActive(new ElevatorSetDown()); //TODO test these
+		OperatorRBandA.toggleWhenActive(new ElevatorSetDown());
 		OperatorRBandB.toggleWhenActive(new ElevatorStop());
 		OperatorRBandX.toggleWhenActive(new ElevatorSetHeight(15254));
 		OperatorRBandY.toggleWhenActive(new ElevatorSetHeight(40000));

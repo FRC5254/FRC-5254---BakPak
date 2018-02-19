@@ -23,6 +23,7 @@ public class RobotMap {
 	public static final int CUBE_MECH_LEFT_FLYWHEEL = 6;
 	public static final int CUBE_MECH_RIGHT_FLYWHEEL = 7;
 	public static final int CLIMBER = 8;
+	public static final int CLIMBER_2 = 9;
 
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
@@ -30,12 +31,12 @@ public class RobotMap {
 
 	public static final int DRIVER_THROTTLE_AXIS = 1;
 	public static final int DRIVER_TURN_AXIS = 4;
+	public static final int DRIVER_RIGHT_TRIGGER_AXIS = 3;
 
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 
 	// CAN Talon
-	public static final int ELEVATOR = 11;
-	public static final int ELEVATOR_ENCODER = 4;
+	public static final int ELEVATOR = 6;
 
 	// Misc
 	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0)

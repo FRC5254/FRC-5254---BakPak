@@ -18,7 +18,7 @@ public class ElevatorRelease extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		height = Robot.Elevator.elevatorEncoder.getSelectedSensorPosition(0) + 500;// DONT FORGET TO CHANGE ALL ELEVATOR MC COMMANDS DUBASS
+		height = Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) + 500;// DONT FORGET TO CHANGE ALL ELEVATOR MC COMMANDS DUBASS
 		Robot.Elevator.unrachet();
 	}
 

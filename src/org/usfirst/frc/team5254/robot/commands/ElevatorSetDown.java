@@ -10,9 +10,9 @@ public class ElevatorSetDown extends CommandGroup {
 	public ElevatorSetDown() {
 
 		addSequential(new ElevatorRelease());
-		addParallel(new ElevatorUnrachet());
+		addParallel(new ElevatorUnrachet());// start --> latest
+		addParallel(new ElevatorSlowDown(0.14)); // was.1, -.14 (went backwards), 
 		end();
-
-		// TODO work?
 	}
 }
+
