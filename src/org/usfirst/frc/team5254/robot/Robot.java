@@ -33,9 +33,10 @@ public class Robot extends IterativeRobot {
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
 	private final String SwitchAuto = "Switch Auto";
+	private final String ScaleAuto = "Scale Auto";
 	private final String TestAuto = "Test Auto";
 
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, TestAuto, };
+	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, };
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
@@ -82,6 +83,10 @@ public class Robot extends IterativeRobot {
 				case TestAuto:
 					autonomousCommand = new TestAuto();
 					break;
+					
+				case ScaleAuto:
+					autonomousCommand = new ScaleAutoLeft();
+					break;
 
 				default:
 					autonomousCommand = new NothingAuto();
@@ -103,6 +108,10 @@ public class Robot extends IterativeRobot {
 					autonomousCommand = new TestAuto();
 					break;
 
+				case ScaleAuto:
+					autonomousCommand = new ScaleAutoLeft();
+					break;
+					
 				default:
 					autonomousCommand = new NothingAuto();
 					break;
@@ -125,6 +134,10 @@ public class Robot extends IterativeRobot {
 					autonomousCommand = new TestAuto();
 					break;
 	
+				case ScaleAuto:
+					autonomousCommand = new ScaleAutoLeft();
+					break;
+					
 				default:
 					autonomousCommand = new NothingAuto();
 					break;
@@ -140,6 +153,10 @@ public class Robot extends IterativeRobot {
 					autonomousCommand = new PlaceOnSwitchRightAuto();
 					break;
 	
+				case ScaleAuto:
+					autonomousCommand = new ScaleAutoLeft();
+					break;
+					
 				case TestAuto:
 					autonomousCommand = new TestAuto();
 					break;
@@ -176,7 +193,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(Robot.oi.driver.getRawAxis(2));
+//		System.out.println(Robot.oi.driver.getRawAxis(2));
 	}
 
 	@Override

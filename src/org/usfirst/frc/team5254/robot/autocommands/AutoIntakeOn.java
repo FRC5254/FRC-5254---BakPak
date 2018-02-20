@@ -34,12 +34,13 @@ public class AutoIntakeOn extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return timer.get() == time;
+		return timer.get() > time;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.Intake.off();
+		timer.stop();
 	}
 
 	// Called when another command which requires one or more of the same

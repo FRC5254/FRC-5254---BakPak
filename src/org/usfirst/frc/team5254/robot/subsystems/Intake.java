@@ -23,7 +23,7 @@ public class Intake extends Subsystem {
 	public void on(boolean direction) {
 		if (direction == true) {
 			intakeLeftFlywheels.set(-1);
-			intakeRightFlywheels.set(-1);
+			intakeRightFlywheels.set(-0.90);
 		} else {
 			intakeLeftFlywheels.set(0.75);
 			intakeRightFlywheels.set(0.75);

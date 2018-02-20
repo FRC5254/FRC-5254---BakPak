@@ -4,6 +4,7 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ClimberNoFire;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,7 +17,8 @@ public class Climber extends Subsystem {
 	public static Victor climberMotor = new Victor(RobotMap.CLIMBER);
 	public static Victor climberMotor2 = new Victor(RobotMap.CLIMBER_2);
 	
-	public static DoubleSolenoid climberPistion = new DoubleSolenoid(RobotMap.FIRE_CROSSBOW, RobotMap.NO_FIRE_CROSSBOW);
+	public static DoubleSolenoid climberReleasePistion = new DoubleSolenoid(RobotMap.FIRE_CROSSBOW, RobotMap.NO_FIRE_CROSSBOW);
+	public static Solenoid climberSlidingStagePiston = new Solenoid(RobotMap.CLIMBER_SLIDER_PISTON);
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new ClimberNoFire());
@@ -43,10 +45,18 @@ public class Climber extends Subsystem {
 	}
 	
 	public void fireCrossbow() {
-		climberPistion.set(DoubleSolenoid.Value.kForward);
+		climberReleasePistion.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void dontFireCrossbow() {
-		climberPistion.set(DoubleSolenoid.Value.kReverse);
+		climberReleasePistion.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void climberSliderUp() {
+		climberSlidingStagePiston.set(false);
+	}
+	
+	public void climberSliderDown() {
+		climberSlidingStagePiston.set(true);
 	}
 }

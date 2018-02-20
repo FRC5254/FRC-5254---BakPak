@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimberNoFire extends Command {
+public class ClimberSliderDown extends Command {
 
-    public ClimberNoFire() {
+    public ClimberSliderDown() {
     	requires(Robot.Climber);
     }
 
@@ -20,8 +20,14 @@ public class ClimberNoFire extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Climber.dontFireCrossbow();
-    	Robot.Climber.climberSliderUp();
+    	Robot.Climber.climberSliderDown();
+    	Robot.Climber.fireCrossbow();
+    	
+    	if (Robot.oi.driver.getRawAxis(2) > 0.8) {
+        	Robot.Climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
+    	} else {
+    		Robot.Climber.off();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

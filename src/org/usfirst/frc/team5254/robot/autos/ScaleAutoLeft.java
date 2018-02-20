@@ -16,13 +16,14 @@ public class ScaleAutoLeft extends CommandGroup {
 		addSequential(new ElevatorSetHeight(2000));
 		addSequential(new AutoTimerWait(.5));
     	addSequential(new AutoDriveToDistance(1 , 210));
+		addSequential(new AutoTimerWait(.5));
      	addSequential(new AutoPIDTurn(30));
      	addSequential(new AutoTimerWait(.5));
      	addSequential(new ElevatorSetHeight(40000));
      	addSequential(new AutoTimerWait(.5));
-     	addSequential(new AutoDriveToDistance(0.5, 75));
+     	addSequential(new AutoDriveToDistance(0.75, 65));
      	addSequential(new AutoIntakeOn(false, 1));
-     	addSequential(new AutoDriveToDistance(0.25, 24));
-     	addSequential(new ElevatorSetDown());
+     	addSequential(new AutoDriveToDistance(-0.5, 65));
+//     	addSequential(new ElevatorSetDown());
     }
 }

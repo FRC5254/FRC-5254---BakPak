@@ -53,7 +53,7 @@ public class OI {
 		// Driver subcommands
 		 DriverButtonA.whenPressed(new ClimberFire());
 		 DriverButtonB.whenPressed(new ClimberNoFire());
-		// DriverButtonX.whenPressed(command);
+		 DriverButtonX.whenPressed(new ClimberSliderDown());
 		// DriverButtonY.whenPressed(commnd);
 		DriverLB.whenPressed(new DrivetrainShiftUp());
 		DriverLB.whenInactive(new DrivetrainShiftDown());

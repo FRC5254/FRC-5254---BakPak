@@ -3,11 +3,13 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int SHIFTING_PISTON = 7;
+	public static final int CLIMBER_SLIDER_PISTON = 1;
 	public static final int RATCHET_PISTON = 2;
 	public static final int UNRATCHET_PISTON = 3;
 	public static final int FIRE_CROSSBOW = 5;
 	public static final int NO_FIRE_CROSSBOW = 4;
+	public static final int SHIFTING_PISTON = 7;
+	
 
 	// Sensors
 	public static final int ELE_BUTTON = 4;
@@ -41,7 +43,7 @@ public class RobotMap {
 	// Misc
 	
 		//Drivetrain
-	public static final double DRIVETRAIN_GEAR_RATIO = (6.867);
+	public static final double DRIVETRAIN_GEAR_RATIO = (7.103);
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
 	
 	public static final double Kp = 0.3;

@@ -21,7 +21,7 @@ public class ClimberFire extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.Climber.fireCrossbow();
-
+    	Robot.Climber.climberSliderUp();
     	if (Robot.oi.driver.getRawAxis(2) > 0.8) {
         	Robot.Climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
     	} else {
