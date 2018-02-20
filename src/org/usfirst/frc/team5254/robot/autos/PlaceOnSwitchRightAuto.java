@@ -9,6 +9,8 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoTimedDrive;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimedElevatorRaise;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOff;
 import org.usfirst.frc.team5254.robot.commands.ElevatorRatchet;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSetDown;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -20,7 +22,7 @@ public class PlaceOnSwitchRightAuto extends CommandGroup {
 
 	public PlaceOnSwitchRightAuto() {
 
-		addSequential(new AutoTimedElevatorRaise(1)); //TODO could change this to be encoder - lets not get ahead of ourselves here
+		addSequential(new ElevatorSetHeight(15254));
 		addSequential(new AutoDriveToDistance(1.0, 10));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoPIDTurn(25));
@@ -29,9 +31,10 @@ public class PlaceOnSwitchRightAuto extends CommandGroup {
 		addSequential(new AutoPIDTurn(-25));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoTimedDrive(0.5, .75));
-		addSequential(new AutoIntakeOn(false));
+		addSequential(new AutoIntakeOn(false, 1));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoIntakeOff());
-
+     	addSequential(new AutoDriveToDistance(0.5, 24));
+     	addSequential(new ElevatorSetDown());
 	}
 }

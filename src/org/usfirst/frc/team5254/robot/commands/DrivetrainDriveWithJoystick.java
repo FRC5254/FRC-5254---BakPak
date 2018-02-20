@@ -21,8 +21,13 @@ public class DrivetrainDriveWithJoystick extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Drivetrain.drive(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
-				-Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS)); // When you invert these make them inverted in slow turn
+//		if (Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) > RobotMap.SLOW_DRIVE_TICK_THRESHOLD) {
+//			Robot.Drivetrain.slowControll(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
+//					-Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS)); // When you invert these make them inverted in slow turn
+//		} else {
+			Robot.Drivetrain.drive(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
+					-Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS)); // When you invert these make them inverted in slow turn
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

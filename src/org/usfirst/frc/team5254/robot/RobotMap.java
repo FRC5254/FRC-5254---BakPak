@@ -37,24 +37,25 @@ public class RobotMap {
 
 	// CAN Talon
 	public static final int ELEVATOR = 6;
-	public static final double ELE_DOWN_SPEED = 0.3;
 
 	// Misc
-	public static final double DRIVETRAIN_GEAR_RATIO = ((25.0 / 6.0) * (100.0 / 91.0) * (50.0 / 48.0) * (50.0 / 56.0)
-			* (100.0 / 103.0));
+	
+		//Drivetrain
+	public static final double DRIVETRAIN_GEAR_RATIO = (6.867);
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
-
-	public static final int ELEVATOR_GEAR_RATIO = 1;
-	public static final int ELEVATOR_AXIS_DIAMETER = 1;
-	public static final int ENCODER_TICKS = 256;
-
+	
 	public static final double Kp = 0.3;
 
 	public static final double TURN_P = 0.4;
 	public static final double TURN_I = 0.032;
 	public static final double TURN_D = 1.28;
 
-	public static final double ELEVATOR_P = 0.0;
-	public static final double ELEVATOR_I = 0.0;
-	public static final double ELEVATOR_D = 0.0;
+		//Elevator
+	public static final int ELEVATOR_GEAR_RATIO = 1;
+	public static final int ELEVATOR_AXIS_DIAMETER = 1;
+	public static final int ENCODER_TICKS = 256;
+	
+	public static final double ELE_DOWN_SPEED = 0.3;
+	
+	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//height at which the elevator is to enable a slow drive measured in ticks
 }

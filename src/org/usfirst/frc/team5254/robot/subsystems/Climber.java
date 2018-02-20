@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
+import org.usfirst.frc.team5254.robot.commands.ClimberNoFire;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -18,8 +19,7 @@ public class Climber extends Subsystem {
 	public static DoubleSolenoid climberPistion = new DoubleSolenoid(RobotMap.FIRE_CROSSBOW, RobotMap.NO_FIRE_CROSSBOW);
 	
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new ClimberNoFire());
 	}
 	
 	public void set(double speed) {
@@ -43,10 +43,10 @@ public class Climber extends Subsystem {
 	}
 	
 	public void fireCrossbow() {
-		climberPistion.set(DoubleSolenoid.Value.kReverse);
+		climberPistion.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void dontFireCrossbow() {
-		climberPistion.set(DoubleSolenoid.Value.kForward);
+		climberPistion.set(DoubleSolenoid.Value.kReverse);
 	}
 }

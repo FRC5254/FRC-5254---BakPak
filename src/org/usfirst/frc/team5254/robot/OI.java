@@ -52,7 +52,7 @@ public class OI {
 
 		// Driver subcommands
 		 DriverButtonA.whenPressed(new ClimberFire());
-		// DriverButtonB.whenPressed(command);
+		 DriverButtonB.whenPressed(new ClimberNoFire());
 		// DriverButtonX.whenPressed(command);
 		// DriverButtonY.whenPressed(commnd);
 		DriverLB.whenPressed(new DrivetrainShiftUp());
@@ -71,7 +71,7 @@ public class OI {
 		OperatorButtonB.whenPressed(new ElevatorStop());
 		OperatorButtonB.whenPressed(new IntakeOff());
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(15254));
-		OperatorButtonY.whenPressed(new ElevatorSetHeight(40000));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(41000));
 		OperatorButtonRB.whenPressed(new IntakeOn(true));
 		OperatorButtonRB.whenReleased(new IntakeOff());
 		OperatorButtonLB.whenPressed(new IntakeOn(false));
@@ -80,6 +80,6 @@ public class OI {
 		OperatorButtonStart.whenReleased(new ElevatorRatchet());
 		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
 //		OperatorLJC.whenPressed(command);
-//		OperatorRJC.whenPressed(new ElevatorOn(.14));
+		OperatorRJC.whenPressed(new ElevatorSetHeight(2000));
 	}
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,6 +21,12 @@ public class ClimberFire extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.Climber.fireCrossbow();
+
+    	if (Robot.oi.driver.getRawAxis(2) > 0.8) {
+        	Robot.Climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
+    	} else {
+    		Robot.Climber.off();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

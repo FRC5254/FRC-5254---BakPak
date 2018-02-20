@@ -2,7 +2,6 @@ package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.subsystems.*;
 import org.usfirst.frc.team5254.robot.autos.*;
-import org.usfirst.frc.team5254.robot.commands.ClimberOn;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -164,6 +163,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println(Drivetrain.encoder.get());
 	}
 
 	@Override
@@ -176,7 +176,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		System.out.println(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+		System.out.println(Robot.oi.driver.getRawAxis(2));
 	}
 
 	@Override

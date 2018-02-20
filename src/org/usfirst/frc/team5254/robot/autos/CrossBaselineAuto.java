@@ -10,6 +10,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CrossBaselineAuto extends CommandGroup {
 
 	public CrossBaselineAuto() {
-		addSequential(new AutoDriveToDistance(0.5, 100));
+		addSequential(new AutoDriveToDistance(1.0, 100));
 	}
 }

@@ -35,7 +35,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	// Initializing auto controllers
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static Encoder encoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
 
 	public static Timer timer = new Timer();
 
@@ -81,7 +81,10 @@ public class Drivetrain extends PIDSubsystem {
 
 	public void slowTurn(double Throttle, double Turn) {
 		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
-		// System.out.println("slowTurn" + Throttle + 0.5 * Turn);
+	}
+	
+	public void slowControll(double Throttle, double Turn) {
+		drivetrain.arcadeDrive(Throttle * 0.5, Turn * 0.5);
 	}
 
 	// Auto Methods
@@ -124,9 +127,9 @@ public class Drivetrain extends PIDSubsystem {
 		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO))
 				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI);
 
-		if (throttle > 0) {
-			if (remainingDistance < throttle * 15) {
-				finalThrottle = remainingDistance / 15;
+		if (throttle > 0) {// forward drive
+			if (remainingDistance < throttle * 10) {// TODO make 10 a constant (deceleration factor) // higher number = more deceleration
+				finalThrottle = remainingDistance / 10;// same number ^^
 			} else {
 				finalThrottle = throttle;
 			}
@@ -142,9 +145,9 @@ public class Drivetrain extends PIDSubsystem {
 			if (finalThrottle < 0.35) {
 				finalThrottle = 0.35;
 			}
-		} else {
-			if (remainingDistance < Math.abs(throttle) * 15) {
-				finalThrottle = -remainingDistance / 15;
+		} else { //backwards drive
+			if (remainingDistance < Math.abs(throttle) * 10) { // higher number = more deceleration
+				finalThrottle = -remainingDistance / 10; // same number ^^
 			} else {
 				finalThrottle = throttle;
 
