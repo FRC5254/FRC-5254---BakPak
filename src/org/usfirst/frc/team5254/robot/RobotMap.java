@@ -38,7 +38,7 @@ public class RobotMap {
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 
 	// CAN Talon
-	public static final int ELEVATOR = 6;
+	public static final int ELEVATOR = 4;// is 6 on comp bot
 
 	// Misc
 	
