@@ -3,12 +3,12 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int CLIMBER_SLIDER_PISTON = 1;
+	public static final int CLIMBER_SLIDER_PISTON = 7; // was 1 changed bc can have 2 port that wore to the samething
 	public static final int RATCHET_PISTON = 2;
 	public static final int UNRATCHET_PISTON = 3;
 	public static final int FIRE_CROSSBOW = 5;
 	public static final int NO_FIRE_CROSSBOW = 4;
-	public static final int SHIFTING_PISTON = 7;
+	public static final int SHIFTING_PISTON = 1; // was 7
 	
 
 	// Sensors

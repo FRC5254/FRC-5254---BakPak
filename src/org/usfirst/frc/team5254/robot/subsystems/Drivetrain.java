@@ -35,7 +35,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	// Initializing auto controllers
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static Encoder encoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);// 2,3 dont work
+	public static Encoder encoder = new Encoder(2, 3, true, Encoder.EncodingType.k4X);// 2,3 dont work on comp bot ---- 0,1 dont work on protobot
 
 	public static Timer timer = new Timer();
 
