@@ -3,12 +3,12 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int CLIMBER_SLIDER_PISTON = 7; // was 1 changed bc can have 2 port that wore to the samething
+	public static final int CLIMBER_SLIDER_PISTON = 1;
 	public static final int RATCHET_PISTON = 2;
 	public static final int UNRATCHET_PISTON = 3;
 	public static final int FIRE_CROSSBOW = 5;
 	public static final int NO_FIRE_CROSSBOW = 4;
-	public static final int SHIFTING_PISTON = 1; // was 7
+	public static final int SHIFTING_PISTON = 7;
 	
 
 	// Sensors
@@ -16,7 +16,7 @@ public class RobotMap {
 
 	// Gyro
 	public static final int GYRO = 1;
-
+	
 	// MotorControllers
 	public static final int DRIVETRAIN_LEFT = 2;
 	public static final int DRIVETRAIN_LEFT2 = 3;
@@ -56,6 +56,10 @@ public class RobotMap {
 	public static final int ELEVATOR_GEAR_RATIO = 1;
 	public static final int ELEVATOR_AXIS_DIAMETER = 1;
 	public static final int ENCODER_TICKS = 256;
+	
+	public static final int TOP_SCALE_HEIGHT = 41000;
+	public static final int SWITCH_HEIGHT = 15254;
+	public static final int DRIVE_HEIGHT = 2000;
 	
 	public static final double ELE_DOWN_SPEED = 0.3;
 	

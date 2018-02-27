@@ -70,8 +70,8 @@ public class OI {
 		OperatorButtonA.whenPressed(new ElevatorSetDown());
 		OperatorButtonB.whenPressed(new ElevatorStop());
 		OperatorButtonB.whenPressed(new IntakeOff());
-		OperatorButtonX.whenPressed(new ElevatorSetHeight(15254));
-		OperatorButtonY.whenPressed(new ElevatorSetHeight(41000));
+		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.TOP_SCALE_HEIGHT));
 		OperatorButtonRB.whenPressed(new IntakeOn(true));
 		OperatorButtonRB.whenReleased(new IntakeOff());
 		OperatorButtonLB.whenPressed(new IntakeOn(false));
@@ -80,6 +80,6 @@ public class OI {
 		OperatorButtonStart.whenReleased(new ElevatorRatchet());
 		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
 //		OperatorLJC.whenPressed(command);
-		OperatorRJC.whenPressed(new ElevatorSetHeight(2000));
+		OperatorRJC.whenPressed(new ElevatorSetHeight(RobotMap.DRIVE_HEIGHT));
 	}
 }

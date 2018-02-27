@@ -180,7 +180,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(Drivetrain.encoder.get());
+//		System.out.println(Drivetrain.encoder.get());
 	}
 
 	@Override
@@ -194,6 +194,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 //		System.out.println(Robot.oi.driver.getRawAxis(2));
+//		System.out.println(Drivetrain.encoder.get());
 	}
 
 	@Override

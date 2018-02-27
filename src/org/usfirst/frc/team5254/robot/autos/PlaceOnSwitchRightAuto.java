@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoDriveToDistance;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
@@ -22,7 +23,7 @@ public class PlaceOnSwitchRightAuto extends CommandGroup {
 
 	public PlaceOnSwitchRightAuto() {
 
-		addSequential(new ElevatorSetHeight(15254));
+		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new AutoDriveToDistance(1.0, 10));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoPIDTurn(25));
