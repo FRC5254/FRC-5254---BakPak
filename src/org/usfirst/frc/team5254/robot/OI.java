@@ -68,8 +68,7 @@ public class OI {
 
 		// Operator Subcommands
 		OperatorButtonA.whenPressed(new ElevatorSetDown());
-		OperatorButtonB.whenPressed(new ElevatorStop());
-		OperatorButtonB.whenPressed(new IntakeOff());
+		OperatorButtonB.whenPressed(new ElevatorSetHeight(34948));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.TOP_SCALE_HEIGHT));
 		OperatorButtonRB.whenPressed(new IntakeOn(true));
