@@ -25,6 +25,5 @@ public class ScaleAutoRight extends CommandGroup {
      	addSequential(new AutoDriveToDistance(0.5, 55));
      	addSequential(new AutoIntakeOn(false, 1));
      	addSequential(new AutoDriveToDistance(0.5, 24));
-     	addSequential(new ElevatorSetDown());
     }
 }

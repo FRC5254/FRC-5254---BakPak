@@ -31,10 +31,6 @@ public class PlaceOnSwitchLeftAuto extends CommandGroup {
 		addSequential(new AutoPIDTurn(35));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoTimedDrive(0.5, 1));
-		addSequential(new AutoIntakeOn(false, 1));
-		addSequential(new AutoTimerWait(2));
-		addSequential(new AutoIntakeOff());
-     	addSequential(new AutoDriveToDistance(0.5, 24));
-     	addSequential(new ElevatorSetDown());
+		addSequential(new AutoIntakeOn(false, 15));
 	}
 }

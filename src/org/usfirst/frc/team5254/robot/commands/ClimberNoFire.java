@@ -22,6 +22,7 @@ public class ClimberNoFire extends Command {
     protected void execute() {
     	Robot.Climber.dontFireCrossbow();
     	Robot.Climber.climberSliderUp();
+    	Robot.Climber.off();
     }
 
     // Make this return true when this Command no longer needs to run execute()
