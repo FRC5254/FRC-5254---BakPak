@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScaleAutoLeft extends CommandGroup {
+public class LeftScaleAutoLeft extends CommandGroup {
 
-    public ScaleAutoLeft() {
+    public LeftScaleAutoLeft() {
 		addSequential(new ElevatorSetHeight(RobotMap.DRIVE_HEIGHT));
 		addSequential(new AutoTimerWait(.5));//rm
     	addSequential(new AutoDriveToDistance(1 , 210));

@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScaleAutoRight extends CommandGroup {
+public class LeftScaleAutoRight extends CommandGroup {
 
-    public ScaleAutoRight() {
+    public LeftScaleAutoRight() {
 		addSequential(new ElevatorSetHeight(RobotMap.DRIVE_HEIGHT));
 		addSequential(new AutoTimerWait(.5));
     	addSequential(new AutoDriveToDistance(1, 210));

@@ -19,9 +19,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PlaceOnSwitchRightAuto extends CommandGroup {
+public class CenterSwitchAutoRight extends CommandGroup {
 
-	public PlaceOnSwitchRightAuto() {
+	public CenterSwitchAutoRight() {
 
 		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new AutoDriveToDistance(1.0, 10));

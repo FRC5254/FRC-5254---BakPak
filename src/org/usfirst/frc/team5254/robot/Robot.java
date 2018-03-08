@@ -35,8 +35,10 @@ public class Robot extends IterativeRobot {
 	private final String SwitchAuto = "Switch Auto";
 	private final String ScaleAuto = "Scale Auto";
 	private final String TestAuto = "Test Auto";
+	private final String LeftScaleOrSwitch = "Scale or Switch on Left";
+	private final String RightScaleOrSwitch = "Scale or Switch on Right";
 
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, };
+	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch,};
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
@@ -68,7 +70,7 @@ public class Robot extends IterativeRobot {
 		if (gameData.charAt(0) == 'L') {
 			
 			
-			if (gameData.charAt(1)== 'L') {
+			if (gameData.charAt(1)== 'L') {// when switch and scale are on left side
 				
 				switch (autoSelected) {
 
@@ -77,22 +79,30 @@ public class Robot extends IterativeRobot {
 					break;
 
 				case SwitchAuto:
-					autonomousCommand = new PlaceOnSwitchLeftAuto();
-					break;
-
-				case TestAuto:
-					autonomousCommand = new TestAuto();
+					autonomousCommand = new CenterSwitchAutoLeft();
 					break;
 					
 				case ScaleAuto:
-					autonomousCommand = new ScaleAutoLeft();
+					autonomousCommand = new LeftScaleAutoLeft();
 					break;
 
+				case LeftScaleOrSwitch: 
+					autonomousCommand = new LeftScaleAutoLeft();
+					break;
+					
+				case RightScaleOrSwitch: 
+					autonomousCommand = new CrossBaselineAuto(); 
+					break;
+					
+				case TestAuto:
+					autonomousCommand = new TestAuto();
+					break;
+				
 				default:
 					autonomousCommand = new NothingAuto();
 					break;
 				}	
-			} else {
+			} else { // switch is on left, scale is on right
 				
 				switch (autoSelected) {
 
@@ -101,15 +111,23 @@ public class Robot extends IterativeRobot {
 					break;
 
 				case SwitchAuto:
-					autonomousCommand = new PlaceOnSwitchLeftAuto();
-					break;
-
-				case TestAuto:
-					autonomousCommand = new TestAuto();
+					autonomousCommand = new CenterSwitchAutoLeft();
 					break;
 
 				case ScaleAuto:
-					autonomousCommand = new ScaleAutoLeft();
+					autonomousCommand = new LeftScaleAutoLeft();
+					break;
+					
+				case LeftScaleOrSwitch: 
+					autonomousCommand = new LeftSwitchAutoLeft(); 
+					break;
+					
+				case RightScaleOrSwitch: 
+					autonomousCommand = new RightScaleAutoRight(); 
+					break;
+					
+				case TestAuto:
+					autonomousCommand = new TestAuto();
 					break;
 					
 				default:
@@ -120,22 +138,31 @@ public class Robot extends IterativeRobot {
 			
 		} else {
 				
-			if (gameData.charAt(1) == 'L') {
+			if (gameData.charAt(1) == 'L') { // switch is on right, scale is on left
 				switch (autoSelected) {
+				
 				case CrossAutoLine:
 					autonomousCommand = new CrossBaselineAuto();
 					break;
 	
 				case SwitchAuto:
-					autonomousCommand = new PlaceOnSwitchRightAuto();
-					break;
-	
-				case TestAuto:
-					autonomousCommand = new TestAuto();
+					autonomousCommand = new CenterSwitchAutoRight();
 					break;
 	
 				case ScaleAuto:
-					autonomousCommand = new ScaleAutoLeft();
+					autonomousCommand = new LeftScaleAutoLeft();
+					break;
+					
+				case LeftScaleOrSwitch: 
+					autonomousCommand = new LeftScaleAutoLeft(); 
+					break;
+					
+				case RightScaleOrSwitch: 
+					autonomousCommand = new RightSwitchAutoRight(); 
+					break;
+
+				case TestAuto:
+					autonomousCommand = new TestAuto();
 					break;
 					
 				default:
@@ -143,18 +170,27 @@ public class Robot extends IterativeRobot {
 					break;
 				}
 			
-			} else {
+			} else { // switch is on right, scale is on right
 				switch (autoSelected) {
+				
 				case CrossAutoLine:
 					autonomousCommand = new CrossBaselineAuto();
 					break;
 	
 				case SwitchAuto:
-					autonomousCommand = new PlaceOnSwitchRightAuto();
+					autonomousCommand = new CenterSwitchAutoRight();
 					break;
 	
 				case ScaleAuto:
-					autonomousCommand = new ScaleAutoLeft();
+					autonomousCommand = new LeftScaleAutoLeft();
+					break;
+					
+				case LeftScaleOrSwitch: 
+					autonomousCommand = new CrossBaselineAuto(); 
+					break;
+					
+				case RightScaleOrSwitch: 
+					autonomousCommand = new RightScaleAutoRight(); 
 					break;
 					
 				case TestAuto:
