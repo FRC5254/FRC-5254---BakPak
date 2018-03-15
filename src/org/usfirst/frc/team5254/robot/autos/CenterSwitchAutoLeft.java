@@ -24,6 +24,7 @@ public class CenterSwitchAutoLeft extends CommandGroup {
 	public CenterSwitchAutoLeft() {
 
 		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+    	addParallel(new AutoIntakeOn(true, 1));
 		addSequential(new AutoDriveToDistance(1.0, 10));
 		addSequential(new AutoTimerWait(.5));
 		addSequential(new AutoPIDTurn(-35));

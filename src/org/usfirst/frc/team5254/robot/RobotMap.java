@@ -60,6 +60,7 @@ public class RobotMap {
 	public static final int TOP_SCALE_HEIGHT = 41000;
 	public static final int SWITCH_HEIGHT = 15254;
 	public static final int DRIVE_HEIGHT = 2000;
+	public static final int POP_HEIGHT = 1000;
 	
 	public static final double ELE_DOWN_SPEED = 0.4;
 	

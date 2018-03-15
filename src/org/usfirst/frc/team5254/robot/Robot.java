@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	private final String LeftScaleOrSwitch = "Scale or Switch on Left";
 	private final String RightScaleOrSwitch = "Scale or Switch on Right";
 
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch,};
+	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch, };
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
