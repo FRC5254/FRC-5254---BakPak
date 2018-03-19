@@ -11,8 +11,8 @@ public class ElevatorSetDown extends CommandGroup {
 
 	public ElevatorSetDown() {
 
-		addSequential(new ElevatorRelease());
-		addParallel(new ElevatorUnratchet());
+//		addSequential(new ElevatorRelease()); these are removed bc they enage the ratchet 
+//		addParallel(new ElevatorUnratchet());
 		addParallel(new ElevatorSlowDown(RobotMap.ELE_DOWN_SPEED)); // this is the speed the motor runs to power the elevator down at a reasonable speed so we dont break the chain
 		end();
 	}

@@ -1,7 +1,10 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
+import java.awt.Robot;
+
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ElevatorRatchet;
+import org.usfirst.frc.team5254.robot.commands.ElevatorUnratchet;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -12,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 //TODO make the zeroencoder work
 public class Elevator extends Subsystem {
 
@@ -42,7 +46,7 @@ public class Elevator extends Subsystem {
 	// TeleOp Method
 	public void on(double Speed) {
 		if (eleButton.get() == false) { // if the button is pressed
-			if (Speed > 0) { // if elevator is going down
+			if (Speed > 0) { // and if elevator is going down
 				elevator.set(ControlMode.PercentOutput, 0.0);// stop
 				elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
 			} else { // if elevator is going up
@@ -52,7 +56,7 @@ public class Elevator extends Subsystem {
 			elevator.set(ControlMode.PercentOutput, Speed);// motor at set speed
 		}
 				
-		System.out.println(elevator.getSelectedSensorPosition(0));
+//		System.out.println(elevator.getSelectedSensorPosition(0));
 //		System.out.println(((elevator.getSelectedSensorPosition(0)) / 256) * (1.273 * Math.PI));
 	}
 
@@ -102,7 +106,14 @@ public class Elevator extends Subsystem {
 	
 	// Defualt Command
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorRatchet()); //the piston 
+//		if (org.usfirst.frc.team5254.robot.Robot.Auto == false) {
+//			setDefaultCommand(new ElevatorUnratchet());
+//			System.out.println("hello");
+//		} else {
+//			setDefaultCommand(new ElevatorRatchet()); //the piston 
+//			System.out.println("Pak");
+//		}
+		setDefaultCommand(new ElevatorRatchet());
 	}
 
 }

@@ -57,12 +57,13 @@ public class RobotMap {
 	public static final int ELEVATOR_AXIS_DIAMETER = 1;
 	public static final int ENCODER_TICKS = 256;
 	
+	public static final int POP_HEIGHT = 3000;
 	public static final int DRIVE_HEIGHT = 2000;
 	public static final int SWITCH_HEIGHT = 15254;
 	public static final int UNOWNED_SCALE_HEIGHT = 34948;
 	public static final int OWNED_SCALE_HEIGHT = 41000;
 	
-	public static final double ELE_DOWN_SPEED = 0.4;
+	public static final double ELE_DOWN_SPEED = 0.5;
 	
 	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//height at which the elevator is to enable a slow drive measured in ticks
 }
