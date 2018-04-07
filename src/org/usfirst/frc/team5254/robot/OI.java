@@ -67,16 +67,17 @@ public class OI {
 //		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
 		// Operator Subcommands
-		OperatorButtonA.whenPressed(new ElevatorSetDown());
-		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
+		OperatorButtonA.whenPressed(new ElevatorSetDown());// new ElevatorSetDown()
+		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonRB.whenPressed(new IntakeOn(true));
 		OperatorButtonRB.whenReleased(new IntakeOff());
 		OperatorButtonLB.whenPressed(new IntakeOn(false));
 		OperatorButtonLB.whenReleased(new IntakeOff());
-//		OperatorButtonStart.whenPressed(commmand);
-		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_HOLD_SPEED));
+		OperatorButtonStart.whenPressed(new ElevatorRatchet());
+		OperatorButtonStart.whenReleased(new ElevatorUnratchet());
+		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
 //		OperatorLJC.whenPressed(command);
 		OperatorRJC.whenPressed(new ElevatorStop());
 	}

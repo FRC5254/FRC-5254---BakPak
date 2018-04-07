@@ -38,7 +38,7 @@ public class RobotMap {
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 
 	// CAN Talon
-	public static final int ELEVATOR = 4;
+	public static final int ELEVATOR = 6;
 
 	// Misc
 	
@@ -57,13 +57,13 @@ public class RobotMap {
 	public static final int ELEVATOR_AXIS_DIAMETER = 1;
 	public static final int ENCODER_TICKS = 256;
 	
-	public static final int POP_HEIGHT = 1000;
-	public static final int SWITCH_HEIGHT = 7774;
-	public static final int UNOWNED_SCALE_HEIGHT = 28000;
-	public static final int OWNED_SCALE_HEIGHT = 22500; // LOWER
+	public static final int POP_HEIGHT = 3000;
+	public static final int DRIVE_HEIGHT = 2000;
+	public static final int SWITCH_HEIGHT = 15254;
+	public static final int UNOWNED_SCALE_HEIGHT = 34948;
+	public static final int OWNED_SCALE_HEIGHT = 41000;
 	
-	public static final double ELE_DOWN_SPEED = 0.2;// THIS IS NOT THE HOLD SPEED
-	public static final double ELE_HOLD_SPEED = -0.25;//Holds between 0.21 (weak hold) and 0.48, also this number needs to be negative
+	public static final double ELE_DOWN_SPEED = 0.5;
 	
-	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//Height at which the elevator is to enable a slow drive measured in ticks
+	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//height at which the elevator is to enable a slow drive measured in ticks
 }

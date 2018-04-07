@@ -29,7 +29,6 @@ public class RightScaleAutoRight extends CommandGroup {
      	addSequential(new AutoDriveToDistance(0.75, 65));
      	addSequential(new AutoIntakeOn(false, 1));
      	addSequential(new AutoDriveToDistance(-0.5, 65));
-     	addSequential(new ElevatorSetDown());
     	
 //    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 //		addParallel(new AutoIntakeOn(true, 1.5));
