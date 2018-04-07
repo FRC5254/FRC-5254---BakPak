@@ -13,22 +13,34 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightScaleAutoRight extends CommandGroup {
 
     public RightScaleAutoRight() {
-    	//"in theory"
+    	
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-    	addParallel(new AutoIntakeOn(true, 1));
-    	addSequential(new ElevatorSetDown());
+    	addParallel(new AutoIntakeOn(true, 1.5));
+		addSequential(new AutoTimerWait(1.0));
+    	addSequential(new AutoDriveToDistance(1 , 210));
 		addSequential(new AutoTimerWait(.5));
-    	addSequential(new AutoDriveToDistance(1, 210));
-     	addSequential(new AutoPIDTurn(-90));
+     	addSequential(new AutoPIDTurn(-30));
+     	addParallel(new AutoIntakeOn(true, 0.5));
      	addSequential(new AutoTimerWait(.5));
-     	addSequential(new AutoDriveToDistance(1, 195));
-     	addSequential(new AutoPIDTurn(-90));
+     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
      	addSequential(new AutoTimerWait(.5));
-     	addSequential(new ElevatorSetHeight(RobotMap.TOP_SCALE_HEIGHT));
-     	addSequential(new AutoTimerWait(.5));
-     	addSequential(new AutoDriveToDistance(0.5, 55));
+     	addSequential(new AutoDriveToDistance(0.75, 65));
      	addSequential(new AutoIntakeOn(false, 1));
-     	addSequential(new AutoDriveToDistance(0.5, 24));
+     	addSequential(new AutoDriveToDistance(-0.5, 65));
      	addSequential(new ElevatorSetDown());
+    	
+//    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+//		addParallel(new AutoIntakeOn(true, 1.5));
+//		addSequential(new AutoTimerWait(1.0));
+//    	addSequential(new AutoDriveToDistance(1 , 295));//285
+//		addSequential(new AutoTimerWait(.5));
+//     	addSequential(new AutoPIDTurn(-90));
+//     	addParallel(new AutoIntakeOn(true, 0.5));
+//     	addSequential(new AutoTimerWait(.5));
+//     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+//     	addSequential(new AutoTimerWait(.5));
+//     	addSequential(new AutoDriveToDistance(0.75, 25));
+//     	addSequential(new AutoIntakeOn(false, 3));
+//     	addSequential(new AutoDriveToDistance(-0.5, 25));
     }
 }

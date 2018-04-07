@@ -5,7 +5,7 @@ import org.usfirst.frc.team5254.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * DO NOT USE THIS COMMAND IN AUTO
  */
 public class ElevatorSlowDown extends Command {
 
@@ -31,12 +31,14 @@ public class ElevatorSlowDown extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return Robot.Elevator.endSlowDown();
+//    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.Elevator.off();
 		Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
+//		Robot.Elevator.unratchet();
     }
 
     // Called when another command which requires one or more of the same

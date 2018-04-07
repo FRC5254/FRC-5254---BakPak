@@ -33,12 +33,14 @@ public class Robot extends IterativeRobot {
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
 	private final String SwitchAuto = "Switch Auto";
-	private final String ScaleAuto = "Scale Auto";
+	private final String ScaleAuto = "Scale Auto on Left";
 	private final String TestAuto = "Test Auto";
-	private final String LeftScaleOrSwitch = "Scale or Switch on Left";
-	private final String RightScaleOrSwitch = "Scale or Switch on Right";
-
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch, };
+	private final String LeftScaleOrSwitch = "Scale or Switch on Left Side";
+	private final String RightScaleOrSwitch = "Scale or Switch on Right Side";
+	
+//	public static boolean Auto;
+	
+	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch};
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
@@ -59,6 +61,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
+		
+//		Auto = true;
 
 		String autoSelected = SmartDashboard.getString("Auto Selector", SwitchAuto);
 		// TODO do the scale auto outline and make more logic in here to make it cooler
@@ -67,143 +71,144 @@ public class Robot extends IterativeRobot {
 		allianceNumber = DriverStation.getInstance().getLocation();
 		
 		
+
 		if (gameData.charAt(0) == 'L') {
-			
-			
-			if (gameData.charAt(1)== 'L') {// when switch and scale are on left side
-				
-				switch (autoSelected) {
+            
+            
+            if (gameData.charAt(1)== 'L') {// when switch and scale are on left side
+                
+                switch (autoSelected) {
 
-				case CrossAutoLine:
-					autonomousCommand = new CrossBaselineAuto();
-					break;
+                case CrossAutoLine:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
 
-				case SwitchAuto:
-					autonomousCommand = new CenterSwitchAutoLeft();
-					break;
-					
-				case ScaleAuto:
-					autonomousCommand = new LeftScaleAutoLeft();
-					break;
+                case SwitchAuto:
+                    autonomousCommand = new CenterSwitchAutoLeft();
+                    break;
+                    
+                case ScaleAuto:
+                    autonomousCommand = new LeftScaleAutoLeft();
+                    break;
 
-				case LeftScaleOrSwitch: 
-					autonomousCommand = new LeftScaleAutoLeft();
-					break;
-					
-				case RightScaleOrSwitch: 
-					autonomousCommand = new CrossBaselineAuto(); 
-					break;
-					
-				case TestAuto:
-					autonomousCommand = new TestAuto();
-					break;
-				
-				default:
-					autonomousCommand = new NothingAuto();
-					break;
-				}	
-			} else { // switch is on left, scale is on right
-				
-				switch (autoSelected) {
+                case LeftScaleOrSwitch: 
+                    autonomousCommand = new LeftScaleAutoLeft();
+                    break;
+                    
+                case RightScaleOrSwitch: 
+                    autonomousCommand = new CrossBaselineAuto(); 
+                    break;
+                    
+                case TestAuto:
+                    autonomousCommand = new TestAuto();
+                    break;
+                
+                default:
+                    autonomousCommand = new NothingAuto();
+                    break;
+                }    
+            } else { // switch is on left, scale is on right
+                
+                switch (autoSelected) {
 
-				case CrossAutoLine:
-					autonomousCommand = new CrossBaselineAuto();
-					break;
+                case CrossAutoLine:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
 
-				case SwitchAuto:
-					autonomousCommand = new CenterSwitchAutoLeft();
-					break;
+                case SwitchAuto:
+                    autonomousCommand = new CenterSwitchAutoLeft();
+                    break;
 
-				case ScaleAuto:
-					autonomousCommand = new LeftScaleAutoLeft();
-					break;
-					
-				case LeftScaleOrSwitch: 
-					autonomousCommand = new LeftSwitchAutoLeft(); 
-					break;
-					
-				case RightScaleOrSwitch: 
-					autonomousCommand = new RightScaleAutoRight(); 
-					break;
-					
-				case TestAuto:
-					autonomousCommand = new TestAuto();
-					break;
-					
-				default:
-					autonomousCommand = new NothingAuto();
-					break;
-				}	
-			}
-			
-		} else {
-				
-			if (gameData.charAt(1) == 'L') { // switch is on right, scale is on left
-				switch (autoSelected) {
-				
-				case CrossAutoLine:
-					autonomousCommand = new CrossBaselineAuto();
-					break;
-	
-				case SwitchAuto:
-					autonomousCommand = new CenterSwitchAutoRight();
-					break;
-	
-				case ScaleAuto:
-					autonomousCommand = new LeftScaleAutoLeft();
-					break;
-					
-				case LeftScaleOrSwitch: 
-					autonomousCommand = new LeftScaleAutoLeft(); 
-					break;
-					
-				case RightScaleOrSwitch: 
-					autonomousCommand = new RightSwitchAutoRight(); 
-					break;
+                case ScaleAuto:
+                    autonomousCommand = new LeftScaleAutoLeft();
+                    break;
+                    
+                case LeftScaleOrSwitch: 
+                    autonomousCommand = new LeftSwitchAutoLeft(); 
+                    break;
+                    
+                case RightScaleOrSwitch: 
+                    autonomousCommand = new RightScaleAutoRight(); 
+                    break;
+                    
+                case TestAuto:
+                    autonomousCommand = new TestAuto();
+                    break;
+                    
+                default:
+                    autonomousCommand = new NothingAuto();
+                    break;
+                }    
+            }
+            
+        } else {
+                
+            if (gameData.charAt(1) == 'L') { // switch is on right, scale is on left
+                switch (autoSelected) {
+                
+                case CrossAutoLine:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
+    
+                case SwitchAuto:
+                    autonomousCommand = new CenterSwitchAutoRight();
+                    break;
+    
+                case ScaleAuto:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
+                    
+                case LeftScaleOrSwitch: 
+                    autonomousCommand = new LeftScaleAutoLeft(); 
+                    break;
+                    
+                case RightScaleOrSwitch: 
+                    autonomousCommand = new RightSwitchAutoRight(); 
+                    break;
 
-				case TestAuto:
-					autonomousCommand = new TestAuto();
-					break;
-					
-				default:
-					autonomousCommand = new NothingAuto();
-					break;
-				}
-			
-			} else { // switch is on right, scale is on right
-				switch (autoSelected) {
-				
-				case CrossAutoLine:
-					autonomousCommand = new CrossBaselineAuto();
-					break;
-	
-				case SwitchAuto:
-					autonomousCommand = new CenterSwitchAutoRight();
-					break;
-	
-				case ScaleAuto:
-					autonomousCommand = new LeftScaleAutoLeft();
-					break;
-					
-				case LeftScaleOrSwitch: 
-					autonomousCommand = new CrossBaselineAuto(); 
-					break;
-					
-				case RightScaleOrSwitch: 
-					autonomousCommand = new RightScaleAutoRight(); 
-					break;
-					
-				case TestAuto:
-					autonomousCommand = new TestAuto();
-					break;
-	
-				default:
-					autonomousCommand = new NothingAuto();
-					break;
-				}
-			}	
-		}
-
+                case TestAuto:
+                    autonomousCommand = new TestAuto();
+                    break;
+                    
+                default:
+                    autonomousCommand = new NothingAuto();
+                    break;
+                }
+            
+            } else { // switch is on right, scale is on right
+                switch (autoSelected) {
+                
+                case CrossAutoLine:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
+    
+                case SwitchAuto:
+                    autonomousCommand = new CenterSwitchAutoRight();
+                    break;
+    
+                case ScaleAuto:
+                    autonomousCommand = new CrossBaselineAuto();
+                    break;
+                    
+                case LeftScaleOrSwitch: 
+                    autonomousCommand = new CrossBaselineAuto(); 
+                    break;
+                    
+                case RightScaleOrSwitch: 
+                    autonomousCommand = new RightScaleAutoRight(); 
+                    break;
+                    
+                case TestAuto:
+                    autonomousCommand = new TestAuto();
+                    break;
+    
+                default:
+                    autonomousCommand = new NothingAuto();
+                    break;
+                }
+            }    
+        }
+		
 		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
 
 		// Schedule the autonomous command (example)
@@ -216,12 +221,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-//		System.out.println(Drivetrain.encoder.get());
+		System.out.println(Drivetrain.encoder.get());
+//		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 	}
 
 	@Override
 	public void teleopInit() {
-
+//		Auto = false;
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -229,8 +235,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		System.out.println(Robot.oi.driver.getRawAxis(2));
-//		System.out.println(Drivetrain.encoder.get());
+//		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+//		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
 	}
 
 	@Override

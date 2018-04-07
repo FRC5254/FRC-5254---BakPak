@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -32,7 +33,8 @@ public class ElevatorSetHeight extends Command {
 	}
 
 	// Called once after isFinished returns true
-	protected void end() {
+	protected void end() {//TODO
+		Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED);
 	}
 
 	// Called when another command which requires one or more of the same

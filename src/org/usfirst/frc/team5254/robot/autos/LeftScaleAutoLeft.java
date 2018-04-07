@@ -4,7 +4,6 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.*;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
-import org.usfirst.frc.team5254.robot.commands.IntakeOn;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -27,6 +26,6 @@ public class LeftScaleAutoLeft extends CommandGroup {
      	addSequential(new AutoDriveToDistance(0.75, 65));
      	addSequential(new AutoIntakeOn(false, 1));//shorten
      	addSequential(new AutoDriveToDistance(-0.5, 65));
-//     	addSequential(new ElevatorSetDown());
+     	addSequential(new ElevatorSetDown());
     }
 }

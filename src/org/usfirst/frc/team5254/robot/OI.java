@@ -68,17 +68,16 @@ public class OI {
 
 		// Operator Subcommands
 		OperatorButtonA.whenPressed(new ElevatorSetDown());
-		OperatorButtonB.whenPressed(new ElevatorSetHeight(34948));
+		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.TOP_SCALE_HEIGHT));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
 		OperatorButtonRB.whenPressed(new IntakeOn(true));
 		OperatorButtonRB.whenReleased(new IntakeOff());
 		OperatorButtonLB.whenPressed(new IntakeOn(false));
 		OperatorButtonLB.whenReleased(new IntakeOff());
-		OperatorButtonStart.whenPressed(new ElevatorUnratchet());
-		OperatorButtonStart.whenReleased(new ElevatorRatchet());
-		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
+//		OperatorButtonStart.whenPressed(commmand);
+		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_HOLD_SPEED));
 //		OperatorLJC.whenPressed(command);
-		OperatorRJC.whenPressed(new ElevatorSetHeight(RobotMap.DRIVE_HEIGHT));
+		OperatorRJC.whenPressed(new ElevatorStop());
 	}
 }

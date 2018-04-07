@@ -21,7 +21,11 @@ public class ElevatorJoystickControl extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)< 0) {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) * 0.75);
+		} else {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
