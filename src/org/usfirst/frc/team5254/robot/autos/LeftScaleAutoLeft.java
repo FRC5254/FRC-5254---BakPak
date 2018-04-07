@@ -21,7 +21,7 @@ public class LeftScaleAutoLeft extends CommandGroup {
 		addSequential(new AutoTimerWait(.5));
      	addSequential(new AutoPIDTurn(30));
      	addSequential(new AutoTimerWait(.5));
-     	addSequential(new ElevatorSetHeight(RobotMap.TOP_SCALE_HEIGHT));
+     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
      	addSequential(new AutoTimerWait(.5));//shorten
      	addSequential(new AutoDriveToDistance(0.75, 65));
      	addSequential(new AutoIntakeOn(false, 1));//shorten
