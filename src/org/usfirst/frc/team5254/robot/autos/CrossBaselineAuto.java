@@ -3,10 +3,7 @@ package org.usfirst.frc.team5254.robot.autos;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoDriveToDistance;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoTimedDrive;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
-import org.usfirst.frc.team5254.robot.commands.ElevatorSetDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

@@ -221,7 +221,7 @@ if (gameData.charAt(0) == 'L') {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		System.out.println(Drivetrain.encoder.get());
-
+//		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 	}
 
 	@Override
@@ -234,7 +234,8 @@ if (gameData.charAt(0) == 'L') {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		System.out.println(Robot.oi.driver.getRawAxis(2));
+//		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+//		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
 	}
 
 	@Override

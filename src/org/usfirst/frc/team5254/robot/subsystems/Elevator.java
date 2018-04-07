@@ -1,10 +1,8 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
-import java.awt.Robot;
-
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.commands.ElevatorRatchet;
-import org.usfirst.frc.team5254.robot.commands.ElevatorUnratchet;
+import org.usfirst.frc.team5254.robot.commands.ElevatorHold;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -14,19 +12,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DriverStation;
-//TODO make the zeroencoder work
+
 public class Elevator extends Subsystem {
 
 	// Initializing auto Controllers
 	public TalonSRX elevator = new TalonSRX(RobotMap.ELEVATOR);
-
-	//// Initializing Rachet piston
-	public static DoubleSolenoid ratchetingPiston = new DoubleSolenoid(RobotMap.RATCHET_PISTON, RobotMap.UNRATCHET_PISTON);
 	
 	// Init Button
-	DigitalInput eleButton = new DigitalInput(RobotMap.ELE_BUTTON);
+	public DigitalInput eleButton = new DigitalInput(RobotMap.ELE_BUTTON);
 	
 	// Define other variables
 	public static Timer timer = new Timer();
@@ -54,8 +47,7 @@ public class Elevator extends Subsystem {
 			}
 		} else {// if button isnt pressed
 			elevator.set(ControlMode.PercentOutput, Speed);// motor at set speed
-		}
-				
+		}		
 //		System.out.println(elevator.getSelectedSensorPosition(0));
 //		System.out.println(((elevator.getSelectedSensorPosition(0)) / 256) * (1.273 * Math.PI));
 	}
@@ -77,43 +69,16 @@ public class Elevator extends Subsystem {
 	public boolean endSlowDown() {
 		return (eleButton.get() == false); // returns true when button is pressed
 	}
-	
-//	public void elevatorDown() {
-//		if (Math.abs(elevator.getSelectedSensorPosition(0)) > 100) { 
-//			elevator.set(ControlMode.PercentOutput, -.25);
-//		} else {
-//			off();
-//		}
-//	}
-//
-//	public boolean elevatorDownEnd() {
-//		return false;
-//	}
 
 	public void off() {
 		elevator.set(ControlMode.PercentOutput, 0.0);// sets elevator motor to 0% power
-	}
-
-	public void ratchet() {
-		ratchetingPiston.set(DoubleSolenoid.Value.kReverse); // extend pision to allow gearbox to rachet
-	}
-
-	public void unratchet() {
-		ratchetingPiston.set(DoubleSolenoid.Value.kForward); // retacts pistion to pull string allowing GB to freely spin
 	}
 
 	// Auto Methods
 	
 	// Defualt Command
 	public void initDefaultCommand() {
-//		if (org.usfirst.frc.team5254.robot.Robot.Auto == false) {
-//			setDefaultCommand(new ElevatorUnratchet());
-//			System.out.println("hello");
-//		} else {
-//			setDefaultCommand(new ElevatorRatchet()); //the piston 
-//			System.out.println("Pak");
-//		}
-		setDefaultCommand(new ElevatorRatchet());
+		setDefaultCommand(new ElevatorHold());
 	}
 
 }
