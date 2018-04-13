@@ -2,7 +2,8 @@ package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.*;
-import org.usfirst.frc.team5254.robot.commands.ElevatorSetDown;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -13,19 +14,32 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftScaleAutoLeft extends CommandGroup {
 
     public LeftScaleAutoLeft() {
-    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-    	addParallel(new AutoIntakeOn(true, 1));
-    	addSequential(new ElevatorSetDown());
-		addSequential(new AutoTimerWait(.5));//rm
-    	addSequential(new AutoDriveToDistance(1 , 210));
-		addSequential(new AutoTimerWait(.5));
-     	addSequential(new AutoPIDTurn(30));
-     	addSequential(new AutoTimerWait(.5));
-     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-     	addSequential(new AutoTimerWait(.5));//shorten
-     	addSequential(new AutoDriveToDistance(0.75, 65));
-     	addSequential(new AutoIntakeOn(false, 1));//shorten
-     	addSequential(new AutoDriveToDistance(-0.5, 65));
-     	addSequential(new ElevatorSetDown());
+//		OLD CODE NO SPLINES
+//    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
+//    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+//    	addSequential(new ElevatorSetDown());
+//		addSequential(new AutoTimerWait(.5));//rm
+//    	addSequential(new AutoDriveToDistance(1 , 210));
+//		addSequential(new AutoTimerWait(.5));
+//     	addSequential(new AutoPIDTurn(30));
+//     	addSequential(new AutoTimerWait(.5));
+//     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+//     	addSequential(new AutoTimerWait(.5));//shorten
+//     	addSequential(new AutoDriveToDistance(0.75, 65));
+//     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));//shorten
+//     	addSequential(new AutoDriveToDistance(-0.5, 65));
+//     	addSequential(new ElevatorSetDown());
+    	
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
+			if (x < .05) return 0.2;
+			else return 0.8;
+    	}));
+    	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, .25));
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 2));
+    	addSequential(new RunPath(Paths.straightLength(30), -.25));
+    	addSequential(new AutoElevatorSetDown());
     }
 }

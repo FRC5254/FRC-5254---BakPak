@@ -18,7 +18,7 @@ public class Climber extends Subsystem {
 	public static Victor climberMotor2 = new Victor(RobotMap.CLIMBER_2);
 	
 	public static DoubleSolenoid climberReleasePistion = new DoubleSolenoid(RobotMap.FIRE_CROSSBOW, RobotMap.NO_FIRE_CROSSBOW);
-	public static Solenoid climberSlidingStagePiston = new Solenoid(RobotMap.CLIMBER_SLIDER_PISTON);
+	public static DoubleSolenoid climberSlidingStagePiston = new DoubleSolenoid(RobotMap.CLIMBER_SLIDER_PISTON_IN, RobotMap.CLIMBER_SLIDER_PISTON_OUT);
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new ClimberNoFire());
@@ -53,10 +53,10 @@ public class Climber extends Subsystem {
 	}
 	
 	public void climberSliderUp() {
-		climberSlidingStagePiston.set(false);
+		climberSlidingStagePiston.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void climberSliderDown() {
-		climberSlidingStagePiston.set(true);
+		climberSlidingStagePiston.set(DoubleSolenoid.Value.kForward);
 	}
 }

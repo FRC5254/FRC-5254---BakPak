@@ -3,11 +3,10 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int CLIMBER_SLIDER_PISTON = 1;
-	public static final int RATCHET_PISTON = 2;
-	public static final int UNRATCHET_PISTON = 3;
-	public static final int FIRE_CROSSBOW = 5;
+	public static final int CLIMBER_SLIDER_PISTON_IN = 2;
+	public static final int CLIMBER_SLIDER_PISTON_OUT = 3;
 	public static final int NO_FIRE_CROSSBOW = 4;
+	public static final int FIRE_CROSSBOW = 5;
 	public static final int SHIFTING_PISTON = 7;
 	
 
@@ -66,4 +65,9 @@ public class RobotMap {
 	public static final double ELE_HOLD_SPEED = -0.25;//Holds between 0.21 (weak hold) and 0.48, also this number needs to be negative
 	
 	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//Height at which the elevator is to enable a slow drive measured in ticks
+	
+	//AUTO
+	public static final double AUTO_INTAKE = 1;
+	public static final double AUTO_SWITCH_OUTAKE = 0.75;
+	public static final double AUTO_SCALE_OUTAKE = 0.75;
 }

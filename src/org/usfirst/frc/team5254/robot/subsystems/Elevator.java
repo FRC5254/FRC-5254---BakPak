@@ -48,8 +48,6 @@ public class Elevator extends Subsystem {
 		} else {// if button isnt pressed
 			elevator.set(ControlMode.PercentOutput, Speed);// motor at set speed
 		}		
-//		System.out.println(elevator.getSelectedSensorPosition(0));
-//		System.out.println(((elevator.getSelectedSensorPosition(0)) / 256) * (1.273 * Math.PI));
 	}
 
 	public void setToHeight(int ticks) {

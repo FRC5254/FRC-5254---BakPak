@@ -5,7 +5,6 @@ import org.usfirst.frc.team5254.robot.autos.*;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
@@ -33,14 +32,18 @@ public class Robot extends IterativeRobot {
 	private final String NothingAuto = "Do Nothing";
 	private final String CrossAutoLine = "Cross Autoline";
 	private final String SwitchAuto = "Switch Auto";
-	private final String ScaleAuto = "Scale Auto on Left";
+	private final String ScaleAutoL = "Scale Auto Left";
+	private final String ScaleAutoR = "Scale Auto Right";
 	private final String TestAuto = "Test Auto";
 	private final String LeftScaleOrSwitch = "Scale or Switch on Left Side";
 	private final String RightScaleOrSwitch = "Scale or Switch on Right Side";
+	private final String TwoCubeSwitch = "Two Cube Switch";
+	private final String SwitchCubeDrive = "Switch Cube Drive";
 	
 //	public static boolean Auto;
 	
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAuto, TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch};
+	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAutoL, ScaleAutoR,
+			TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch, TwoCubeSwitch, SwitchCubeDrive};
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
@@ -69,8 +72,6 @@ public class Robot extends IterativeRobot {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		allianceColorRed = DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red;
 		allianceNumber = DriverStation.getInstance().getLocation();
-		
-		
 
 		if (gameData.charAt(0) == 'L') {
             
@@ -87,7 +88,7 @@ public class Robot extends IterativeRobot {
                     autonomousCommand = new CenterSwitchAutoLeft();
                     break;
                     
-                case ScaleAuto:
+                case ScaleAutoL:
                     autonomousCommand = new LeftScaleAutoLeft();
                     break;
 
@@ -102,6 +103,14 @@ public class Robot extends IterativeRobot {
                 case TestAuto:
                     autonomousCommand = new TestAuto();
                     break;
+                    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
+                	break;
+                	
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoLeftDriveLeft();
+                	break;
                 
                 default:
                     autonomousCommand = new NothingAuto();
@@ -119,8 +128,8 @@ public class Robot extends IterativeRobot {
                     autonomousCommand = new CenterSwitchAutoLeft();
                     break;
 
-                case ScaleAuto:
-                    autonomousCommand = new LeftScaleAutoLeft();
+                case ScaleAutoL:
+                    autonomousCommand = new LeftScaleAutoRight();
                     break;
                     
                 case LeftScaleOrSwitch: 
@@ -134,6 +143,14 @@ public class Robot extends IterativeRobot {
                 case TestAuto:
                     autonomousCommand = new TestAuto();
                     break;
+                    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
+                	break;
+                	
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoLeftDriveRight();
+                	break;
                     
                 default:
                     autonomousCommand = new NothingAuto();
@@ -154,8 +171,8 @@ public class Robot extends IterativeRobot {
                     autonomousCommand = new CenterSwitchAutoRight();
                     break;
     
-                case ScaleAuto:
-                    autonomousCommand = new CrossBaselineAuto();
+                case ScaleAutoL:
+                    autonomousCommand = new LeftScaleAutoLeft();
                     break;
                     
                 case LeftScaleOrSwitch: 
@@ -169,6 +186,14 @@ public class Robot extends IterativeRobot {
                 case TestAuto:
                     autonomousCommand = new TestAuto();
                     break;
+                    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
+                	break;
+                	
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoRightDriveLeft();
+                	break;
                     
                 default:
                     autonomousCommand = new NothingAuto();
@@ -186,8 +211,8 @@ public class Robot extends IterativeRobot {
                     autonomousCommand = new CenterSwitchAutoRight();
                     break;
     
-                case ScaleAuto:
-                    autonomousCommand = new CrossBaselineAuto();
+                case ScaleAutoL:
+                    autonomousCommand = new LeftScaleAutoRight();
                     break;
                     
                 case LeftScaleOrSwitch: 
@@ -201,13 +226,22 @@ public class Robot extends IterativeRobot {
                 case TestAuto:
                     autonomousCommand = new TestAuto();
                     break;
+                    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
+                	break;
+                	
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoRightDriveRight();
+                	break;
     
                 default:
                     autonomousCommand = new NothingAuto();
                     break;
                 }
-            }    
+            }
         }
+	
 		
 		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
 
@@ -221,7 +255,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(Drivetrain.encoder.get());
+//		SmartDashboard.putNumber("Encoder Adverage",((Drivetrain.encoderLeft.getDistance() + Drivetrain.encoderRight.getDistance())/2));
+//		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
+//		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
+//		SmartDashboard.getNumber("Gyro", Drivetrain.gyro.getAngle());
+//		System.out.println(Robot.Drivetrain.encoderRight.getDistance());
+//		System.out.println(Robot.Drivetrain.encoderLeft.getDistance());
+//		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 	}
 
@@ -237,11 +277,12 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 //		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
+//		SmartDashboard.putNumber("Distance", Robot.Drivetrain.getDistance());
+//		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 	}
 
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override

@@ -1,18 +1,16 @@
-package org.usfirst.frc.team5254.robot.commands;
+package org.usfirst.frc.team5254.robot.autocommands;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSlowDown;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class ElevatorSetDown extends CommandGroup {
+public class AutoElevatorSetDown extends CommandGroup {
 
-	public ElevatorSetDown() {
-
-//		addSequential(new ElevatorRelease()); these are removed bc no more  ratchet 
-//		addParallel(new ElevatorUnratchet());
+	public AutoElevatorSetDown() {
 		addParallel(new ElevatorSlowDown(RobotMap.ELE_DOWN_SPEED)); // this is the speed the motor runs to power the elevator down at a reasonable speed so we dont break the chain
 		end();
 	}

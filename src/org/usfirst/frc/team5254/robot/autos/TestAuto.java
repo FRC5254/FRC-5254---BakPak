@@ -14,7 +14,8 @@ public class TestAuto extends CommandGroup {
 	public TestAuto() {
 		
 //		addSequential(new LeftSwitchAutoLeft());
+
+		addParallel(new AutoIntakeOn(true,RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addParallel(new AutoIntakeOn(true, 1.5));
 	}
 }
