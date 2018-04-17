@@ -35,8 +35,8 @@ public class Robot extends IterativeRobot {
 	private final String ScaleAutoL = "Scale Auto Left";
 	private final String ScaleAutoR = "Scale Auto Right";
 	private final String TestAuto = "Test Auto";
-	private final String LeftScaleOrSwitch = "Scale or Switch on Left Side";
-	private final String RightScaleOrSwitch = "Scale or Switch on Right Side";
+	private final String LeftScaleOrSwitch = "Partner Scale or Switch on Left Side";
+	private final String RightScaleOrSwitch = "Partner Scale or Switch on Right Side";
 	private final String TwoCubeSwitch = "Two Cube Switch";
 	private final String SwitchCubeDrive = "Switch Cube Drive";
 	
@@ -93,7 +93,7 @@ public class Robot extends IterativeRobot {
                     break;
 
                 case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftScaleAutoLeft();
+                    autonomousCommand = new LeftPartnerScaleAutoLeft();
                     break;
                     
                 case RightScaleOrSwitch: 
@@ -176,7 +176,7 @@ public class Robot extends IterativeRobot {
                     break;
                     
                 case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftScaleAutoLeft(); 
+                    autonomousCommand = new LeftPartnerScaleAutoLeft(); 
                     break;
                     
                 case RightScaleOrSwitch: 

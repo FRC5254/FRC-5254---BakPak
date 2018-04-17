@@ -144,13 +144,22 @@ public class Paths {
         		, 84)
         		);
         
-        public static final Path SECOND_CUBE = new Path(
-                new PathSegment(t ->
-                        /* {"start":{"x":100,"y":100},"mid1":{"x":126,"y":90},"mid2":{"x":106,"y":128},"end":{"x":74,"y":175}} */
-                        (-30 + 288 * t + -117 * Math.pow(t, 2)) / (78 + -276 * t + 102 * Math.pow(t, 2))
-                        , 97)
-        );
-    }
+        public static final Path SECOND_CUBE_LEFT = new Path(
+        		
+        		new PathSegment(t -> 
+        		/* {"start":{"x":283,"y":78},"mid1":{"x":300,"y":102.5},"mid2":{"x":257,"y":102.5},"end":{"x":210,"y":90}} */
+        		(73.5 + -147 * t + 36 * Math.pow(t, 2))/ (51 + -360 * t + 168 * Math.pow(t, 2)) 
+        		, 93)
+
+        		
+        		);
+        public static final Path SECOND_PLACE_LEFT = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":210,"y":90},"mid1":{"x":180,"y":20},"mid2":{"x":250,"y":60},"end":{"x":283,"y":78}} */
+        		(-210 + 660 * t + -396 * Math.pow(t, 2))/ (-90 + 600 * t + -411 * Math.pow(t, 2)) 
+        		, 123));
+
+    		}
 
     public static Path straightLength(double length) {
         return new Path(new PathSegment(t -> 0.0, length));
