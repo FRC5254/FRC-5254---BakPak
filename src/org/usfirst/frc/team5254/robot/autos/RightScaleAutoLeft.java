@@ -34,8 +34,11 @@ public class RightScaleAutoLeft extends CommandGroup {
 //     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE,1));
 //     	addSequential(new AutoDriveToDistance(0.5, 24));
     	
+    /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+    	
+    /** Traverse to opposide side of field **/
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
@@ -46,10 +49,14 @@ public class RightScaleAutoLeft extends CommandGroup {
     		else if (y < 0.85) return 0.8;
     		else return 0.3;
     	}));
+    	
+    /** Place cube on scale **/
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new AutoTimerWait(0.25));
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_FINISH, 0.25));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));
+    	
+    /** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25));
     	addSequential(new AutoElevatorDownWait(0.5));
     	

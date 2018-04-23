@@ -67,7 +67,7 @@ public class OI {
 //		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
 		// Operator Subcommands
-		OperatorButtonA.whenPressed(new ElevatorSlowDown(RobotMap.ELE_DOWN_SPEED));
+		OperatorButtonA.whenPressed(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
 		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));

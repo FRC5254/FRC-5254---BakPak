@@ -9,5 +9,6 @@ public class NothingAuto extends CommandGroup {
 
 	public NothingAuto() {
 		// Robot do nothing
+		// cool it works
 	}
 }

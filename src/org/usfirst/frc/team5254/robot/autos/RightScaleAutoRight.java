@@ -45,7 +45,11 @@ public class RightScaleAutoRight extends CommandGroup {
 //     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 3));
 //     	addSequential(new AutoDriveToDistance(-0.5, 25));
     	
+    /** Pop cube **/
 //    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+//    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
+    	
+    /** Place on scale **/
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, x -> {
 			if (x < .05) return 0.2;
 			else return 0.8;
@@ -53,6 +57,8 @@ public class RightScaleAutoRight extends CommandGroup {
 //    	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, .25));
 //    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 2));
+    	
+    /** Elevator down **/ 
     	addSequential(new RunPath(Paths.straightLength(30), -.25));
 //    	addSequential(new AutoElevatorSetDown());
     }

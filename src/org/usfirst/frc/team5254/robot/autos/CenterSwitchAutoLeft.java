@@ -9,7 +9,7 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Not tested
+ * TODO add more of the time limits on things in autos (especially paths)
  */
 public class CenterSwitchAutoLeft extends CommandGroup {
 
@@ -35,17 +35,23 @@ public class CenterSwitchAutoLeft extends CommandGroup {
 //		addSequential(new AutoDriveToDistance(-0.75, 24));
 //		addSequential(new AutoElevatorSetDown());
 		
-	/** Robot approaches the switch on the left side and shoots cube in **/
+	/** Pop cube **/
 		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(0.25));
+		addSequential(new AutoTimerWait(0.25));// This is to prevent breaking the snake
+		
+	/** Robot approaches the switch on the left side **/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new RunPath(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, x -> {
-			if (x < 0.20) return 0.5;
-			if (x < 0.75) return 0.7;
-			else return 0.4;
+			if (x < 0.20) return 0.5;// make .2 to .1
+			if (x < 0.75) return 0.85;// make this faster and for more time
+			else return 0.4; //faster!
 		}), 6);
+		
+	/** Shoots cube into switch **/	
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
+		
+	/** Backs up and puts elevator down **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75));
 		addSequential(new AutoElevatorSetDown());
 	}

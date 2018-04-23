@@ -225,8 +225,8 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, -output * 0.9);
-		System.out.println("Angle: " + gyro.getAngle());
-		System.out.println("Output" + -output);
+		drivetrain.arcadeDrive(0.0, -output * 0.8);
+//		System.out.println("Angle: " + gyro.getAngle());
+//		System.out.println("Output" + -output);
 	}
 }

@@ -24,9 +24,9 @@ public class Paths {
         
         public static final Path RIGHT_SIDE_AFTER_GRAB_CUBE = new Path(
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":50},"mid1":{"x":70,"y":50},"mid2":{"x":10,"y":160},"end":{"x":110,"y":170}} */
-        		(0 + 660 * t + -630 * Math.pow(t, 2))/ (210 + -780 * t + 870 * Math.pow(t, 2)) 
-        		, 181)
+        		/* {"start":{"x":55,"y":170},"mid1":{"x":125,"y":170},"mid2":{"x":65,"y":50},"end":{"x":165,"y":40}} */
+        		(0 + -720 * t + 690 * Math.pow(t, 2))/ (210 + -780 * t + 870 * Math.pow(t, 2)) 
+        		, 189)
         		);
         
         /**Left**/
@@ -111,7 +111,7 @@ public class Paths {
     }
 
     public static class FROM_LEFT {
-    	/** Switch Left**/
+    	/** Switch Left **/
         public static final Path SWITCH_LEFT_TRAVEL = straightLength(100);
         public static final Path SWITCH_LEFT_FINISH = new Path(
                 new PathSegment(t ->
@@ -123,9 +123,9 @@ public class Paths {
         public static final Path SCALE_LEFT_TRAVEL = straightLength(226);
         public static final Path SCALE_LEFT_FINISH = new Path(
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":13,"y":102},"end":{"x":39,"y":126}} */
-        		(6 + -12 * t + 78 * Math.pow(t, 2))/ (30 + -42 * t + 90 * Math.pow(t, 2)) 
-        		, 48)
+        		/* {"start":{"x":0,"y":100},"mid1":{"x":10,"y":102},"mid2":{"x":13,"y":102},"end":{"x":33,"y":126}} */
+        		(6 + -12 * t + 78 * Math.pow(t, 2))/ (30 + -42 * t + 72 * Math.pow(t, 2)) 
+        		, 44)
         		);
         
         /** Scale Right**/
@@ -139,9 +139,9 @@ public class Paths {
         		);
         public static final Path SCALE_RIGHT_FINISH = new Path(
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":100},"mid1":{"x":60,"y":100},"mid2":{"x":45,"y":83},"end":{"x":36,"y":54}} */
-        		(0 + -102 * t + 15 * Math.pow(t, 2))/ (180 + -450 * t + 243 * Math.pow(t, 2)) 
-        		, 84)
+        		/* {"start":{"x":0,"y":100},"mid1":{"x":65,"y":100},"mid2":{"x":50,"y":83},"end":{"x":52,"y":80}} */
+        		(0 + -102 * t + 93 * Math.pow(t, 2))/ (195 + -480 * t + 291 * Math.pow(t, 2)) 
+        		, 64)
         		);
         
         public static final Path SECOND_CUBE_LEFT = new Path(

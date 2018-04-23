@@ -65,7 +65,7 @@ public class RunPath extends Command {
 //    	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
 //    	Robot.drive.resetBothEncoders();
 //    	Robot.drive.resetIMU();
-//    	Robot.Drivetrain.encoderLeft.reset();
+    	Robot.Drivetrain.encoderLeft.reset();
     	Robot.Drivetrain.encoderRight.reset();
     	Robot.Drivetrain.gyro.reset();
     	Robot.Drivetrain.setLeftRightSpeeds(0, 0);
@@ -73,8 +73,9 @@ public class RunPath extends Command {
     }
     
     private double getDistance() {
-    	return Math.abs((Robot.Drivetrain.getRightDistance()) + Math.abs(Robot.Drivetrain.getLeftDistance())/2);
-//    	return Math.abs(Robot.Drivetrain.getDistance()); // change this to average once you get two encoders -- done
+//    	return Math.abs((Robot.Drivetrain.getRightDistance()) + (Math.abs(Robot.Drivetrain.getLeftDistance()))/2);
+    	return Math.abs(Robot.Drivetrain.getRightDistance()); // change this to average once you get two encoders -- done
+    	//return (Math.abs(Robot.Drivetrain.getLeftDistance())) + (Math.abs(Robot.Drivetrain.getRightDistance()));
     }
     
     private double deltaAngle(double currentAngle) {

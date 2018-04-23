@@ -61,8 +61,8 @@ public class RobotMap {
 	public static final int UNOWNED_SCALE_HEIGHT = 28000;
 	public static final int OWNED_SCALE_HEIGHT = 22500; // LOWER
 	
-	public static final double ELE_DOWN_SPEED = 0.2;// THIS IS NOT THE HOLD SPEED
-	public static final double ELE_HOLD_SPEED = -0.25;//Holds between 0.21 (weak hold) and 0.48, also this number needs to be negative
+	public static final double ELE_DOWN_SPEED = 0.4;// THIS IS NOT THE HOLD SPEED
+	public static final double ELE_HOLD_SPEED = -0.25;// Holds between 0.21 (weak hold) and 0.48, also this number needs to be negative
 	
 	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//Height at which the elevator is to enable a slow drive measured in ticks
 	

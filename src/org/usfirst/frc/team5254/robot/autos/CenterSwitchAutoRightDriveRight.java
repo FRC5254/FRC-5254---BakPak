@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterSwitchAutoRightDriveRight extends CommandGroup {
 
     public CenterSwitchAutoRightDriveRight() {
+    	
     /** Place preload cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));

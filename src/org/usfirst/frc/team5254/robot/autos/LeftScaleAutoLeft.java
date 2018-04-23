@@ -30,15 +30,20 @@ public class LeftScaleAutoLeft extends CommandGroup {
 //     	addSequential(new AutoDriveToDistance(-0.5, 65));
 //     	addSequential(new ElevatorSetDown());
     	
+    /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+    	
+    /** Place cube on scale **/
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
 			if (x < .05) return 0.2;
 			else return 0.8;
     	}));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, .25));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 2));
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 2));
+    
+    /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -.25));
     	addSequential(new AutoElevatorSetDown());
     }

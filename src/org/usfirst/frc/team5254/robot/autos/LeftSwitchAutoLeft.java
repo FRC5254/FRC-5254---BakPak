@@ -25,8 +25,11 @@ public class LeftSwitchAutoLeft extends CommandGroup {
 //		addSequential(new AutoTimedDrive(1, 1));
 //		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 15));
     	
+    /** Pop cube **/
 //    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 //    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+    	
+    /** Place into switch at a 90 deg **/
     	addSequential(new RunPath(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
@@ -34,6 +37,8 @@ public class LeftSwitchAutoLeft extends CommandGroup {
 //    	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_LEFT.SWITCH_LEFT_FINISH, 0.4));
 //    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
+    	
+    /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -0.3));
 //    	addSequential(new AutoElevatorSetDown());
     }

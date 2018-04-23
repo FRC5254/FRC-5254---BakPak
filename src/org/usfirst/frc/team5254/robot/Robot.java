@@ -29,21 +29,50 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
 	// Auto modes
+	/** Base Autos **/
 	private final String NothingAuto = "Do Nothing";
+	private final String TestAuto = "Test Auto";
+	
+	/** Cross Autoline **/
 	private final String CrossAutoLine = "Cross Autoline";
+	
+	/** Switch **/
 	private final String SwitchAuto = "Switch Auto";
+	private final String TwoCubeSwitch = "Two Cube Switch";
+	
+	private final String SwitchCubeDrive = "Switch Cube Drive";
+	
+	/** Scale **/
 	private final String ScaleAutoL = "Scale Auto Left";
 	private final String ScaleAutoR = "Scale Auto Right";
-	private final String TestAuto = "Test Auto";
+	private final String TwoCubeScaleL = "Two Cube Scale Left";
+	private final String TwoCubeScaleR = "Two Cube Scale Right";
+	
+	/** Logic **/
 	private final String LeftScaleOrSwitch = "Partner Scale or Switch on Left Side";
 	private final String RightScaleOrSwitch = "Partner Scale or Switch on Right Side";
-	private final String TwoCubeSwitch = "Two Cube Switch";
-	private final String SwitchCubeDrive = "Switch Cube Drive";
 	
 //	public static boolean Auto;
 	
-	private final String[] AutoModes = { NothingAuto, CrossAutoLine, SwitchAuto, ScaleAutoL, ScaleAutoR,
-			TestAuto, LeftScaleOrSwitch, RightScaleOrSwitch, TwoCubeSwitch, SwitchCubeDrive};
+	private final String[] AutoModes = { 
+			NothingAuto, 
+			
+			CrossAutoLine,
+			
+			SwitchAuto,
+			TwoCubeSwitch,
+			SwitchCubeDrive,
+			
+			ScaleAutoL, 
+			ScaleAutoR, 
+			TwoCubeScaleL, 
+			TwoCubeScaleR,
+			
+			LeftScaleOrSwitch, 
+			RightScaleOrSwitch, 
+			 
+			TestAuto
+			};
 
 	Command autonomousCommand;
 	// Defining the autonomous commands into a string to be listed on the dashboard
@@ -79,39 +108,61 @@ public class Robot extends IterativeRobot {
             if (gameData.charAt(1)== 'L') {// when switch and scale are on left side
                 
                 switch (autoSelected) {
-
+                /** Cross Autoline **/
                 case CrossAutoLine:
                     autonomousCommand = new CrossBaselineAuto();
                     break;
-
+    
+                    
+                /** Switch **/
                 case SwitchAuto:
                     autonomousCommand = new CenterSwitchAutoLeft();
                     break;
+    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
+                	break;
                     
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoLeftDriveLeft();
+                	break;
+                    
+                	
+                /** Scale **/
                 case ScaleAutoL:
                     autonomousCommand = new LeftScaleAutoLeft();
                     break;
-
+                    
+                case ScaleAutoR:
+                    autonomousCommand = new RightScaleAutoRight();
+                    break;
+                	
+                case TwoCubeScaleL:
+                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
+                    break;
+                    
+                case TwoCubeScaleR:
+                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
+                    break;
+                    
+                    
+                /** Logic **/
                 case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftPartnerScaleAutoLeft();
+                    autonomousCommand = new LeftPartnerScaleAutoLeft(); 
                     break;
                     
                 case RightScaleOrSwitch: 
                     autonomousCommand = new CrossBaselineAuto(); 
-                    break;
+                    break;   
                     
+                    
+                /** Test Auto **/    
                 case TestAuto:
-                    autonomousCommand = new TestAuto();
+                    autonomousCommand = new TestAuto(); 
                     break;
                     
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
-                	break;
-                	
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoLeftDriveLeft();
-                	break;
-                
+                    
+                /** Default Auto **/
                 default:
                     autonomousCommand = new NothingAuto();
                     break;
@@ -119,39 +170,62 @@ public class Robot extends IterativeRobot {
             } else { // switch is on left, scale is on right
                 
                 switch (autoSelected) {
-
+                
+                /** Cross Autoline **/
                 case CrossAutoLine:
                     autonomousCommand = new CrossBaselineAuto();
                     break;
-
+    
+                    
+                /** Switch **/
                 case SwitchAuto:
                     autonomousCommand = new CenterSwitchAutoLeft();
                     break;
-
+    
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
+                	break;
+                    
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoLeftDriveRight();
+                	break;
+                    
+                	
+                /** Scale **/
                 case ScaleAutoL:
                     autonomousCommand = new LeftScaleAutoRight();
                     break;
                     
+                case ScaleAutoR:
+                    autonomousCommand = new RightScaleAutoRight();
+                    break;
+                	
+                case TwoCubeScaleL:
+                    autonomousCommand = new LeftScaleAutoRight();
+                    break;
+                    
+                case TwoCubeScaleR:
+                    autonomousCommand = new RightScaleAutoRightTwoCube();
+                    break;
+                    
+                    
+                /** Logic **/
                 case LeftScaleOrSwitch: 
                     autonomousCommand = new LeftSwitchAutoLeft(); 
                     break;
                     
                 case RightScaleOrSwitch: 
                     autonomousCommand = new RightScaleAutoRight(); 
-                    break;
+                    break;   
                     
+                    
+                /** Test Auto **/    
                 case TestAuto:
-                    autonomousCommand = new TestAuto();
+                    autonomousCommand = new TestAuto(); 
                     break;
                     
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
-                	break;
-                	
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoLeftDriveRight();
-                	break;
                     
+                /** Default Auto **/
                 default:
                     autonomousCommand = new NothingAuto();
                     break;
@@ -163,38 +237,61 @@ public class Robot extends IterativeRobot {
             if (gameData.charAt(1) == 'L') { // switch is on right, scale is on left
                 switch (autoSelected) {
                 
+                /** Cross Autoline **/
                 case CrossAutoLine:
                     autonomousCommand = new CrossBaselineAuto();
                     break;
     
+                    
+                /** Switch **/
                 case SwitchAuto:
                     autonomousCommand = new CenterSwitchAutoRight();
                     break;
     
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
+                	break;
+                    
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoRightDriveLeft();
+                	break;
+                    
+                	
+                /** Scale **/
                 case ScaleAutoL:
                     autonomousCommand = new LeftScaleAutoLeft();
                     break;
                     
+                case ScaleAutoR:
+                    autonomousCommand = new RightScaleAutoRight();
+                    break;
+                	
+                case TwoCubeScaleL:
+                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
+                    break;
+                    
+                case TwoCubeScaleR:
+                    autonomousCommand = new RightScaleAutoRightTwoCube();
+                    break;
+                    
+                    
+                /** Logic **/
                 case LeftScaleOrSwitch: 
                     autonomousCommand = new LeftPartnerScaleAutoLeft(); 
                     break;
                     
                 case RightScaleOrSwitch: 
                     autonomousCommand = new RightSwitchAutoRight(); 
-                    break;
-
+                    break;   
+                    
+                    
+                /** Test Auto **/    
                 case TestAuto:
-                    autonomousCommand = new TestAuto();
+                    autonomousCommand = new TestAuto(); 
                     break;
                     
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
-                	break;
-                	
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoRightDriveLeft();
-                	break;
                     
+                /** Default Auto **/
                 default:
                     autonomousCommand = new NothingAuto();
                     break;
@@ -203,38 +300,61 @@ public class Robot extends IterativeRobot {
             } else { // switch is on right, scale is on right
                 switch (autoSelected) {
                 
+                /** Cross Autoline **/
                 case CrossAutoLine:
                     autonomousCommand = new CrossBaselineAuto();
                     break;
     
+                    
+                /** Switch **/
                 case SwitchAuto:
                     autonomousCommand = new CenterSwitchAutoRight();
                     break;
     
+                case TwoCubeSwitch:
+                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
+                	break;
+                    
+                case SwitchCubeDrive:
+                	autonomousCommand = new CenterSwitchAutoRightDriveRight();
+                	break;
+                    
+                	
+                /** Scale **/
                 case ScaleAutoL:
                     autonomousCommand = new LeftScaleAutoRight();
                     break;
                     
+                case ScaleAutoR:
+                    autonomousCommand = new RightScaleAutoRight();
+                    break;
+                	
+                case TwoCubeScaleL:
+                    autonomousCommand = new LeftScaleAutoRight();
+                    break;
+                    
+                case TwoCubeScaleR:
+                    autonomousCommand = new RightScaleAutoRightTwoCube();
+                    break;
+                    
+                    
+                /** Logic **/
                 case LeftScaleOrSwitch: 
                     autonomousCommand = new CrossBaselineAuto(); 
                     break;
                     
                 case RightScaleOrSwitch: 
                     autonomousCommand = new RightScaleAutoRight(); 
-                    break;
+                    break;   
                     
+                    
+                /** Test Auto **/    
                 case TestAuto:
-                    autonomousCommand = new TestAuto();
+                    autonomousCommand = new TestAuto(); 
                     break;
                     
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
-                	break;
-                	
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoRightDriveRight();
-                	break;
-    
+                    
+                /** Default Auto **/
                 default:
                     autonomousCommand = new NothingAuto();
                     break;
@@ -259,7 +379,10 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
 //		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
 //		SmartDashboard.getNumber("Gyro", Drivetrain.gyro.getAngle());
-//		System.out.println(Robot.Drivetrain.encoderRight.getDistance());
+//	System.out.println("Right " + Robot.Drivetrain.encoderRight.get());
+//	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());
+//	System.out.println("Left Distance " + Robot.Drivetrain.getLeftDistance());
+//	System.out.println("Left " + Robot.Drivetrain.encoderLeft.get());
 //		System.out.println(Robot.Drivetrain.encoderLeft.getDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));

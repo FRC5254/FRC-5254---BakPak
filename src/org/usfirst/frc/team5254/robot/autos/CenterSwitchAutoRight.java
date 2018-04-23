@@ -35,17 +35,23 @@ public class CenterSwitchAutoRight extends CommandGroup {
 //		addSequential(new AutoDriveToDistance(-0.75, 24));
 //		addSequential(new AutoElevatorSetDown());
 	
-	/** Drives to switch and places cube **/
+	/** Pop cube **/
 		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(1.0));
+		addSequential(new AutoTimerWait(0.25));
+		
+	/** Drives to switch **/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new RunPath(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, x -> {
-			if (x < 0.20) return 0.3;
-			if (x < 0.75) return 0.6;
-			else return 0.3;
+			if (x < 0.20) return 0.5;
+			if (x < 0.75) return 0.85;
+			else return 0.4;
 		}));
+		
+	/** Places cube **/
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
+		
+	/** Lowers elevator **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75));
 		addSequential(new AutoElevatorSetDown());
 	}

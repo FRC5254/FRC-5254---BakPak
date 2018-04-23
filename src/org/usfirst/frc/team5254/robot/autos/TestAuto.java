@@ -7,15 +7,18 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Tests intake release in auto
+ * 
  */
 public class TestAuto extends CommandGroup {
 
 	public TestAuto() {
-		
+		// runs left switch auto
 //		addSequential(new LeftSwitchAutoLeft());
-
+		
+		
+		//Tests intake release in auto
 		addParallel(new AutoIntakeOn(true,RobotMap.AUTO_INTAKE, 1.5));
-		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+		
 	}
 }

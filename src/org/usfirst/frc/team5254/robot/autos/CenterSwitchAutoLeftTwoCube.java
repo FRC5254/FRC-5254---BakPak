@@ -40,7 +40,7 @@ public class CenterSwitchAutoLeftTwoCube extends CommandGroup {
 			else return -0.4;
 		}));
 		addParallel(new AutoIntakeOnWait(0.5, 2.5));// these numbers need to be tuned (wait, intake)
-		addSequential(new RunPath(Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, 0.65));//this number can probably be increased
+		addSequential(new RunPath(Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, 0.35));//this number can probably be increased
 		addSequential(new RunPath(Paths.straightLength(35), -0.8));
 		
 	/** Same code as above to place cube into switch again **/
