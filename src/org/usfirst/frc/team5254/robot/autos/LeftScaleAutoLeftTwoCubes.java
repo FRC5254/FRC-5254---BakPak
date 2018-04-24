@@ -32,34 +32,36 @@ public class LeftScaleAutoLeftTwoCubes extends CommandGroup {
 			else return 1.0;
     	}));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, .25));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
     	
     /** Elevator down **/
     	addParallel(new AutoElevatorDownWait(0.25));
     	
     /** Pick up second cube **/
-    	addSequential(new RunPath(Paths.straightLength(20), -0.5));
+    	
+//    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE, 0.6));
+    	addSequential(new RunPath(Paths.straightLength(10), -0.5)); // make longer t o
     	addSequential(new AutoTimerWait(1));
-    	addSequential(new AutoPIDTurn(85));
+    	addSequential(new AutoPIDTurn(120));
     	addSequential(new AutoTimerWait(0.5));
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2.5));
-    	addSequential(new RunPath(Paths.straightLength(53), x -> {
-    		if (x < .70) return 0.75;
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4));
+    	addSequential(new RunPath(Paths.straightLength(60), x -> {
+    		if (x < .70) return 1.0;
 			else return 0.3;
     	}));
     	
     /** Place second cube on scale **/
-    	addParallel(new AutoSwitchHeightWait(1));
+    	addParallel(new AutoSwitchHeightWait(0.75));
     	addSequential(new RunPath(Paths.straightLength(20), -0.5));
-    	addSequential(new AutoPIDTurn(-110));
+    	addSequential(new AutoPIDTurn(-130));
     	addSequential(new AutoTimerWait(0.5));
-    	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.straightLength(34), x -> {
-    		if (x < .70) return 0.35;
-			else return 0.35;
+    	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+    	addSequential(new RunPath(Paths.straightLength(27), x -> {
+    		if (x < .70) return 0.5;
+			else return 0.5;
     	}));
-    	addParallel(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 2));
+    	addParallel(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 2));
     	
     /** Elevator down **/
     	addParallel(new AutoElevatorDownWait(1));

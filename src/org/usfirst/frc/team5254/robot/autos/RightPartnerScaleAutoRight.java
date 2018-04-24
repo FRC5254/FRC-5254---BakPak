@@ -24,7 +24,7 @@ public class RightPartnerScaleAutoRight extends CommandGroup {
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place on right scale at a 90 deg **/
-    	addSequential(new AutoDriveToDistance(1 , 295));
+    	addSequential(new AutoDriveToDistance(1 , 310));
     	addSequential(new AutoPIDTurn(-90));
     	addSequential(new AutoTimedDrive(-.5,1));
     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));

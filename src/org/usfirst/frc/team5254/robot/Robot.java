@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.subsystems.*;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.autos.*;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -375,13 +376,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-//		SmartDashboard.putNumber("Encoder Adverage",((Drivetrain.encoderLeft.getDistance() + Drivetrain.encoderRight.getDistance())/2));
+//		SmartDashboard.putNumber("Encoder Adverage", ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2);
 //		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
 //		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
 //		SmartDashboard.getNumber("Gyro", Drivetrain.gyro.getAngle());
 //	System.out.println("Right " + Robot.Drivetrain.encoderRight.get());
-//	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());
-//	System.out.println("Left Distance " + Robot.Drivetrain.getLeftDistance());
+	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());
+	System.out.println("Left Distance " + Robot.Drivetrain.getLeftDistance());
 //	System.out.println("Left " + Robot.Drivetrain.encoderLeft.get());
 //		System.out.println(Robot.Drivetrain.encoderLeft.getDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));

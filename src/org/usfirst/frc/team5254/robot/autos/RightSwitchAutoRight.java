@@ -28,20 +28,20 @@ public class RightSwitchAutoRight extends CommandGroup {
 //		addSequential(new AutoIntakeOn(false,RobotMap.AUTO_SWITCH_OUTAKE, 15));
     	
     /** Pop cube **/
-//    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place cube on switch **/
     	addSequential(new RunPath(Paths.FROM_RIGHT.SWITCH_RIGHT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
     	}));
-//    	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+    	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_RIGHT.SWITCH_RIGHT_FINISH, 0.4));
-//    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
     	
     /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -0.3));
-//    	addSequential(new AutoElevatorSetDown());
+    	addSequential(new AutoElevatorSetDown());
     }
 }

@@ -47,9 +47,9 @@ public class RobotMap {
 	
 	public static final double Kp = 0.3;
 
-	public static final double TURN_P = 0.4;
+	public static final double TURN_P = 0.1;
 	public static final double TURN_I = 0.032;
-	public static final double TURN_D = 1.28;
+	public static final double TURN_D = 0.3;
 
 		//Elevator
 	public static final int ELEVATOR_GEAR_RATIO = 1;

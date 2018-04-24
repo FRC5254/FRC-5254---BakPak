@@ -25,7 +25,8 @@ public class LeftPartnerScaleAutoLeft extends CommandGroup {
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place on left scale at a 90 deg. **/
-    	addSequential(new AutoDriveToDistance(1 , 295));
+    	addSequential(new AutoDriveToDistance(1 , 310
+    			));
     	addSequential(new AutoPIDTurn(90));
     	addSequential(new AutoTimerWait(0.5));
     	addSequential(new AutoTimedDrive(-.5, 2));

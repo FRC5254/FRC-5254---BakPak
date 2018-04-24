@@ -73,8 +73,8 @@ public class RunPath extends Command {
     }
     
     private double getDistance() {
-//    	return Math.abs((Robot.Drivetrain.getRightDistance()) + (Math.abs(Robot.Drivetrain.getLeftDistance()))/2);
-    	return Math.abs(Robot.Drivetrain.getRightDistance()); // change this to average once you get two encoders -- done
+    	return ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2;
+//    	return Math.abs(Robot.Drivetrain.getRightDistance()); // change this to average once you get two encoders -- done
     	//return (Math.abs(Robot.Drivetrain.getLeftDistance())) + (Math.abs(Robot.Drivetrain.getRightDistance()));
     }
     

@@ -51,7 +51,7 @@ public class Drivetrain extends PIDSubsystem {
 	public Drivetrain() {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(1.0);
-		// getPIDController().setContinuous(true); TODO does commenting this harm autos?
+		// getPIDController().setContinuous(true); TODO does commenting this harm autos? no
 		getPIDController().setInputRange(-360.0, 360.0);
 		getPIDController().setOutputRange(-1, 1);
 	}
@@ -225,7 +225,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, -output * 0.8);
+		drivetrain.arcadeDrive(0.0, -output);// * 0.8
 //		System.out.println("Angle: " + gyro.getAngle());
 //		System.out.println("Output" + -output);
 	}

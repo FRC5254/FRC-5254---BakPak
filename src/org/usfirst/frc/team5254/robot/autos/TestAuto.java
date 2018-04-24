@@ -17,8 +17,10 @@ public class TestAuto extends CommandGroup {
 		
 		
 		//Tests intake release in auto
-		addParallel(new AutoIntakeOn(true,RobotMap.AUTO_INTAKE, 1.5));
-		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+//		addParallel(new AutoIntakeOn(true,RobotMap.AUTO_INTAKE, 1.5));
+//		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+		
+    	addSequential(new AutoPIDTurn(90));
 		
 	}
 }
