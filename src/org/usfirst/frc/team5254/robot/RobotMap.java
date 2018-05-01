@@ -37,7 +37,7 @@ public class RobotMap {
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
 
 	// CAN Talon
-	public static final int ELEVATOR = 4;// is 6 on comp bot
+	public static final int ELEVATOR = 6;// is 4 not on comp bot
 
 	// Misc
 	
@@ -49,7 +49,7 @@ public class RobotMap {
 
 	public static final double TURN_P = 0.1;
 	public static final double TURN_I = 0.032;
-	public static final double TURN_D = 0.3;
+	public static final double TURN_D = 0.3; //was .6 in match 11
 
 		//Elevator
 	public static final int ELEVATOR_GEAR_RATIO = 1;
@@ -58,7 +58,7 @@ public class RobotMap {
 	
 	public static final int POP_HEIGHT = 1000;
 	public static final int SWITCH_HEIGHT = 7774;
-	public static final int UNOWNED_SCALE_HEIGHT = 28000;
+	public static final int UNOWNED_SCALE_HEIGHT = 29000;
 	public static final int OWNED_SCALE_HEIGHT = 22500; // LOWER
 	
 	public static final double ELE_DOWN_SPEED = 0.4;// THIS IS NOT THE HOLD SPEED

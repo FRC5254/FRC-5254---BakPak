@@ -29,7 +29,7 @@ public class LeftScaleAutoLeft extends CommandGroup {
 //     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));//shorten
 //     	addSequential(new AutoDriveToDistance(-0.5, 65));
 //     	addSequential(new ElevatorSetDown());
-    	
+    								
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));

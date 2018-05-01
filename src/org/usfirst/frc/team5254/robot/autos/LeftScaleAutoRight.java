@@ -50,8 +50,9 @@ public class LeftScaleAutoRight extends CommandGroup {
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new AutoTimerWait(0.25));
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_RIGHT_FINISH, 0.25));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));
-    /** Elevator down **/
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 1));
+    
+    	/** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25));
     	addSequential(new AutoElevatorDownWait(1.5));
     }

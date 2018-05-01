@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Refer to CleanRunPath for comments
  */
 public class RunPath extends Command {
-	private final double arcDivisor = 15;
+	private final double arcDivisor = 19;
 
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;

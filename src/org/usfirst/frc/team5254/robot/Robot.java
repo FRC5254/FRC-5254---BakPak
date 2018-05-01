@@ -53,6 +53,8 @@ public class Robot extends IterativeRobot {
 	private final String LeftScaleOrSwitch = "Partner Scale or Switch on Left Side";
 	private final String RightScaleOrSwitch = "Partner Scale or Switch on Right Side";
 	
+	private final String ItDosentMatter = "Elims Auto";
+	
 //	public static boolean Auto;
 	
 	private final String[] AutoModes = { 
@@ -71,7 +73,8 @@ public class Robot extends IterativeRobot {
 			
 			LeftScaleOrSwitch, 
 			RightScaleOrSwitch, 
-			 
+			ItDosentMatter,
+			
 			TestAuto
 			};
 
@@ -156,6 +159,10 @@ public class Robot extends IterativeRobot {
                     autonomousCommand = new CrossBaselineAuto(); 
                     break;   
                     
+                case ItDosentMatter:
+                	autonomousCommand = new LeftPartnerScaleAutoLeft();
+                	break;
+                    
                     
                 /** Test Auto **/    
                 case TestAuto:
@@ -212,12 +219,16 @@ public class Robot extends IterativeRobot {
                     
                 /** Logic **/
                 case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftSwitchAutoLeft(); 
+                    autonomousCommand = new LeftSwitchAutoLeft();
                     break;
                     
                 case RightScaleOrSwitch: 
-                    autonomousCommand = new RightScaleAutoRight(); 
+                    autonomousCommand = new RightPartnerScaleAutoRight(); 
                     break;   
+                    
+                case ItDosentMatter:
+                	autonomousCommand = new LeftScaleAutoRightShortCross();
+                	break;
                     
                     
                 /** Test Auto **/    
@@ -283,7 +294,11 @@ public class Robot extends IterativeRobot {
                     
                 case RightScaleOrSwitch: 
                     autonomousCommand = new RightSwitchAutoRight(); 
-                    break;   
+                    break;  
+                    
+                case ItDosentMatter:
+                	autonomousCommand = new LeftPartnerScaleAutoLeft();
+                	break;
                     
                     
                 /** Test Auto **/    
@@ -341,12 +356,16 @@ public class Robot extends IterativeRobot {
                     
                 /** Logic **/
                 case LeftScaleOrSwitch: 
-                    autonomousCommand = new CrossBaselineAuto(); 
+                    autonomousCommand = new RightScaleAutoRight();// CrossBaselineAuto 
                     break;
                     
                 case RightScaleOrSwitch: 
-                    autonomousCommand = new RightScaleAutoRight(); 
-                    break;   
+                    autonomousCommand = new RightPartnerScaleAutoRight(); 
+                    break;
+                    
+                case ItDosentMatter:
+                	autonomousCommand = new LeftScaleAutoRightShortCross();
+                	break;
                     
                     
                 /** Test Auto **/    
@@ -366,6 +385,8 @@ public class Robot extends IterativeRobot {
 		
 		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
 
+//		autonomousCommand = new LeftScaleAutoLeftTwoCubes();
+		
 		// Schedule the autonomous command (example)
 		if (autonomousCommand != null) {
 			SmartDashboard.putString("DB/String 0", autoSelected);
@@ -377,8 +398,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 //		SmartDashboard.putNumber("Encoder Adverage", ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2);
-//		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
-//		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
+		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
+		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
 //		SmartDashboard.getNumber("Gyro", Drivetrain.gyro.getAngle());
 //	System.out.println("Right " + Robot.Drivetrain.encoderRight.get());
 	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());

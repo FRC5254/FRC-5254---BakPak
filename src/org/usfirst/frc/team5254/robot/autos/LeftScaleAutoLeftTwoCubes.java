@@ -29,43 +29,63 @@ public class LeftScaleAutoLeftTwoCubes extends CommandGroup {
     /** First cube on scale **/
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
 			if (x < .05) return 0.5;
-			else return 1.0;
+			else return 0.9;
     	}));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
     	
     /** Elevator down **/
-    	addParallel(new AutoElevatorDownWait(0.25));
+    	addSequential(new RunPath(Paths.straightLength(20), x -> {
+    		if (x < .70) return -0.5;
+			else return -0.5;
+    	}));
+    	addSequential(new AutoTimerWait(0.25));
+    	addSequential(new AutoElevatorDownWait(0.01));
     	
     /** Pick up second cube **/
-    	
-//    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE, 0.6));
-    	addSequential(new RunPath(Paths.straightLength(10), -0.5)); // make longer t o
-    	addSequential(new AutoTimerWait(1));
-    	addSequential(new AutoPIDTurn(120));
-    	addSequential(new AutoTimerWait(0.5));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4));
-    	addSequential(new RunPath(Paths.straightLength(60), x -> {
-    		if (x < .70) return 1.0;
-			else return 0.3;
-    	}));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.45), 3);
+    	addSequential(new RunPath(Paths.straightLength(10), -0.3));
     	
-    /** Place second cube on scale **/
-    	addParallel(new AutoSwitchHeightWait(0.75));
-    	addSequential(new RunPath(Paths.straightLength(20), -0.5));
-    	addSequential(new AutoPIDTurn(-130));
-    	addSequential(new AutoTimerWait(0.5));
-    	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.straightLength(27), x -> {
-    		if (x < .70) return 0.5;
-			else return 0.5;
-    	}));
-    	addParallel(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 2));
     	
-    /** Elevator down **/
-    	addParallel(new AutoElevatorDownWait(1));
-    	addSequential(new RunPath(Paths.straightLength(44), -0.35));
+    	// addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_PLACE, -0.25));
+//    	addSequential(new RunPath(Paths.straightLength(15), 0.3));
+    	// addSequential(new AutoIntakeOn(true, RobotMap.AUTO_SCALE_OUTAKE, 2));
+    	
+    	// addParallel(new AutoElevatorDownWait(1));
+//    	addSequential(new RunPath(Paths.straightLength(44), -0.35));
+    	
+    	
+    	
+//    	HERE FOR OLD CODE
+//    	addParallel(new AutoElevatorDownWait(0.25));
+//    	addSequential(new RunPath(Paths.straightLength(10), -0.5)); // make longer t o
+//    	addSequential(new AutoTimerWait(1));
+//    	addSequential(new AutoPIDTurn(112));
+//    	addSequential(new AutoTimerWait(0.5));
+//    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4));
+//    	addSequential(new RunPath(Paths.straightLength(60), x -> {
+//    		if (x < .70) return 1.0;
+//			else return 0.3;
+//    	}));
+//    	
+//    /** Place second cube on scale **/
+//    	addParallel(new AutoSwitchHeightWait(0.75));
+//    	addSequential(new RunPath(Paths.straightLength(20), -0.5));
+//    	addSequential(new AutoPIDTurn(-130));
+//    	addSequential(new AutoTimerWait(0.5));
+//    	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+//    	addSequential(new RunPath(Paths.straightLength(27), x -> {
+//    		if (x < .70) return 0.5;
+//			else return 0.5;
+//    	}));
+//    	addParallel(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 2));
+//    	
+//    /** Elevator down **/
+//    	addParallel(new AutoElevatorDownWait(1));
+//    	addSequential(new RunPath(Paths.straightLength(44), -0.35));
     	
     }
 }
