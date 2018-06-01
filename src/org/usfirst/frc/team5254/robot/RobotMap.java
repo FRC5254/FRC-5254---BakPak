@@ -42,7 +42,7 @@ public class RobotMap {
 	// Misc
 	
 		//Drivetrain
-	public static final double DRIVETRAIN_GEAR_RATIO = (7.103);
+	public static final double DRIVETRAIN_GEAR_RATIO = (7.103);//54:30 Low gear ratio
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
 	
 	public static final double Kp = 0.3;

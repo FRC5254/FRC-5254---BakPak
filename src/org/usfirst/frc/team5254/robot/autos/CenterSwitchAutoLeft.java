@@ -46,13 +46,13 @@ public class CenterSwitchAutoLeft extends CommandGroup {
 			if (x < 0.20) return 0.5;// make .2 to .1
 			if (x < 0.75) return 0.85;// make this faster and for more time
 			else return 0.4; //faster!
-		}), 6);
+		}, 0), 6);
 		
 	/** Shoots cube into switch **/	
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
 		
 	/** Backs up and puts elevator down **/
-		addSequential(new RunPath(Paths.straightLength(24), -0.75));
+		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
 		addSequential(new AutoElevatorSetDown());
 	}
 }

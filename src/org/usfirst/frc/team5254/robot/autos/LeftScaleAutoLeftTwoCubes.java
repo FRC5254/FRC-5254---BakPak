@@ -23,69 +23,42 @@ public class LeftScaleAutoLeftTwoCubes extends CommandGroup {
     public LeftScaleAutoLeftTwoCubes() {
     	
     /** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	
-    /** First cube on scale **/
+    /** Place cube on scale **/
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
-			if (x < .05) return 0.5;
-			else return 0.9;
-    	}));
+			if (x < 0.8) return 1.0;
+			else return 0.5;
+    	}, 0.75));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5, 0));
+    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
     	
     /** Elevator down **/
-    	addSequential(new RunPath(Paths.straightLength(20), x -> {
-    		if (x < .70) return -0.5;
-			else return -0.5;
-    	}));
-    	addSequential(new AutoTimerWait(0.25));
-    	addSequential(new AutoElevatorDownWait(0.01));
+    	addParallel(new AutoElevatorDownWait(0.25));
+    	addSequential(new AutoPIDTurn(85));
     	
     /** Pick up second cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.45), 3);
-    	addSequential(new RunPath(Paths.straightLength(10), -0.3));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4.5));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.45, 0), 3);
+    	addSequential(new RunPath(Paths.straightLength(10), -0.3, 0));
+    	
+    /** Place second cube**/
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2.5));
+    	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+     	addSequential(new AutoPIDTurn(195));
+    	addSequential(new RunPath(Paths.straightLength(33), 0.3, 0));
     	
     	
-    	// addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_PLACE, -0.25));
-//    	addSequential(new RunPath(Paths.straightLength(15), 0.3));
-    	// addSequential(new AutoIntakeOn(true, RobotMap.AUTO_SCALE_OUTAKE, 2));
+//    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_PLACE, -0.25)); Will this be faster?? also uncomment in paths.java too
     	
-    	// addParallel(new AutoElevatorDownWait(1));
-//    	addSequential(new RunPath(Paths.straightLength(44), -0.35));
+    	 addSequential(new AutoIntakeOn(true, RobotMap.AUTO_SCALE_OUTAKE, 2));
     	
-    	
-    	
-//    	HERE FOR OLD CODE
-//    	addParallel(new AutoElevatorDownWait(0.25));
-//    	addSequential(new RunPath(Paths.straightLength(10), -0.5)); // make longer t o
-//    	addSequential(new AutoTimerWait(1));
-//    	addSequential(new AutoPIDTurn(112));
-//    	addSequential(new AutoTimerWait(0.5));
-//    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4));
-//    	addSequential(new RunPath(Paths.straightLength(60), x -> {
-//    		if (x < .70) return 1.0;
-//			else return 0.3;
-//    	}));
-//    	
-//    /** Place second cube on scale **/
-//    	addParallel(new AutoSwitchHeightWait(0.75));
-//    	addSequential(new RunPath(Paths.straightLength(20), -0.5));
-//    	addSequential(new AutoPIDTurn(-130));
-//    	addSequential(new AutoTimerWait(0.5));
-//    	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-//    	addSequential(new RunPath(Paths.straightLength(27), x -> {
-//    		if (x < .70) return 0.5;
-//			else return 0.5;
-//    	}));
-//    	addParallel(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 2));
-//    	
-//    /** Elevator down **/
-//    	addParallel(new AutoElevatorDownWait(1));
-//    	addSequential(new RunPath(Paths.straightLength(44), -0.35));
+    /** Elevator down **/
+    	 addParallel(new AutoElevatorDownWait(1));
+    	 addSequential(new RunPath(Paths.straightLength(33), -0.35, 0));
     	
     }
 }

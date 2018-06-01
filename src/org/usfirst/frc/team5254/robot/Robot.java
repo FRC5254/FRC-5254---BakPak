@@ -424,6 +424,10 @@ public class Robot extends IterativeRobot {
 //		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
 //		SmartDashboard.putNumber("Distance", Robot.Drivetrain.getDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
+
+		if (Robot.Elevator.mightBreak()) {
+			Robot.Elevator.dontBreak();
+		}
 	}
 
 	@Override

@@ -4,6 +4,7 @@ package org.usfirst.frc.team5254.robot.autocommands.pathing;
 import java.util.function.Function;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,13 +20,15 @@ public class RunPath extends Command {
 	
 	private double length = -1;
 	
+	private double shift; // What percent of the path should be in high gear 
+	
 	private boolean reset = true;
 	
 	private Path path;
 	
 	private Function<Double, Double> speed;
 	
-    public RunPath(Path path, double speed) {
+    public RunPath(Path path, double speed, double shift) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.Drivetrain);
@@ -33,25 +36,27 @@ public class RunPath extends Command {
     	this.leftSpeed = -speed;
     	this.rightSpeed = -speed;
     	this.speed = x -> speed;
+    	this.shift = shift;
     }
     
-    public RunPath(Path path, double speed, boolean reset) {
-    	this(path, speed);
+    public RunPath(Path path, double speed, double shift, boolean reset) {
+    	this(path, speed, shift);
     	this.reset = reset;
     }
     
-    public RunPath(Path path, Function<Double, Double> speed) {
+    public RunPath(Path path, Function<Double, Double> speed, double shift) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.Drivetrain);
     	this.path = path;
     	this.speed = speed;
+    	this.shift = shift;
     	this.leftSpeed = speed.apply(0.0);
     	this.rightSpeed = speed.apply(0.0);
     }
     
-    public RunPath(Path path, Function<Double, Double> speed, boolean reset) {
-    	this(path, speed);
+    public RunPath(Path path, Function<Double, Double> speed, double shift, boolean reset) {
+    	this(path, speed, shift);
     	this.reset = reset;
     }
     
@@ -103,6 +108,17 @@ public class RunPath extends Command {
     	
     	leftSpeed = speed();
     	rightSpeed = speed();
+//    	if (shift == 1.0) {
+//    		Robot.Drivetrain.shiftUp();
+//    	} else if (shift == 0.0) {
+//    		Robot.Drivetrain.shiftDown();
+//    	} else {
+    		if (getDistance()/path.getTotalLength() <= shift) { // 0 is just low gear, 1 is just high gear
+        		Robot.Drivetrain.shiftUp();
+        	} else {
+        		Robot.Drivetrain.shiftDown();
+        	}
+//    	}
     	
     	System.out.println("error: " + error);
     	if(Math.abs(getDistance()) > 3) {

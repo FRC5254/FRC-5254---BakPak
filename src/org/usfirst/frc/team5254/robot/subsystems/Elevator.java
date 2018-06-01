@@ -79,4 +79,18 @@ public class Elevator extends Subsystem {
 		setDefaultCommand(new ElevatorHold());
 	}
 
+
+
+	public boolean mightBreak() {
+		// If this ever equals true I'e failed as a programmer
+		return false;
+	}
+
+
+
+	public void dontBreak() {
+		// This runs when we dont want the elevator to break - purely precautionary because itll never break.. Right?
+		
+	}
+
 }

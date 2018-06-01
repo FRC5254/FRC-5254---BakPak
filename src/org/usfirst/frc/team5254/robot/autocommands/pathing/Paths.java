@@ -127,8 +127,9 @@ public class Paths {
         		, 41)
                 );
     	
+        
     	/** Scale Left**/
-        public static final Path SCALE_LEFT_TRAVEL = straightLength(216);
+        public static final Path SCALE_LEFT_TRAVEL = straightLength(214);
         public static final Path SCALE_LEFT_FINISH = new Path(
         		/** Old path that works without second cube**/
 //        		new PathSegment(t -> 
@@ -143,36 +144,18 @@ public class Paths {
         		
         		);
         public static final Path SCALE_LEFT_SECOND_CUBE_GRAB = new Path(
-//        		new PathSegment(t -> 
-//        		/* {"start":{"x":286,"y":54},"mid1":{"x":299,"y":69},"mid2":{"x":276,"y":130},"end":{"x":226,"y":127}} */
-//        		(45 + 276 * t + -330 * Math.pow(t, 2))/ (39 + -216 * t + 27 * Math.pow(t, 2)) 
-//        		, 111)
-        		
-//        		new PathSegment(t -> need to turn soner
-//        		/* {"start":{"x":286,"y":54},"mid1":{"x":299,"y":69},"mid2":{"x":299,"y":110},"end":{"x":250,"y":110}} */
-//        		(45 + 156 * t + -201 * Math.pow(t, 2))/ (39 + -78 * t + -108 * Math.pow(t, 2)) 
-//        		, 86)
-        		
-        		//WOrked on parctice feild
         		new PathSegment(t -> 
-        		/* {"start":{"x":286,"y":54},"mid1":{"x":299,"y":69},"mid2":{"x":320,"y":100},"end":{"x":250,"y":100}} */
-        		(45 + 96 * t + -141 * Math.pow(t, 2))/ (39 + 48 * t + -297 * Math.pow(t, 2)) 
-        		, 89)
-        		
-//        		new PathSegment(t -> 
-//        		/* {"start":{"x":286,"y":54},"mid1":{"x":299,"y":50},"mid2":{"x":320,"y":100},"end":{"x":250,"y":110}} */
-//        		(-12 + 324 * t + -282 * Math.pow(t, 2))/ (39 + 48 * t + -297 * Math.pow(t, 2)) 
-//        		, 94)
-        		
+        		/* {"start":{"x":265,"y":98},"mid1":{"x":247,"y":102},"mid2":{"x":226,"y":66},"end":{"x":224,"y":64}} */
+        		(12 + -240 * t + 222 * Math.pow(t, 2))/ (-54 + -18 * t + 66 * Math.pow(t, 2)) 
+        		, 56)
         		);
         
         public static final Path SCALE_LEFT_SECOND_CUBE_PLACE = new Path( 
-        		new PathSegment(t -> 
-        		/* {"start":{"x":250,"y":110},"mid1":{"x":320,"y":100},"mid2":{"x":299,"y":50},"end":{"x":286,"y":54}} */
-        		(-30 + -240 * t + 282 * Math.pow(t, 2))/ (210 + -546 * t + 297 * Math.pow(t, 2)) 
-        		, 94)
+//        		new PathSegment(t -> 
+//        		/* {"start":{"x":208.5,"y":93.25},"mid1":{"x":266.5,"y":93.25},"mid2":{"x":310.5,"y":100.25},"end":{"x":289.5,"y":65.25}} */
+//        		(0 + 42 * t + -147 * Math.pow(t, 2))/ (174 + -84 * t + -153 * Math.pow(t, 2)) 
+//        		, 109) use negative throttle
         		);
-        		
         
         		
         /** Scale Right**/
@@ -192,6 +175,7 @@ public class Paths {
         		(-15 + 558 * t + -492 * Math.pow(t, 2))/ (252 + -648 * t + 396 * Math.pow(t, 2)) 
         		, 142)
         		);
+        
         public static final Path SCALE_RIGHT_FINISH = new Path(
         		new PathSegment(t -> 
         		/* {"start":{"x":0,"y":100},"mid1":{"x":58,"y":110},"mid2":{"x":48,"y":85},"end":{"x":48,"y":80}} */
@@ -205,9 +189,8 @@ public class Paths {
         		/* {"start":{"x":283,"y":78},"mid1":{"x":300,"y":102.5},"mid2":{"x":257,"y":102.5},"end":{"x":210,"y":90}} */
         		(73.5 + -147 * t + 36 * Math.pow(t, 2))/ (51 + -360 * t + 168 * Math.pow(t, 2)) 
         		, 93)
-
-        		
         		);
+        
         public static final Path SECOND_PLACE_LEFT = new Path(
         		new PathSegment(t -> 
         		/* {"start":{"x":210,"y":90},"mid1":{"x":180,"y":20},"mid2":{"x":250,"y":60},"end":{"x":283,"y":78}} */

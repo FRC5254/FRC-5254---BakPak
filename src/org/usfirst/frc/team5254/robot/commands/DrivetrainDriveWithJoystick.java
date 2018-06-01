@@ -3,6 +3,7 @@ package org.usfirst.frc.team5254.robot.commands;
 import org.usfirst.frc.team5254.robot.Robot;
 import org.usfirst.frc.team5254.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -16,7 +17,11 @@ public class DrivetrainDriveWithJoystick extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.Drivetrain.shiftDown();
+		if (DriverStation.getInstance().isAutonomous()) {
+			Robot.Drivetrain.shiftDown();
+		} else {
+			Robot.Drivetrain.shiftDown();
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run

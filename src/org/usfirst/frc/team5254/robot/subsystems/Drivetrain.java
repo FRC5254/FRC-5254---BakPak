@@ -3,8 +3,10 @@ package org.usfirst.frc.team5254.robot.subsystems;
 import org.usfirst.frc.team5254.robot.Robot;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.DrivetrainDriveWithJoystick;
+import org.usfirst.frc.team5254.robot.commands.DrivetrainShiftUp;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -58,7 +60,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new DrivetrainDriveWithJoystick());
+			setDefaultCommand(new DrivetrainDriveWithJoystick());
 	}
 
 	// TeleOp Methods
@@ -225,7 +227,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, -output);// * 0.8
+		drivetrain.arcadeDrive(0.0, -output * 0.65);// * 0.8
 //		System.out.println("Angle: " + gyro.getAngle());
 //		System.out.println("Output" + -output);
 	}

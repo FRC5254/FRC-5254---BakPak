@@ -22,11 +22,11 @@ public class LeftScaleAutoRightShortCross extends CommandGroup {
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
-    	}));
+    	}, 0));
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, y -> {
     		if (y < 0.2) return 0.6;
     		else if (y < 0.85) return 0.8;
     		else return 0.3;
-    	}));
+    	}, 0));
     }
 }

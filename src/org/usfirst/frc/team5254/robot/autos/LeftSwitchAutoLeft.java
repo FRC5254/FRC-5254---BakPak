@@ -33,13 +33,13 @@ public class LeftSwitchAutoLeft extends CommandGroup {
     	addSequential(new RunPath(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
-    	}));
+    	}, 0));
     	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SWITCH_LEFT_FINISH, 0.4));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SWITCH_LEFT_FINISH, 0.4, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
     	
     /** Elevator down **/
-    	addSequential(new RunPath(Paths.straightLength(30), -0.3));
+    	addSequential(new RunPath(Paths.straightLength(30), -0.3, 0));
     	addSequential(new AutoElevatorSetDown());
     }
 }

@@ -29,7 +29,7 @@ public class CenterSwitchAutoLeftDriveRight extends CommandGroup {
 			if (x < 0.20) return 0.5;
 			if (x < 0.75) return 0.85;
 			else return 0.4;
-		}));
+		}, 0));
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
 		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time as needed
 			
@@ -38,19 +38,19 @@ public class CenterSwitchAutoLeftDriveRight extends CommandGroup {
 			if (x < 0.20) return -0.5;
 			if (x < 0.75) return -0.85;
 			else return -0.4;
-		}));
+		}, 0));
 		addParallel(new AutoIntakeOnWait(1, 2.5));// these numbers need to be tuned (wait, intake)
 			
 	/** Grabs closest cube from cube zone and backs up from stack **/
-		addSequential(new RunPath(Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, 0.35));//this number can probably be increased
-		addSequential(new RunPath(Paths.straightLength(45), -0.8));
+		addSequential(new RunPath(Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, 0.35, 0));//this number can probably be increased
+		addSequential(new RunPath(Paths.straightLength(45), -0.8, 0));
 			
 	/** Drive to the side of the switch the scale is on **/
 		addSequential(new RunPath(Paths.FROM_CENTER.RIGHT_SIDE_AFTER_GRAB_CUBE, x -> {
 			if (x < 0.10) return 0.5;
 			if (x < 0.90) return 0.85;
 			else return 0.6;
-		}));
-		addSequential(new RunPath(Paths.straightLength(24), 0.75));
+		}, 0));
+		addSequential(new RunPath(Paths.straightLength(24), 0.75, 0));
     }
 }

@@ -46,13 +46,13 @@ public class CenterSwitchAutoRight extends CommandGroup {
 			if (x < 0.20) return 0.5;
 			if (x < 0.75) return 0.85;
 			else return 0.4;
-		}));
+		}, 0));
 		
 	/** Places cube **/
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
 		
 	/** Lowers elevator **/
-		addSequential(new RunPath(Paths.straightLength(24), -0.75));
+		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
 		addSequential(new AutoElevatorSetDown());
 	}
 }

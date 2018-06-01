@@ -23,11 +23,20 @@ public class CrossBaselineAuto extends CommandGroup {
 //		addSequential(new AutoDriveToDistance(1.0, 100));
 		
 	/** Pop height **/
-		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+//		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		
 	/** Drive forward **/
-		addSequential(new RunPath(Paths.straightLength(100), 0.5));
+		addSequential(new RunPath(Paths.straightLength(200), x -> {
+			if (x < 0.20) return 1.0;
+			if (x < 0.80) return 1.0;//.75
+			else return 0.5;
+		}, 0.75));
+//		addSequential(new RunPath(Paths.straightLength(100), x -> {
+//			if (x < 0.20) return 1.0;
+//			if (x < 0.60) return 1.0;
+//			else return 1.0;
+//		}));
 		
 	}
 }

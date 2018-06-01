@@ -34,9 +34,9 @@ public class TestAuto extends CommandGroup {
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
 			if (x < .05) return 0.5;
 			else return 1.0;
-    	}));
+    	}, 0));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
     	
     /** Elevator down **/
@@ -44,12 +44,12 @@ public class TestAuto extends CommandGroup {
     	addSequential(new RunPath(Paths.straightLength(20), x -> {
     		if (x < .70) return 1.0;
 			else return 0.3;
-    	}));
+    	}, 0));
     	
     /** Pick up second cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 6));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.6), 4);
-    	addSequential(new RunPath(Paths.straightLength(20), -0.3));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.6, 0), 4);
+    	addSequential(new RunPath(Paths.straightLength(20), -0.3, 0));
     	
 //    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_PLACE, 0.25));
 		

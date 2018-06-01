@@ -25,16 +25,16 @@ public class LeftScaleAutoLeftGrabCube extends CommandGroup {
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
 			if (x < .05) return 0.5;
 			else return 1.0;
-    	}));
+    	}, 0));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, .25));
+    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.25, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
     	
     /** Elevator down **/
     	addParallel(new AutoElevatorDownWait(0.25));
     	
     /** Pick up second cube **/
-    	addSequential(new RunPath(Paths.straightLength(20), -0.5));
+    	addSequential(new RunPath(Paths.straightLength(20), -0.5, 0));
     	addSequential(new AutoTimerWait(1));
     	addSequential(new AutoPIDTurn(85));
     	addSequential(new AutoTimerWait(0.5));
@@ -42,6 +42,6 @@ public class LeftScaleAutoLeftGrabCube extends CommandGroup {
     	addSequential(new RunPath(Paths.straightLength(53), x -> {
     		if (x < .70) return 0.75;
 			else return 0.3;
-    	}));
+    	}, 0));
     }
 }

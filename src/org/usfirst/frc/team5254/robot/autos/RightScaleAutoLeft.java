@@ -42,22 +42,22 @@ public class RightScaleAutoLeft extends CommandGroup {
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;
-    	}));
+    	}, 0));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, y -> {
     		if (y < 0.2) return 0.6;
     		else if (y < 0.85) return 0.8;
     		else return 0.3;
-    	}));
+    	}, 0));
     	
     /** Place cube on scale **/
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new AutoTimerWait(0.25));
-    	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_FINISH, 0.25));
+    	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_LEFT_FINISH, 0.25, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));
     	
     /** Elevator down **/
-    	addParallel(new RunPath(Paths.straightLength(30), -0.25));
+    	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));
     	addSequential(new AutoElevatorDownWait(0.5));
     	
     }
