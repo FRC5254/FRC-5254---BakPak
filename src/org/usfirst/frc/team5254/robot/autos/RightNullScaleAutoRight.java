@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightPartnerScaleAutoRight extends CommandGroup {
+public class RightNullScaleAutoRight extends CommandGroup {
 
-    public RightPartnerScaleAutoRight() {
+    public RightNullScaleAutoRight() {
     	
 //    /** Pop cube **/
 //    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));

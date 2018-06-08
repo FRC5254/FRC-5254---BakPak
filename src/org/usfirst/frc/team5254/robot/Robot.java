@@ -50,8 +50,8 @@ public class Robot extends IterativeRobot {
 	private final String TwoCubeScaleR = "Two Cube Scale Right";
 	
 	/** Logic **/
-	private final String LeftScaleOrSwitch = "Partner Scale or Switch on Left Side";
-	private final String RightScaleOrSwitch = "Partner Scale or Switch on Right Side";
+	private final String LeftNullScaleOrSwitch = "Null Scale or Switch on Left Side";
+	private final String RightNullScaleOrSwitch = "Null Scale or Switch on Right Side";
 	
 	private final String ItDosentMatter = "Elims Auto";
 	
@@ -71,8 +71,8 @@ public class Robot extends IterativeRobot {
 			TwoCubeScaleL, 
 			TwoCubeScaleR,
 			
-			LeftScaleOrSwitch, 
-			RightScaleOrSwitch, 
+			LeftNullScaleOrSwitch, 
+			RightNullScaleOrSwitch, 
 			ItDosentMatter,
 			
 			TestAuto
@@ -151,16 +151,16 @@ public class Robot extends IterativeRobot {
                     
                     
                 /** Logic **/
-                case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftPartnerScaleAutoLeft(); 
+                case LeftNullScaleOrSwitch: 
+                    autonomousCommand = new LeftNullScaleAutoLeft(); 
                     break;
                     
-                case RightScaleOrSwitch: 
+                case RightNullScaleOrSwitch: 
                     autonomousCommand = new CrossBaselineAuto(); 
                     break;   
                     
                 case ItDosentMatter:
-                	autonomousCommand = new LeftPartnerScaleAutoLeft();
+                	autonomousCommand = new LeftNullScaleAutoLeft();
                 	break;
                     
                     
@@ -218,12 +218,12 @@ public class Robot extends IterativeRobot {
                     
                     
                 /** Logic **/
-                case LeftScaleOrSwitch: 
+                case LeftNullScaleOrSwitch: 
                     autonomousCommand = new LeftSwitchAutoLeft();
                     break;
                     
-                case RightScaleOrSwitch: 
-                    autonomousCommand = new RightPartnerScaleAutoRight(); 
+                case RightNullScaleOrSwitch: 
+                    autonomousCommand = new RightNullScaleAutoRight(); 
                     break;   
                     
                 case ItDosentMatter:
@@ -288,16 +288,16 @@ public class Robot extends IterativeRobot {
                     
                     
                 /** Logic **/
-                case LeftScaleOrSwitch: 
-                    autonomousCommand = new LeftPartnerScaleAutoLeft(); 
+                case LeftNullScaleOrSwitch: 
+                    autonomousCommand = new LeftNullScaleAutoLeft(); 
                     break;
                     
-                case RightScaleOrSwitch: 
+                case RightNullScaleOrSwitch: 
                     autonomousCommand = new RightSwitchAutoRight(); 
                     break;  
                     
                 case ItDosentMatter:
-                	autonomousCommand = new LeftPartnerScaleAutoLeft();
+                	autonomousCommand = new LeftNullScaleAutoLeft();
                 	break;
                     
                     
@@ -355,12 +355,12 @@ public class Robot extends IterativeRobot {
                     
                     
                 /** Logic **/
-                case LeftScaleOrSwitch: 
+                case LeftNullScaleOrSwitch: 
                     autonomousCommand = new RightScaleAutoRight();// CrossBaselineAuto 
                     break;
                     
-                case RightScaleOrSwitch: 
-                    autonomousCommand = new RightPartnerScaleAutoRight(); 
+                case RightNullScaleOrSwitch: 
+                    autonomousCommand = new RightNullScaleAutoRight(); 
                     break;
                     
                 case ItDosentMatter:
