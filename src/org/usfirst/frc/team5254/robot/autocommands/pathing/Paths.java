@@ -128,6 +128,17 @@ public class Paths {
                 );
     	
         
+        public static final Path BACK_SWITCH_FIRST_PLACE = new Path(
+//        		new PathSegment(t -> 
+//        		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":180,"y":64},"end":{"x":200,"y":64}} */
+//        		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -348 * t + 186 * Math.pow(t, 2)) 
+//        		, 120)
+        		new PathSegment(t -> 
+        		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":197,"y":64},"end":{"x":227,"y":64}} */
+        		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -246 * t + 114 * Math.pow(t, 2)) 
+        		, 146)
+        		);
+        
     	/** Scale Left**/
         public static final Path SCALE_LEFT_TRAVEL = straightLength(214);
         public static final Path SCALE_LEFT_FINISH = new Path(

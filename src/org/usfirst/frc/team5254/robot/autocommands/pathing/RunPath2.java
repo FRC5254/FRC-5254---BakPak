@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Refer to CleanRunPath for comments
  */
-public class RunPath extends Command {
+public class RunPath2 extends Command {
 	private final double arcDivisor = 19;
 
 	private double leftSpeed = 0;
@@ -21,6 +21,7 @@ public class RunPath extends Command {
 	private double length = -1;
 	
 	private double shift; // What percent of the path should be in high gear 
+	private double outtake;// What percent of the path that you want to start outtaking at
 	
 	private boolean reset = true;
 	
@@ -28,7 +29,7 @@ public class RunPath extends Command {
 	
 	private Function<Double, Double> speed;
 	
-    public RunPath(Path path, double speed, double shift) {
+    public RunPath2(Path path, double speed, double shift, double outtake) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.Drivetrain);
@@ -37,26 +38,28 @@ public class RunPath extends Command {
     	this.rightSpeed = -speed;
     	this.speed = x -> speed;
     	this.shift = shift;
+    	this.outtake = outtake;
     }
     
-    public RunPath(Path path, double speed, double shift, boolean reset) {
-    	this(path, speed, shift);
+    public RunPath2(Path path, double speed, double shift, double outtake, boolean reset) {
+    	this(path, speed, shift, outtake);
     	this.reset = reset;
     }
     
-    public RunPath(Path path, Function<Double, Double> speed, double shift) {
+    public RunPath2(Path path, Function<Double, Double> speed, double shift, double outtake) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.Drivetrain);
     	this.path = path;
     	this.speed = speed;
     	this.shift = shift;
+    	this.outtake = outtake;
     	this.leftSpeed = speed.apply(0.0);
     	this.rightSpeed = speed.apply(0.0);
     }
     
-    public RunPath(Path path, Function<Double, Double> speed, double shift, boolean reset) {
-    	this(path, speed, shift);
+    public RunPath2(Path path, Function<Double, Double> speed, double shift, double outtake, boolean reset) {
+    	this(path, speed, shift, outtake);
     	this.reset = reset;
     }
     
@@ -122,6 +125,12 @@ public class RunPath extends Command {
         		Robot.Drivetrain.shiftDown();
         	}
 //    	}
+    		
+    	if (getDistance()/path.getTotalLength() >= outtake) {
+    		Robot.Intake.autoOn(false);
+    	} else {
+    		Robot.Intake.off();
+    	}
     	
     	System.out.println("error: " + error);
     	if(Math.abs(getDistance()) > 3) {

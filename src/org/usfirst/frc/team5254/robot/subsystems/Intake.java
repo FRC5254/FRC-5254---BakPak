@@ -34,6 +34,16 @@ public class Intake extends Subsystem {
 		intakeLeftFlywheels.set(0);
 		intakeRightFlywheels.set(0);
 	}
+	
+	public void autoOn(boolean direction) {
+		if (direction == true) {
+			intakeLeftFlywheels.set(-1);
+			intakeRightFlywheels.set(-0.9);
+		} else {
+			intakeLeftFlywheels.set(1);
+			intakeRightFlywheels.set(1);
+		}
+	}
 
 	// Default command
 	public void initDefaultCommand() {
