@@ -128,7 +128,7 @@ public class Paths {
                 );
     	
         
-        public static final Path BACK_SWITCH_FIRST_PLACE = new Path(
+        public static final Path BACK_SWITCH_PLACE = new Path(
 //        		new PathSegment(t -> 
 //        		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":180,"y":64},"end":{"x":200,"y":64}} */
 //        		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -348 * t + 186 * Math.pow(t, 2)) 
@@ -137,6 +137,20 @@ public class Paths {
         		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":197,"y":64},"end":{"x":227,"y":64}} */
         		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -246 * t + 114 * Math.pow(t, 2)) 
         		, 146)
+        		);
+        
+        public static final Path BACK_SWITCH_SECOND_CUBE = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":218,"y":183},"mid1":{"x":204,"y":195},"mid2":{"x":211,"y":249},"end":{"x":208,"y":296}} */
+        		(36 + 252 * t + -147 * Math.pow(t, 2))/ (-42 + 126 * t + -93 * Math.pow(t, 2)) 
+        		, 115)
+        		);
+        
+        public static final Path BACK_SWITCH_BACKUP = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":218,"y":183},"mid1":{"x":193,"y":179},"mid2":{"x":211,"y":249},"end":{"x":208,"y":296}} */
+        		(-12 + 444 * t + -291 * Math.pow(t, 2))/ (-75 + 258 * t + -192 * Math.pow(t, 2)) 
+        		, 121)
         		);
         
     	/** Scale Left**/
@@ -171,7 +185,7 @@ public class Paths {
         		
         /** Scale Right**/
         public static final Path SCALE_RIGHT_TRAVEL = new Path(
-                straightLength(155).getPathAtDistance(10));
+                straightLength(160).getPathAtDistance(10));
         public static final Path SCALE_RIGHT_TRAVEL_2 = new Path(
         		new PathSegment(t -> 
         		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":59,"y":83},"end":{"x":64,"y":155}} */
@@ -180,11 +194,10 @@ public class Paths {
         		);
         
         public static final Path SCALE_RIGHT_TRAVEL_2_CUT_SHORT = new Path(
-        		//CUTPATH
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":60,"y":83},"end":{"x":60,"y":100}} */
-        		(-15 + 558 * t + -492 * Math.pow(t, 2))/ (252 + -648 * t + 396 * Math.pow(t, 2)) 
-        		, 142)
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":70,"y":77},"end":{"x":70,"y":92}} */
+        		(-15 + 522 * t + -462 * Math.pow(t, 2))/ (252 + -588 * t + 336 * Math.pow(t, 2)) 
+        		, 138)
         		);
         
         public static final Path SCALE_RIGHT_FINISH = new Path(

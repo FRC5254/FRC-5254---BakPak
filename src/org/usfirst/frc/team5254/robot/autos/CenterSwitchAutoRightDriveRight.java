@@ -39,7 +39,7 @@ public class CenterSwitchAutoRightDriveRight extends CommandGroup {
 			if (x < 0.75) return -0.85;
 			else return -0.4;
 		}, 0));
-		addParallel(new AutoIntakeOnWait(1, 2.5));// these numbers need to be tuned (wait, intake)
+		addParallel(new AutoIntakeOnWait(true, 1, 2.5));// these numbers need to be tuned (wait, intake)
 		
 	/** Grab second cube and back up **/
 		addSequential(new RunPath(Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, 0.35, 0));//this number can probably be increased

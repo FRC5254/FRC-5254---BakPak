@@ -40,8 +40,8 @@ public class Intake extends Subsystem {
 			intakeLeftFlywheels.set(-1);
 			intakeRightFlywheels.set(-0.9);
 		} else {
-			intakeLeftFlywheels.set(1);
-			intakeRightFlywheels.set(1);
+			intakeLeftFlywheels.set(0.65);
+			intakeRightFlywheels.set(0.65);
 		}
 	}
 

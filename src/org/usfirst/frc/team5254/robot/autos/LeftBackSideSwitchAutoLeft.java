@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftBackSideSwitchLeft extends CommandGroup {
+public class LeftBackSideSwitchAutoLeft extends CommandGroup {
 
-    public LeftBackSideSwitchLeft() {
+    public LeftBackSideSwitchAutoLeft() {
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 13000));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.25));
         addSequential(new RunPath(Paths.straightLength(90), x -> {
@@ -26,10 +26,18 @@ public class LeftBackSideSwitchLeft extends CommandGroup {
 			else return 0.5;
 		}, 0.75));
         addParallel(new AutoElevatorDownWait(1.7));
-        addSequential(new RunPath2(Paths.FROM_LEFT.BACK_SWITCH_FIRST_PLACE, 0.5, 0, 0.118));// Path, speed, high gear, outtake
+        addSequential(new RunPath2(Paths.FROM_LEFT.BACK_SWITCH_PLACE, 0.5, 0, 0.107));// Path, speed, high gear, outtake
         addSequential(new AutoPIDTurn(90));
-//        addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
-//        addSequential(new RunPath(Paths.straightLength(24),0.5, 0));
-        addSequential(new AutoElevatorSetDown());
+        addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 5));
+        addSequential(new RunPath(Paths.FROM_LEFT.BACK_SWITCH_SECOND_CUBE, 0.5, 0));
+        addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
+        addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+        addSequential(new RunPath(Paths.straightLength(22), 0.5, 0));
+        addSequential(new AutoIntakeOn(false, RobotMap.AUTO_INTAKE, 0.75));
+        addSequential(new RunPath(Paths.straightLength(24), -0.5, 0));
+        addParallel(new AutoElevatorSetDown());
+        addSequential(new AutoPIDTurn(-30));
+        addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2));
+        addSequential(new RunPath(Paths.straightLength(20), 0.75, 0));
     }
 }

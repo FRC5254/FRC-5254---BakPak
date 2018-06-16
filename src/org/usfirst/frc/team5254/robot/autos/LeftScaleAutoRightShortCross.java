@@ -28,5 +28,6 @@ public class LeftScaleAutoRightShortCross extends CommandGroup {
     		else if (y < 0.85) return 0.8;
     		else return 0.3;
     	}, 0));
+    	
     }
 }

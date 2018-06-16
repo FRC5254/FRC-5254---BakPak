@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutoIntakeOnWait extends CommandGroup {
 
-    public AutoIntakeOnWait(double wait, double intake) {
+    public AutoIntakeOnWait(boolean direction, double wait, double intake) {
     	addSequential(new AutoTimerWait(wait));
-        addSequential(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, intake));
+        addSequential(new AutoIntakeOn(direction, RobotMap.AUTO_INTAKE, intake));
     }
 }

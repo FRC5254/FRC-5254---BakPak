@@ -15,7 +15,7 @@ public class TestAuto extends CommandGroup {
 
 	public TestAuto() {
 		// runs left switch auto
-		addSequential(new LeftBackSideSwitchLeft());
+		addSequential(new LeftBackSideSwitchAutoRight());
 		
 		
 		//Tests intake release in auto
