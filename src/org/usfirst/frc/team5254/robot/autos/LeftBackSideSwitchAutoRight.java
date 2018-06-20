@@ -25,7 +25,7 @@ public class LeftBackSideSwitchAutoRight extends CommandGroup {
     /** Drive over to other side of field **/
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, x -> {
     		if (x < 0.05) return 0.5;
-    		else return 0.8;
+    		else return 1.0;
     	}, 0));
     	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, y -> {
     		if (y < 0.2) return 0.6;
@@ -45,7 +45,7 @@ public class LeftBackSideSwitchAutoRight extends CommandGroup {
 		addSequential(new RunPath(Paths.straightLength(12), 0.5, 0));
 		addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
 	    addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 10000));
-	    addSequential(new RunPath(Paths.straightLength(22), 0.75, 0));
+	    addSequential(new RunPath(Paths.straightLength(20), 0.65, 0));
 	    addSequential(new AutoIntakeOn(false, 1.0, 0.75));
 	    
 	    addParallel(new AutoElevatorSetDown());
