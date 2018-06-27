@@ -76,7 +76,11 @@ public class Paths {
         		, 41)
         		);
     }
-
+/**	
+ *  ===============================================================================================================================
+ *															Right
+ *	===============================================================================================================================
+ **/
     public static class FROM_RIGHT {
     	/**Right Switch**/
         public static final Path SWITCH_RIGHT_TRAVEL = straightLength(100);
@@ -87,6 +91,27 @@ public class Paths {
         		, 41)
                 );
         
+        public static final Path BACK_SWITCH_PLACE = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":95,"y":46},"mid1":{"x":163,"y":-32},"mid2":{"x":180,"y":28},"end":{"x":227,"y":28}} */
+        		(-234 + 828 * t + -594 * Math.pow(t, 2))/ (204 + -306 * t + 243 * Math.pow(t, 2)) 
+        		, 151)
+        		);
+        
+        public static final Path BACK_SWITCH_SECOND_CUBE = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":45,"y":21},"mid2":{"x":40,"y":-10},"end":{"x":40,"y":-28}} */
+        		(63 + -312 * t + 195 * Math.pow(t, 2))/ (135 + -300 * t + 165 * Math.pow(t, 2)) 
+        		, 70)
+        		);
+        
+        public static final Path BACK_SWITCH_BACKUP = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":218,"y":183},"mid1":{"x":199,"y":169},"mid2":{"x":177,"y":126},"end":{"x":152,"y":99}} */
+        		(-42 + -174 * t + 135 * Math.pow(t, 2))/ (-57 + -18 * t + 0 * Math.pow(t, 2)) 
+        		, 108)
+        		);
+      
         /**Right Scale**/
         public static final Path SCALE_RIGHT_TRAVEL = straightLength(224);
         public static final Path SCALE_RIGHT_FINISH = new Path(
@@ -115,8 +140,22 @@ public class Paths {
 //                        (30 + -342 * t + 228 * Math.pow(t, 2)) / (78 + -276 * t + 84 * Math.pow(t, 2))
 //                        , 92)
 //        );
+        
+        
+        public static final Path SCALE_LEFT_TRAVEL_2_CUT_SHORT = new Path(
+        		new PathSegment(t -> 
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":5},"mid2":{"x":70,"y":-77},"end":{"x":70,"y":-92}} */
+        		(15 + -522 * t + 462 * Math.pow(t, 2))/ (252 + -588 * t + 336 * Math.pow(t, 2)) 
+        		, 138)
+        		);
     }
 
+    
+/**	
+ *	===============================================================================================================================
+ *																Left
+ *	=============================================================================================================================== 
+ **/   
     public static class FROM_LEFT {
     	/** Switch Left **/
         public static final Path SWITCH_LEFT_TRAVEL = straightLength(100);
