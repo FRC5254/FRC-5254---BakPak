@@ -35,7 +35,7 @@ public class RightBackSideSwitchAutoLeft extends CommandGroup {
     	}, 0));
 
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 10000));
-    	addSequential(new AutoPIDTurn(-45));
+    	addSequential(new AutoPIDTurn(-35));
     	addSequential(new RunPath(Paths.straightLength(17), 0.65, 0), 4);
     	addSequential(new AutoIntakeOn(false, 1.0, 0.75));
     	
@@ -46,7 +46,7 @@ public class RightBackSideSwitchAutoLeft extends CommandGroup {
 		addSequential(new RunPath(Paths.straightLength(12), 0.5, 0));
 		addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
 	    addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 10000));
-	    addSequential(new RunPath(Paths.straightLength(20), 0.65, 0));
+	    addSequential(new RunPath(Paths.straightLength(16), 0.65, 0));
 	    addSequential(new AutoIntakeOn(false, 1.0, 0.75));
 	    
 	    addParallel(new AutoElevatorSetDown());

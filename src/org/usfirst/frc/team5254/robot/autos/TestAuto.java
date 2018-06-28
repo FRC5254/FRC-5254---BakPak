@@ -15,7 +15,7 @@ public class TestAuto extends CommandGroup {
 
 	public TestAuto() {
 		// runs left switch auto
-		addSequential(new RightBackSideSwitchAutoRight());
+		addSequential(new RightBackSideSwitchAutoLeft());
 //		addSequential(new RightNullScaleAutoRight());
 		
 		

@@ -22,7 +22,7 @@ public class RightBackSideSwitchAutoRight extends CommandGroup {
     	
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 15000));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.25));
-        addSequential(new RunPath(Paths.straightLength(95), x -> {
+        addSequential(new RunPath(Paths.straightLength(100), x -> {
 			if (x < 0.20) return 0.7;
 			if (x < 0.80) return 0.7;//0.75
 			else return 0.5;
