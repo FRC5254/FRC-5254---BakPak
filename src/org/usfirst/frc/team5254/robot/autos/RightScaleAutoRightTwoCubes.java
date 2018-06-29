@@ -18,40 +18,40 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftScaleAutoLeftTwoCubes extends CommandGroup {
+public class RightScaleAutoRightTwoCubes extends CommandGroup {
 
-    public LeftScaleAutoLeftTwoCubes() {
+    public RightScaleAutoRightTwoCubes() {
     	
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 6000));
     	
     /** Place cube on scale **/
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
+    	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, x -> {
 			if (x < 0.8) return 1.0;
 			else return 0.5;
     	}, 0.75));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5, 0));
+    	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, 0.5, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
     	
     /** Elevator down **/
     	addParallel(new AutoElevatorDownWait(0.25));
-    	addSequential(new AutoPIDTurn(85));
+    	addSequential(new AutoPIDTurn(-85));
     	
     /** Pick up second cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4.5));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.45, 0), 2.5);
-    	addSequential(new AutoPIDTurn(7));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 6));
+    	addSequential(new RunPath(Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB, 0.45, 0), 2.5);
     	addSequential(new AutoPIDTurn(-7));
+    	addSequential(new AutoPIDTurn(7));
     	addSequential(new RunPath(Paths.straightLength(10), -0.3, 0));
     	
     /** Place second cube**/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2.5));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-     	addSequential(new AutoPIDTurn(-165));
-    	addSequential(new RunPath(Paths.straightLength(33), 0.65, 0));
+     	addSequential(new AutoPIDTurn(-195));
+    	addSequential(new RunPath(Paths.straightLength(33), 0.55, 0));    	
     	addSequential(new AutoIntakeOn(false, 0.65, 2));
     	
     /** Elevator down **/

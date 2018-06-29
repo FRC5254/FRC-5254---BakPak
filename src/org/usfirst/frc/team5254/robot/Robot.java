@@ -398,12 +398,12 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 //		SmartDashboard.putNumber("Encoder Adverage", ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2);
-		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
-		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
+//		SmartDashboard.putNumber("left", Drivetrain.encoderLeft.getDistance());
+//		SmartDashboard.getNumber("right", Drivetrain.encoderRight.getDistance());
 //		SmartDashboard.getNumber("Gyro", Drivetrain.gyro.getAngle());
 //	System.out.println("Right " + Robot.Drivetrain.encoderRight.get());
-	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());
-	System.out.println("Left Distance " + Robot.Drivetrain.getLeftDistance());
+//	System.out.println("Right Distance " + Robot.Drivetrain.getRightDistance());
+//	System.out.println("Left Distance " + Robot.Drivetrain.getLeftDistance());
 //	System.out.println("Left " + Robot.Drivetrain.encoderLeft.get());
 //		System.out.println(Robot.Drivetrain.encoderLeft.getDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
@@ -423,7 +423,7 @@ public class Robot extends IterativeRobot {
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 //		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
 //		SmartDashboard.putNumber("Distance", Robot.Drivetrain.getDistance());
-//		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
+		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 
 		if (Robot.Elevator.mightBreak()) {
 			Robot.Elevator.dontBreak();
