@@ -15,9 +15,9 @@ public class TestAuto extends CommandGroup {
 
 	public TestAuto() {
 		// runs left switch auto
-//		addSequential(new RightBackSideSwitchAutoLeft());
+		addSequential(new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE, Paths.FROM_LEFT.BACK_SWITCH_SECOND_CUBE));
 //		addSequential(new RightNullScaleAutoRight());
-		addSequential(new LeftScaleAutoLeftTwoCubes());
+//		addSequential(new LeftScaleAutoLeftTwoCubes());
 		
 		
 		//Tests intake release in auto

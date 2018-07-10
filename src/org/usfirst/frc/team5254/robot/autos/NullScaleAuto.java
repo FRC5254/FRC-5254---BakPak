@@ -2,6 +2,7 @@ package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoDriveToDistance;
+import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
@@ -15,9 +16,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightNullScaleAutoRight extends CommandGroup {
+public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
 
-    public RightNullScaleAutoRight() {
+    public NullScaleAuto(boolean leftSide) {
+    	double turn = 90.0;
+    	
+    	if (!leftSide) {
+    		turn = -turn;
+    	}
     	
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
@@ -26,7 +32,7 @@ public class RightNullScaleAutoRight extends CommandGroup {
     /** Place on left scale at a 90 deg. **/
     	addSequential(new RunPath(Paths.straightLength(305), 0.9, 0));
     	addSequential(new AutoTimerWait(0.5));
-    	addSequential(new AutoPIDTurn(-90));
+    	addSequential(new AutoPIDTurn(turn));
     	addSequential(new AutoTimerWait(0.5));
     	addSequential(new RunPath(Paths.straightLength(12), -0.5, 0), 4);
     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
@@ -36,6 +42,5 @@ public class RightNullScaleAutoRight extends CommandGroup {
     /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -0.25, 0),2);
     	addSequential(new AutoElevatorSetDown());
-    	
     }
 }

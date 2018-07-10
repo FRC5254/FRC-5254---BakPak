@@ -134,7 +134,7 @@ public class Paths {
         
         /**Left Scale**/
         public static final Path SCALE_LEFT_TRAVEL = new Path(
-                straightLength(156).getPathAtDistance(10));
+                straightLength(162).getPathAtDistance(10));// was 156
         public static final Path SCALE_LEFT_TRAVEL_2 = new Path(
         		new PathSegment(t -> 
         		/* {"start":{"x":0,"y":200},"mid1":{"x":60,"y":205},"mid2":{"x":35,"y":117},"end":{"x":39,"y":45}} */
@@ -250,10 +250,17 @@ public class Paths {
         		);
         
         public static final Path SCALE_RIGHT_TRAVEL_2_CUT_SHORT = new Path(
+        		// HOME
+//        		new PathSegment(t -> 
+//        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":70,"y":77},"end":{"x":70,"y":92}} */
+//        		(-15 + 522 * t + -462 * Math.pow(t, 2))/ (252 + -588 * t + 336 * Math.pow(t, 2)) 
+//        		, 138)
+        		
+        		//RPI FIELD (rather overshooth than undershooth)
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":70,"y":77},"end":{"x":70,"y":92}} */
-        		(-15 + 522 * t + -462 * Math.pow(t, 2))/ (252 + -588 * t + 336 * Math.pow(t, 2)) 
-        		, 138)
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":70,"y":77},"end":{"x":70,"y":97}} */
+        		(-15 + 522 * t + -447 * Math.pow(t, 2))/ (252 + -588 * t + 336 * Math.pow(t, 2)) 
+        		, 143)
         		);
         
         public static final Path SCALE_RIGHT_FINISH = new Path(

@@ -21,7 +21,37 @@ public class ElevatorJoystickControl extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)< 0) {
+		// OG
+//		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) < 0) {
+//			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) * 0.75);
+//		} else {
+//			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+//		}
+		
+		// Option #1
+		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) < 0 || Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_LEFT_TRIGGER_AXIS) > 0) {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) * 0.75);
+			Robot.Elevator.on(-Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_LEFT_TRIGGER_AXIS) * 0.75);//TODO test and tune these slow controls
+		} else {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_RIGHT_TRIGGER_AXIS) * 0.75);
+		}
+		
+		// Option #2
+		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) < 0 || Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_LEFT_TRIGGER_AXIS) > 0) {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) * 0.75);
+			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED - (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_LEFT_TRIGGER_AXIS) * 0.5));//TODO test and tune these slow controls
+		} else {
+			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
+			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED + (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_RIGHT_TRIGGER_AXIS) * 0.5));
+		}
+		
+		// Option #3 **
+		if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_LEFT_TRIGGER_AXIS) > 0) {
+			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED - 0.2);//TODO test and tune these slow controls
+		} else if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_RIGHT_TRIGGER_AXIS) > 0) {
+			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED + 0.2);
+		} else if (Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) < 0){
 			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS) * 0.75);
 		} else {
 			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));

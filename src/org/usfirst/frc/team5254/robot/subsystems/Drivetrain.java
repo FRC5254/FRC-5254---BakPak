@@ -109,7 +109,7 @@ public class Drivetrain extends PIDSubsystem {
 		encoderRight.setSamplesToAverage(7);
 		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
 				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
-
+		
 	}
 	
 	public double getRightDistance() {

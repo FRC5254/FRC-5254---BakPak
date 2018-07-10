@@ -20,13 +20,13 @@ public class Intake extends Subsystem {
 	}
 
 	// TeleOp Methods
-	public void on(boolean direction) {
+	public void on(boolean direction, double speed) {
 		if (direction == true) {
 			intakeLeftFlywheels.set(-1);
 			intakeRightFlywheels.set(-0.9);
 		} else {
-			intakeLeftFlywheels.set(0.75);//both .75
-			intakeRightFlywheels.set(0.75);
+			intakeLeftFlywheels.set(speed);//both .75
+			intakeRightFlywheels.set(speed);
 		}
 	}
 

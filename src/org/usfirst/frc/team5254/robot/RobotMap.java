@@ -31,11 +31,13 @@ public class RobotMap {
 	public static final int OPERATOR_JOYSTICK = 1;
 
 	public static final int DRIVER_THROTTLE_AXIS = 1;
-	public static final int DRIVER_TURN_AXIS = 4;
 	public static final int DRIVER_RIGHT_TRIGGER_AXIS = 3;
+	public static final int DRIVER_TURN_AXIS = 4;
 
 	public static final int OPERATOR_THROTTLE_AXIS = 1;
-
+	public static final int OPERATOR_LEFT_TRIGGER_AXIS = 2;
+	public static final int OPERATOR_RIGHT_TRIGGER_AXIS = 3;
+	
 	// CAN Talon
 	public static final int ELEVATOR = 6;// is 4 not on comp bot
 
@@ -57,8 +59,8 @@ public class RobotMap {
 	public static final int ENCODER_TICKS = 256;
 	
 	public static final int POP_HEIGHT = 1000;
-	public static final int SWITCH_HEIGHT = 7774;
-	public static final int UNOWNED_SCALE_HEIGHT = 29000;
+	public static final int SWITCH_HEIGHT = 10774;
+	public static final int UNOWNED_SCALE_HEIGHT = 28500;
 	public static final int OWNED_SCALE_HEIGHT = 22500; // LOWER
 	
 	public static final double ELE_DOWN_SPEED = 0.4;// THIS IS NOT THE HOLD SPEED

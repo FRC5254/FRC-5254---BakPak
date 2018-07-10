@@ -9,6 +9,7 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoSwitchHeightWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
@@ -18,39 +19,53 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftScaleAutoLeftTwoCubes extends CommandGroup {
+public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwoCubes
 
-    public LeftScaleAutoLeftTwoCubes() {
+    public TwoCubeScaleAuto(boolean leftside, Path path1, Path path2, Path path3) {
+    	
+    	double turn1 = 85;
+    	double turn2 = 7;
+    	double turn3 = -7;
+    	double turn4 = -165;
+    	double intakeTime = 4.5;
+    	
+    	if (leftside == false){
+    		turn1 = -turn1;
+    		turn2 = -turn2;
+    		turn3 = -turn3;	
+    		turn4 = -turn4;
+    		intakeTime = 6.0;
+    	}
     	
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 6000));
+    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 3000));
     	
     /** Place cube on scale **/
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
+    	addSequential(new RunPath(path1, x -> {
 			if (x < 0.8) return 1.0;
 			else return 0.5;
     	}, 0.75));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5, 0));
+    	addSequential(new RunPath(path2, 0.5, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
     	
     /** Elevator down **/
     	addParallel(new AutoElevatorDownWait(0.25));
-    	addSequential(new AutoPIDTurn(85));
+    	addSequential(new AutoPIDTurn(turn1));
     	
     /** Pick up second cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 4.5));
-    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.45, 0), 2.5);
-    	addSequential(new AutoPIDTurn(7));
-    	addSequential(new AutoPIDTurn(-7));
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, intakeTime));
+    	addSequential(new RunPath(path3, 0.45, 0), 2.5);
+    	addSequential(new AutoPIDTurn(turn2));
+    	addSequential(new AutoPIDTurn(turn3));
     	addSequential(new RunPath(Paths.straightLength(10), -0.3, 0));
     	
     /** Place second cube**/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2.5));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-     	addSequential(new AutoPIDTurn(-165));
+     	addSequential(new AutoPIDTurn(turn4));
     	addSequential(new RunPath(Paths.straightLength(33), 0.65, 0));
     	addSequential(new AutoIntakeOn(false, 0.65, 2));
     	

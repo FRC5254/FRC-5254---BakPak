@@ -1,13 +1,16 @@
 package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.subsystems.*;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.autos.*;
+import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,381 +18,163 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends IterativeRobot {
+	
+	// AUTO SELECTOR THING [UNUSED]
+	private static String startingPosition = "L"; // L/R/C
 
 	NetworkTable table;
 	String gameData;
-	Boolean allianceColorRed;
 	int allianceNumber;
+	
+	Timer timer = new Timer();
+	Timer autoTimer = new Timer();
 
-	public static OI oi;
 	public static Drivetrain Drivetrain = new Drivetrain();
 	public static Intake Intake = new Intake();
 	public static Elevator Elevator = new Elevator();
 	public static Climber Climber = new Climber();
-
+	public static OI oi;
+	
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
-
-	// Auto modes
-	/** Base Autos **/
-	private final String NothingAuto = "Do Nothing";
-	private final String TestAuto = "Test Auto";
 	
-	/** Cross Autoline **/
-	private final String CrossAutoLine = "Cross Autoline";
-	
-	/** Switch **/
-	private final String SwitchAuto = "Switch Auto";
-	private final String TwoCubeSwitch = "Two Cube Switch";
-	
-	private final String SwitchCubeDrive = "Switch Cube Drive";
-	
-	/** Scale **/
-	private final String ScaleAutoL = "Scale Auto Left";
-	private final String ScaleAutoR = "Scale Auto Right";
-	private final String TwoCubeScaleL = "Two Cube Scale Left";
-	private final String TwoCubeScaleR = "Two Cube Scale Right";
-	
-	/** Logic **/
-	private final String LeftNullScaleOrSwitch = "Null Scale or Switch on Left Side";
-	private final String RightNullScaleOrSwitch = "Null Scale or Switch on Right Side";
-	
-	private final String ItDosentMatter = "Elims Auto";
-	
-//	public static boolean Auto;
-	
-	private final String[] AutoModes = { 
-			NothingAuto, 
-			
-			CrossAutoLine,
-			
-			SwitchAuto,
-			TwoCubeSwitch,
-			SwitchCubeDrive,
-			
-			ScaleAutoL, 
-			ScaleAutoR, 
-			TwoCubeScaleL, 
-			TwoCubeScaleR,
-			
-			LeftNullScaleOrSwitch, 
-			RightNullScaleOrSwitch, 
-			ItDosentMatter,
-			
-			TestAuto
-			};
-
 	Command autonomousCommand;
-	// Defining the autonomous commands into a string to be listed on the dashboard
-
+	Command someCommand;
+	
 	@Override
 	public void robotInit() {
-		oi = new OI();
 
-		// Send auto modes
-		SmartDashboard.putStringArray("Auto List", AutoModes);
+		// Config smartdash
 		NetworkTableInstance inst = NetworkTableInstance.getDefault();
 		NetworkTable table = inst.getTable("SmartDashboard");
 
 		// Initializing cameras
 		CameraServer.getInstance().startAutomaticCapture(1);
 		CameraServer.getInstance().startAutomaticCapture(0);
+
+		// This MUST BE LAST or a NullPointerException will be thrown
+		oi = new OI();
 	}
 
 	@Override
 	public void autonomousInit() {
 		
-//		Auto = true;
-
-		String autoSelected = SmartDashboard.getString("Auto Selector", SwitchAuto);
 		// TODO do the scale auto outline and make more logic in here to make it cooler
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		allianceColorRed = DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Red;
 		allianceNumber = DriverStation.getInstance().getLocation();
 
-		if (gameData.charAt(0) == 'L') {
-            
-            
-            if (gameData.charAt(1)== 'L') {// when switch and scale are on left side
-                
-                switch (autoSelected) {
-                /** Cross Autoline **/
-                case CrossAutoLine:
-                    autonomousCommand = new CrossBaselineAuto();
-                    break;
-    
-                    
-                /** Switch **/
-                case SwitchAuto:
-                    autonomousCommand = new CenterSwitchAutoLeft();
-                    break;
-    
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
-                	break;
-                    
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoLeftDriveLeft();
-                	break;
-                    
-                	
-                /** Scale **/
-                case ScaleAutoL:
-                    autonomousCommand = new LeftScaleAutoLeft();
-                    break;
-                    
-                case ScaleAutoR:
-                    autonomousCommand = new RightScaleAutoRight();
-                    break;
-                	
-                case TwoCubeScaleL:
-                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
-                    break;
-                    
-                case TwoCubeScaleR:
-                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
-                    break;
-                    
-                    
-                /** Logic **/
-                case LeftNullScaleOrSwitch: 
-                    autonomousCommand = new LeftNullScaleAutoLeft(); 
-                    break;
-                    
-                case RightNullScaleOrSwitch: 
-                    autonomousCommand = new CrossBaselineAuto(); 
-                    break;   
-                    
-                case ItDosentMatter:
-                	autonomousCommand = new LeftNullScaleAutoLeft();
-                	break;
-                    
-                    
-                /** Test Auto **/    
-                case TestAuto:
-                    autonomousCommand = new TestAuto(); 
-                    break;
-                    
-                    
-                /** Default Auto **/
-                default:
-                    autonomousCommand = new NothingAuto();
-                    break;
-                }    
-            } else { // switch is on left, scale is on right
-                
-                switch (autoSelected) {
-                
-                /** Cross Autoline **/
-                case CrossAutoLine:
-                    autonomousCommand = new CrossBaselineAuto();
-                    break;
-    
-                    
-                /** Switch **/
-                case SwitchAuto:
-                    autonomousCommand = new CenterSwitchAutoLeft();
-                    break;
-    
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoLeftTwoCube();
-                	break;
-                    
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoLeftDriveRight();
-                	break;
-                    
-                	
-                /** Scale **/
-                case ScaleAutoL:
-                    autonomousCommand = new LeftScaleAutoRight();
-                    break;
-                    
-                case ScaleAutoR:
-                    autonomousCommand = new RightScaleAutoRight();
-                    break;
-                	
-                case TwoCubeScaleL:
-                    autonomousCommand = new LeftScaleAutoRight();
-                    break;
-                    
-                case TwoCubeScaleR:
-                    autonomousCommand = new RightScaleAutoRightTwoCube();
-                    break;
-                    
-                    
-                /** Logic **/
-                case LeftNullScaleOrSwitch: 
-                    autonomousCommand = new LeftSwitchAutoLeft();
-                    break;
-                    
-                case RightNullScaleOrSwitch: 
-                    autonomousCommand = new RightNullScaleAutoRight(); 
-                    break;   
-                    
-                case ItDosentMatter:
-                	autonomousCommand = new LeftScaleAutoRightShortCross();
-                	break;
-                    
-                    
-                /** Test Auto **/    
-                case TestAuto:
-                    autonomousCommand = new TestAuto(); 
-                    break;
-                    
-                    
-                /** Default Auto **/
-                default:
-                    autonomousCommand = new NothingAuto();
-                    break;
-                }    
-            }
-            
-        } else {
-                
-            if (gameData.charAt(1) == 'L') { // switch is on right, scale is on left
-                switch (autoSelected) {
-                
-                /** Cross Autoline **/
-                case CrossAutoLine:
-                    autonomousCommand = new CrossBaselineAuto();
-                    break;
-    
-                    
-                /** Switch **/
-                case SwitchAuto:
-                    autonomousCommand = new CenterSwitchAutoRight();
-                    break;
-    
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
-                	break;
-                    
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoRightDriveLeft();
-                	break;
-                    
-                	
-                /** Scale **/
-                case ScaleAutoL:
-                    autonomousCommand = new LeftScaleAutoLeft();
-                    break;
-                    
-                case ScaleAutoR:
-                    autonomousCommand = new RightScaleAutoRight();
-                    break;
-                	
-                case TwoCubeScaleL:
-                    autonomousCommand = new LeftScaleAutoLeftTwoCubes();
-                    break;
-                    
-                case TwoCubeScaleR:
-                    autonomousCommand = new RightScaleAutoRightTwoCube();
-                    break;
-                    
-                    
-                /** Logic **/
-                case LeftNullScaleOrSwitch: 
-                    autonomousCommand = new LeftNullScaleAutoLeft(); 
-                    break;
-                    
-                case RightNullScaleOrSwitch: 
-                    autonomousCommand = new RightSwitchAutoRight(); 
-                    break;  
-                    
-                case ItDosentMatter:
-                	autonomousCommand = new LeftNullScaleAutoLeft();
-                	break;
-                    
-                    
-                /** Test Auto **/    
-                case TestAuto:
-                    autonomousCommand = new TestAuto(); 
-                    break;
-                    
-                    
-                /** Default Auto **/
-                default:
-                    autonomousCommand = new NothingAuto();
-                    break;
-                }
-            
-            } else { // switch is on right, scale is on right
-                switch (autoSelected) {
-                
-                /** Cross Autoline **/
-                case CrossAutoLine:
-                    autonomousCommand = new CrossBaselineAuto();
-                    break;
-    
-                    
-                /** Switch **/
-                case SwitchAuto:
-                    autonomousCommand = new CenterSwitchAutoRight();
-                    break;
-    
-                case TwoCubeSwitch:
-                	autonomousCommand = new CenterSwitchAutoRightTwoCube();
-                	break;
-                    
-                case SwitchCubeDrive:
-                	autonomousCommand = new CenterSwitchAutoRightDriveRight();
-                	break;
-                    
-                	
-                /** Scale **/
-                case ScaleAutoL:
-                    autonomousCommand = new LeftScaleAutoRight();
-                    break;
-                    
-                case ScaleAutoR:
-                    autonomousCommand = new RightScaleAutoRight();
-                    break;
-                	
-                case TwoCubeScaleL:
-                    autonomousCommand = new LeftScaleAutoRight();
-                    break;
-                    
-                case TwoCubeScaleR:
-                    autonomousCommand = new RightScaleAutoRightTwoCube();
-                    break;
-                    
-                    
-                /** Logic **/
-                case LeftNullScaleOrSwitch: 
-                    autonomousCommand = new RightScaleAutoRight();// CrossBaselineAuto 
-                    break;
-                    
-                case RightNullScaleOrSwitch: 
-                    autonomousCommand = new RightNullScaleAutoRight(); 
-                    break;
-                    
-                case ItDosentMatter:
-                	autonomousCommand = new LeftScaleAutoRightShortCross();
-                	break;
-                    
-                    
-                /** Test Auto **/    
-                case TestAuto:
-                    autonomousCommand = new TestAuto(); 
-                    break;
-                    
-                    
-                /** Default Auto **/
-                default:
-                    autonomousCommand = new NothingAuto();
-                    break;
-                }
-            }
-        }
-	
+		// Dont look not finished
+//		if (gameData != null) {
+//			gameData = DriverStation.getInstance().getGameSpecificMessage().substring(0, 2);
+//		} else {
+//			System.out.println("Uh oh");
+//			TryAgain();
+//		}
 		
-		System.out.format("Auto: %s '%s' %n", m_ds.getAlliance(), autoSelected);
+		switch(gameData) {
+			
+		case "LL": // when switch and scale are on left side 
+			
+		/** Basic */
+			autonomousCommand = new CrossBaselineAuto();
+			
+		/** Switch */
+			// Center
+			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD);
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchScaleDrive(true, Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
+			
+			// Not Center
+			autonomousCommand = new SideSwitchAuto(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, Paths.FROM_LEFT.SWITCH_LEFT_FINISH);
+			autonomousCommand = new StuyPulseSwitchAuto(false, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT, Paths.FROM_RIGHT.BACK_SWITCH_BACKUP);
+			
+		/** Scale */
+			autonomousCommand = new CloseScaleAuto(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH);
+			autonomousCommand = new NullScaleAuto(true);
+			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+			autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
+			
+		/** Other */
+			autonomousCommand = new ScaleTravelAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT);
+			autonomousCommand = new NothingAuto();
+			autonomousCommand = new TestAuto();			
+			break; 
+                
+		case "LR": // switch is on left, scale is on right 
+			
+			autonomousCommand = new CrossBaselineAuto();
+			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD);
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SIDE_AFTER_GRAB_CUBE);
+			autonomousCommand = new SideSwitchAuto(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, Paths.FROM_LEFT.SWITCH_LEFT_FINISH);
+			autonomousCommand = new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE, Paths.FROM_LEFT.BACK_SWITCH_SECOND_CUBE);
+			autonomousCommand = new CloseScaleAuto(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH);
+			autonomousCommand = new NullScaleAuto(false);
+			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
+			autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
+			autonomousCommand = new ScaleTravelAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT);
+			autonomousCommand = new NothingAuto();
+			autonomousCommand = new TestAuto();	
+			break;   
+                  
+		case "RL": // switch is on right, scale is on left
+			
+			autonomousCommand = new CrossBaselineAuto();
+			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD);
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
+			autonomousCommand = new SideSwitchAuto(Paths.FROM_RIGHT.SWITCH_RIGHT_TRAVEL, Paths.FROM_RIGHT.SWITCH_RIGHT_FINISH);
+			autonomousCommand = new WranglerSwitchAuto(false, Paths.FROM_RIGHT.BACK_SWITCH_PLACE, Paths.FROM_RIGHT.BACK_SWITCH_SECOND_CUBE);
+			autonomousCommand = new CloseScaleAuto(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH);
+			autonomousCommand = new NullScaleAuto(true);
+			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+			autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
+			autonomousCommand = new ScaleTravelAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT);
+			autonomousCommand = new NothingAuto();
+			autonomousCommand = new TestAuto();	
+			break;
+        
+		case "RR": // switch is on right, scale is on right
+			
+			autonomousCommand = new CrossBaselineAuto();
+			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD);
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
+			autonomousCommand = new SideSwitchAuto(Paths.FROM_RIGHT.SWITCH_RIGHT_TRAVEL, Paths.FROM_RIGHT.SWITCH_RIGHT_FINISH);
+			autonomousCommand = new StuyPulseSwitchAuto(true, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, Paths.FROM_LEFT.BACK_SWITCH_BACKUP);
+			autonomousCommand = new CloseScaleAuto(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH);
+			autonomousCommand = new NullScaleAuto(false);
+			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
+			autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
+			autonomousCommand = new ScaleTravelAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT);
+			autonomousCommand = new NothingAuto();
+			autonomousCommand = new TestAuto();
+			break;
+		
+		default:
+			autonomousCommand = new CrossBaselineAuto();
+			break;
+			
+       }	
+		
+//		TODO DELETE THESE
+//		autonomousCommand = new CrossBaselineAuto();
+//		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER .SWITCH_LEFT_FORWARD); weren't tested
+//		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD); ^^^^^^^^^^^^^
+//		autonomousCommand = new NullScaleAuto(true);
+//		autonomousCommand = new NullScaleAuto(false);
+//		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);
+//		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);
+//		autonomousCommand = new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE, Paths.FROM_LEFT.BACK_SWITCH_SECOND_CUBE);
+//		autonomousCommand = new WranglerSwitchAuto(false, Paths.FROM_RIGHT.BACK_SWITCH_PLACE, Paths.FROM_RIGHT.BACK_SWITCH_SECOND_CUBE);
+//		autonomousCommand = new StuyPulseSwitchAuto(true, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, Paths.FROM_LEFT.BACK_SWITCH_BACKUP);
+//		autonomousCommand = new StuyPulseSwitchAuto(false, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT, Paths.FROM_RIGHT.BACK_SWITCH_BACKUP);
+//		autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+//		autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
+//		autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
+//		autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
 
-//		autonomousCommand = new LeftScaleAutoLeftTwoCubes();
-		
 		// Schedule the autonomous command (example)
 		if (autonomousCommand != null) {
-			SmartDashboard.putString("DB/String 0", autoSelected);
 			autonomousCommand.start();
 		}
 	}
@@ -413,8 +198,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 //		Auto = false;
+		timer.reset();
+		timer.start();
+		
+		someCommand = new ElevatorDown(RobotMap.ELE_DOWN_SPEED);
+		
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	@Override
@@ -423,11 +214,18 @@ public class Robot extends IterativeRobot {
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 //		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
 //		SmartDashboard.putNumber("Distance", Robot.Drivetrain.getDistance());
-		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
+//		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
+		System.out.println(Robot.Elevator.eleButton.get());
 
 		if (Robot.Elevator.mightBreak()) {
 			Robot.Elevator.dontBreak();
 		}
+		// This is and elevator down failsafe
+		
+//		if (timer.get() == 125) {
+//			timer.stop();
+//			someCommand.start();
+//		}
 	}
 
 	@Override
