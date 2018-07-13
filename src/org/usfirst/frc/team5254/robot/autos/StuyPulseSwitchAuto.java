@@ -3,7 +3,6 @@ package org.usfirst.frc.team5254.robot.autos;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;

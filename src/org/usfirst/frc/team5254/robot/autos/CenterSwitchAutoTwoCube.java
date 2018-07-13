@@ -5,6 +5,7 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
+import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
@@ -42,6 +43,11 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 		}, 0));
 		addParallel(new AutoIntakeOnWait(true, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
 		addSequential(new RunPath(path3, 0.4, 0), 4);//this number can probably be increased
+		
+		addParallel(new RunPath(Paths.straightLength(5), 0.5, 0));
+		addSequential(new AutoPIDTurn(-7));// NEW
+    	addSequential(new AutoPIDTurn(7));
+    	
 		addSequential(new RunPath(Paths.straightLength(35), -0.8, 0));
 		
 	/** Same code as above to place cube into switch again **/

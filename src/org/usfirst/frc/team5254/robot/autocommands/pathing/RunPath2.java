@@ -4,7 +4,6 @@ package org.usfirst.frc.team5254.robot.autocommands.pathing;
 import java.util.function.Function;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,7 +20,7 @@ public class RunPath2 extends Command {
 	private double length = -1;
 	
 	private double shift; // What percent of the path should be in high gear 
-	private double outtake;// What percent of the path that you want to start outtaking at
+	private double outtake;// What percent of the path that you want to start outaking at
 	
 	private boolean reset = true;
 	

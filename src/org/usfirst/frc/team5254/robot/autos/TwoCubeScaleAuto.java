@@ -1,14 +1,9 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoDriveToDistance;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoSwitchHeightWait;
-import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
@@ -49,9 +44,10 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(path2, 0.5, 0));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE + 0.25, 1));
+    	addSequential(new AutoIntakeOn(false, 1, 1));
     	
     /** Elevator down **/
+    	
     	addParallel(new AutoElevatorDownWait(0.25));
     	addSequential(new AutoPIDTurn(turn1));
     	
@@ -67,7 +63,7 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
      	addSequential(new AutoPIDTurn(turn4));
     	addSequential(new RunPath(Paths.straightLength(33), 0.65, 0));
-    	addSequential(new AutoIntakeOn(false, 0.65, 2));
+    	addSequential(new AutoIntakeOn(false, 0.5, 2));
     	
     /** Elevator down **/
     	 addParallel(new AutoElevatorDownWait(1));

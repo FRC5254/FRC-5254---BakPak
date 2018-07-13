@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoDriveToDistance;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;

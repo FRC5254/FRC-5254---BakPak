@@ -31,12 +31,12 @@ public class ElevatorHold extends Command {
     			
     			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
     		}
+	
+    	} else { //If the joystick is being used		
+    
+    			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
     		
-    	} else { //If the joystick is being used
-    		
-    		Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
-    		
-    	}
+    		}
     }
     
 

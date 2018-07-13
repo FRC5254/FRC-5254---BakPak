@@ -4,7 +4,6 @@ package org.usfirst.frc.team5254.robot.autocommands.pathing;
 import java.util.function.Function;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

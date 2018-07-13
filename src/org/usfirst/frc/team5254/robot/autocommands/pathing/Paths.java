@@ -91,22 +91,12 @@ public class Paths {
         		, 41)
                 );
         
-        public static final Path BACK_SWITCH_PLACE = new Path(
-//        		new PathSegment(t -> 
-//        		/* {"start":{"x":95,"y":46},"mid1":{"x":159,"y":-38},"mid2":{"x":180,"y":28},"end":{"x":227,"y":28}} */
-//        		(-252 + 900 * t + -648 * Math.pow(t, 2))/ (192 + -258 * t + 207 * Math.pow(t, 2)) 
-//        		, 154)
+        public static final Path BACK_SWITCH_PLACE_CUBE1 = new Path(
+        		// 2.0 version
         		new PathSegment(t -> 
-        		/* {"start":{"x":95,"y":46},"mid1":{"x":159,"y":-38},"mid2":{"x":180,"y":10},"end":{"x":210,"y":10}} */
-        		(-252 + 792 * t + -540 * Math.pow(t, 2))/ (192 + -258 * t + 156 * Math.pow(t, 2)) 
-        		, 137)
-        		);
-        
-        public static final Path BACK_SWITCH_SECOND_CUBE = new Path(
-        		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":0},"mid1":{"x":45,"y":21},"mid2":{"x":40,"y":-10},"end":{"x":40,"y":-28}} */
-        		(63 + -312 * t + 195 * Math.pow(t, 2))/ (135 + -300 * t + 165 * Math.pow(t, 2)) 
-        		, 70)
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":45,"y":21},"mid2":{"x":46,"y":-10},"end":{"x":46,"y":-28}} */
+        		(63 + -312 * t + 195 * Math.pow(t, 2))/ (135 + -264 * t + 129 * Math.pow(t, 2)) 
+        		, 73)
         		);
         
         public static final Path BACK_SWITCH_BACKUP = new Path(
@@ -182,24 +172,13 @@ public class Paths {
         		(-9 + 84 * t + -39 * Math.pow(t, 2))/ (36 + 42 * t + -81 * Math.pow(t, 2)) 
         		, 41)
                 );
-    	
         
-        public static final Path BACK_SWITCH_PLACE = new Path(
-//        		new PathSegment(t -> 
-//        		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":180,"y":64},"end":{"x":200,"y":64}} */
-//        		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -348 * t + 186 * Math.pow(t, 2)) 
-//        		, 120)
+        public static final Path BACK_SWITCH_PLACE_CUBE1 = new Path(
+        		//V2
         		new PathSegment(t -> 
-        		/* {"start":{"x":90,"y":46},"mid1":{"x":164,"y":100},"mid2":{"x":197,"y":64},"end":{"x":227,"y":64}} */
-        		(162 + -540 * t + 378 * Math.pow(t, 2))/ (222 + -246 * t + 114 * Math.pow(t, 2)) 
-        		, 146)
-        		);
-        
-        public static final Path BACK_SWITCH_SECOND_CUBE = new Path(
-        		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":0},"mid1":{"x":40,"y":-21},"mid2":{"x":35,"y":10},"end":{"x":35,"y":28}} */
-        		(-63 + 312 * t + -195 * Math.pow(t, 2))/ (120 + -270 * t + 150 * Math.pow(t, 2)) 
-        		, 66)
+        		/* {"start":{"x":0,"y":0},"mid1":{"x":40,"y":-21},"mid2":{"x":38,"y":10},"end":{"x":38,"y":28}} */
+        		(-63 + 312 * t + -195 * Math.pow(t, 2))/ (120 + -252 * t + 132 * Math.pow(t, 2)) 
+        		, 67)
         		);
         
         public static final Path BACK_SWITCH_BACKUP = new Path(
@@ -210,7 +189,7 @@ public class Paths {
         		);
         
     	/** Scale Left**/
-        public static final Path SCALE_LEFT_TRAVEL = straightLength(214);
+        public static final Path SCALE_LEFT_TRAVEL = straightLength(220);
         public static final Path SCALE_LEFT_FINISH = new Path(
         		/** Old path that works without second cube**/
 //        		new PathSegment(t -> 

@@ -51,18 +51,18 @@ public class OI {
 		
 
 		// Driver subcommands
-//		 DriverButtonA.whenPressed();
-//		 DriverButtonB.whenPressed();
-//		 DriverButtonX.whenPressed();
-		// DriverButtonY.whenPressed(commnd);
+//		DriverButtonA.whenPressed();
+//		DriverButtonB.whenPressed();
+//		DriverButtonX.whenPressed();
+//		DriverButtonY.whenPressed(commnd);
 		DriverLB.whenPressed(new DrivetrainShiftUp());
 		DriverLB.whenInactive(new DrivetrainShiftDown());
 		DriverRB.whenPressed(new DrivetrainShiftUp());
 		DriverRB.whenInactive(new DrivetrainShiftDown());
-		// DriverButtonStart.whenPressed(command);
+//		DriverButtonStart.whenPressed(command);
 		DriverButtonBack.whenPressed(new DrivetrainSlowTurn());
 		DriverButtonBack.whenInactive(new DrivetrainDriveWithJoystick());
-//		// DriverLJC.whenPressed(command);
+//		DriverLJC.whenPressed(command);
 //		DriverRJC.whenPressed(new DrivetrainSlowTurn());
 //		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
@@ -78,7 +78,7 @@ public class OI {
 		OperatorButtonStart.whenPressed(new IntakeOn(false, 0.5));
 		OperatorButtonStart.whenReleased(new IntakeOff());
 //		OperatorButtonBack.whenPressed(commmand);
-		OperatorLJC.whenPressed(new ElevatorJoystickControl());
+//		OperatorLJC.whenPressed(new ElevatorJoystickControl());
 		OperatorRJC.whenPressed(new ElevatorStop());
 	}
 }
