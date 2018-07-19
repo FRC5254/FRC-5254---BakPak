@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CloseScaleAuto extends CommandGroup {
 
     public CloseScaleAuto(Path path1, Path path2) { // was LeftScaleAutoLeft
+    	
+    	super("CloseScaleAuto");
+
 //		OLD CODE NO SPLINES
 //    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
 //    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));

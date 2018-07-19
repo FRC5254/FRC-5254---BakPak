@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
 
     public NullScaleAuto(boolean leftSide) {
+    	
+    	super("NullScaleAuto");
+
     	double turn = 90.0;
     	
     	if (!leftSide) {
@@ -28,7 +31,7 @@ public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place on left scale at a 90 deg. **/
-    	addSequential(new RunPath(Paths.straightLength(305), 0.9, 0));
+    	addSequential(new RunPath(Paths.straightLength(302), 0.9, 0));
     	addSequential(new AutoTimerWait(0.5));
     	addSequential(new AutoPIDTurn(turn));
     	addSequential(new AutoTimerWait(0.5));

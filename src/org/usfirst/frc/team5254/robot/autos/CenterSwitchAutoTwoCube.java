@@ -21,10 +21,12 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 
     public CenterSwitchAutoTwoCube(Path path1, Path path2, Path path3, Path path4) {
     	
+		super("CenterSwitchAutoTwoCube");
+
     /** Place preload cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(0.25));
+		addSequential(new AutoTimerWait(1));
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new RunPath(path1, x -> {
 			if (x < 0.20) return 0.5;

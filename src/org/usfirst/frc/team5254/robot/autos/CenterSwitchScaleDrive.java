@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLeftDriveLeft
 
     public CenterSwitchScaleDrive(boolean samesideScale, Path path1, Path path2, Path path3, Path path4) {
+    	
+    	super("CenterSwitchScaleDrive");
+
     	double distance = 35;
     	
     	if (!samesideScale) {

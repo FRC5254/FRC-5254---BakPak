@@ -17,6 +17,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class StuyPulseSwitchAuto extends CommandGroup { // LeftBackSideSwitchAutoRight
 
     public StuyPulseSwitchAuto(boolean leftside, Path path1, Path path2, Path path3) {
+    	
+    	super("StuyPulseSwitchAuto");
+
+    	
     	double turn = 45;
     	double turn2 = 10;
     	double turn3 = -10;

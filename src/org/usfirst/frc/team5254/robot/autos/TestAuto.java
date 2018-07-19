@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TestAuto extends CommandGroup {
 
 	public TestAuto() {
+		
+		super("TestAuto");
+
 		// runs left switch auto
 //		addSequential(new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE, Paths.FROM_LEFT.BACK_SWITCH_SECOND_CUBE));
 //		addSequential(new RightNullScaleAutoRight());

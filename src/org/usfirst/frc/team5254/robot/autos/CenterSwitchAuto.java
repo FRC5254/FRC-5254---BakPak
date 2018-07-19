@@ -15,6 +15,7 @@ public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
 
 	public CenterSwitchAuto(Path path1) {
 		
+		super("CenterSwitchAuto");
 //		OLD CODE, NO SPLINES (TODO look at parallels here are they in the wrong place? should the waits exist?)
 //		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 //		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));

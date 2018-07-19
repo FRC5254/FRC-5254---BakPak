@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class FarScaleAuto extends CommandGroup {
 
     public FarScaleAuto(Path path1, Path path2, Path path3) { // LeftScaleAutoRight
+    	
+    	super("FarScaleAuto");
+
 //		OLD CODE NO SPLINES (old code wasn't ever tuned)
 //		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 //    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));

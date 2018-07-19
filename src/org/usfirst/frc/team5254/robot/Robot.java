@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends IterativeRobot {
 	
 	// AUTO SELECTOR THING
-	private static String startingPosition = "R"; // L/R/C
+	private static String startingPosition = "L"; // L/R/C
 
 	NetworkTable table;
 	String gameData;
@@ -48,20 +49,20 @@ public class Robot extends IterativeRobot {
 
 		// This MUST BE LAST or a NullPointerException will be thrown
 		oi = new OI();
-	}
+		}
 
 	@Override
 	public void autonomousInit() {
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		allianceNumber = DriverStation.getInstance().getLocation();
-
+		
 		// Do look its finished
 		if (gameData != null) {
 			gameData = DriverStation.getInstance().getGameSpecificMessage().substring(0, 2);
 		} else {
 			gameData = "";
-			System.out.println("Uh oh ---------------- BAD STARTIING GAME DATA ---------------- Running cross autoline");
+			System.out.println("Uh oh ---------------- BAD STARTING GAME DATA ---------------- Running cross autoline");
 		}
 		
 		switch(gameData) {
@@ -70,85 +71,98 @@ public class Robot extends IterativeRobot {
 			
 //			autonomousCommand = new CrossBaselineAuto();
 //			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD);
-//			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
 //			autonomousCommand = new CenterSwitchScaleDrive(true, Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
 //			autonomousCommand = new SideSwitchAuto(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, Paths.FROM_LEFT.SWITCH_LEFT_FINISH);
 //			autonomousCommand = new StuyPulseSwitchAuto(false, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT, Paths.FROM_RIGHT.BACK_SWITCH_BACKUP);
 //			autonomousCommand = new CloseScaleAuto(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new NullScaleAuto(true);
-			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+//			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
 //			autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new ScaleTravelAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT);
 //			autonomousCommand = new NothingAuto();
-//			autonomousCommand = new TestAuto();			
+//			autonomousCommand = new TestAuto();
+			
+			System.out.println("CenterSwitchAutoTwoCube");
+			SmartDashboard.putString("DB/String 0", "CenterSwitchAutoTwoCube");
 			break; 
                 
 		case "LR": // switch is on left, scale is on right 
 			
 //			autonomousCommand = new CrossBaselineAuto();
 //			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD);
-//			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
 //			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SIDE_AFTER_GRAB_CUBE);
 //			autonomousCommand = new SideSwitchAuto(Paths.FROM_LEFT.SWITCH_LEFT_TRAVEL, Paths.FROM_LEFT.SWITCH_LEFT_FINISH);
 //			autonomousCommand = new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE_CUBE1);
 //			autonomousCommand = new CloseScaleAuto(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH);
 //			autonomousCommand = new NullScaleAuto(false);
-			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
+//			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
 //			autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
 //			autonomousCommand = new ScaleTravelAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT);
 //			autonomousCommand = new NothingAuto();
 //			autonomousCommand = new TestAuto();	
+			System.out.println("CenterSwitchAutoTwoCube");
+			SmartDashboard.putString("DB/String 1", "CenterSwitchAutoTwoCube");
 			break;   
                   
 		case "RL": // switch is on right, scale is on left
 			
 //			autonomousCommand = new CrossBaselineAuto();
 //			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD);
-//			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
 //			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
 //			autonomousCommand = new SideSwitchAuto(Paths.FROM_RIGHT.SWITCH_RIGHT_TRAVEL, Paths.FROM_RIGHT.SWITCH_RIGHT_FINISH);
 //			autonomousCommand = new WranglerSwitchAuto(false, Paths.FROM_RIGHT.BACK_SWITCH_PLACE_CUBE1);
 //			autonomousCommand = new CloseScaleAuto(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new NullScaleAuto(true);
-			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+//			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
 //			autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new ScaleTravelAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT);
 //			autonomousCommand = new NothingAuto();
 //			autonomousCommand = new TestAuto();	
+			System.out.println("CenterSwitchAutoTwoCube");
+			SmartDashboard.putString("DB/String 2", "CenterSwitchAutoTwoCube");
 			break;
         
 		case "RR": // switch is on right, scale is on right
 			
 //			autonomousCommand = new CrossBaselineAuto();
 //			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD);
-//			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
+			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);			
 //			autonomousCommand = new CenterSwitchScaleDrive(false, Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
 //			autonomousCommand = new SideSwitchAuto(Paths.FROM_RIGHT.SWITCH_RIGHT_TRAVEL, Paths.FROM_RIGHT.SWITCH_RIGHT_FINISH);
 //			autonomousCommand = new StuyPulseSwitchAuto(true, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, Paths.FROM_LEFT.BACK_SWITCH_BACKUP);
 //			autonomousCommand = new CloseScaleAuto(Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH);
 //			autonomousCommand = new NullScaleAuto(false);
-			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
+//			autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
 //			autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
 //			autonomousCommand = new ScaleTravelAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT);
 //			autonomousCommand = new NothingAuto();
 //			autonomousCommand = new TestAuto();
+			System.out.println("CenterSwitchAutoTwoCube");
+			SmartDashboard.putString("DB/String 3", "CenterSwitchAutoTwoCube");
 			break;
 		
 		default:
 			if(!startingPosition.equals("C")) {
 				autonomousCommand = new CrossBaselineAuto();
+//				System.out.println(autonomousCommandString);
+//				SmartDashboard.putString("DB/String 4", );
 			} else {
 				autonomousCommand = new FakeCenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD); // goes left bc we like the left side idk
+//				System.out.println(autonomousCommandString);
+//				SmartDashboard.putString("DB/String 4", autonomousCommandString);
 			}
-			break;	
+			break;
        }	
 		
 //		TODO DELETE THESE [ONE DAY :]
 //		autonomousCommand = new CrossBaselineAuto();
 //		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER .SWITCH_LEFT_FORWARD); weren't tested
 //		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD); ^^^^^^^^^^^^^
-		autonomousCommand = new NullScaleAuto(true);
-//		autonomousCommand = new NullScaleAuto(false);
+//		autonomousCommand = new NullScaleAuto(true);
+		autonomousCommand = new NullScaleAuto(false);
 //		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);
 //		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);
 //		autonomousCommand = new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE_CUBE1);
@@ -161,6 +175,8 @@ public class Robot extends IterativeRobot {
 //		autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
 //		autonomousCommand = new TestAuto();
 		
+//		String autonomousCommandString = autonomousCommand.toString();
+//		SmartDashboard.putString("DB/String 0", autonomousCommandString);
 		// Schedule the autonomous command (example)
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
@@ -202,9 +218,10 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 //		System.out.println(Robot.oi.driver.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS));
 //		System.out.println(Robot.Elevator.elevator.getMotorOutputPercent());
-//		SmartDashboard.putNumber("Distance", Robot.Drivetrain.getDistance());
+		SmartDashboard.putNumber("DB/String 5", Robot.Drivetrain.getLeftDistance());
+		SmartDashboard.putNumber("DB/String 6", Robot.Drivetrain.getRightDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
-		System.out.println(Robot.Elevator.eleButton.get());
+//		System.out.println(Robot.Elevator.eleButton.get());
 
 		if (Robot.Elevator.mightBreak()) {
 			Robot.Elevator.dontBreak();

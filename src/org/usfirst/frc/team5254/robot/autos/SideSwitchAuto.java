@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SideSwitchAuto extends CommandGroup { //used to be leftSwitchAutoLeft
 
     public SideSwitchAuto(Path path1, Path path2) {
+    	
+    	super("SideSwitchAuto");
 //		OLD CODE NO SPLINES
 //		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 //    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));

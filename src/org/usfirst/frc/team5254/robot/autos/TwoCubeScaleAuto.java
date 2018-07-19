@@ -18,10 +18,12 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
 
     public TwoCubeScaleAuto(boolean leftside, Path path1, Path path2, Path path3) {
     	
+    	super("TwoCubeScaleAuto");
+    	
     	double turn1 = 85;
     	double turn2 = 7;
     	double turn3 = -7;
-    	double turn4 = -165;
+    	double turn4 = -180;
     	double intakeTime = 4.5;
     	
     	if (leftside == false){
@@ -38,7 +40,7 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	
     /** Place cube on scale **/
     	addSequential(new RunPath(path1, x -> {
-			if (x < 0.8) return 1.0;
+			if (x < 0.65) return 1.0;
 			else return 0.5;
     	}, 0.75));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));

@@ -5,6 +5,7 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
+import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
@@ -19,7 +20,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitchAutoLeft
 
-    public WranglerSwitchAuto(Boolean leftside, Path path1) {// there was a ", Path path2"
+    public WranglerSwitchAuto(Boolean leftside, Path path1) {
+    	
+    	super("WranglerSwitchAuto");
+
     	
     	// TODO consideer making the turn into switch more so first cube isnt so on the edge
     	// 2.0 (the more reliable auto)
@@ -54,17 +58,19 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_INTAKE, 0.75));
     	
     	/*MoaR CubES*/
-    	addSequential(new RunPath(Paths.straightLength(10), -0.75, 0));
+    	addSequential(new RunPath(Paths.straightLength(15), -0.75, 0));
     	addSequential(new AutoElevatorSetDown());
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 5));
-		addSequential(new RunPath(Paths.straightLength(8), 0.5, 0), 3);
+    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 7));
+		addSequential(new RunPath(Paths.straightLength(19), 0.5, 0), 3);
 		addParallel(new RunPath(Paths.straightLength(12), 0.5, 0), 3);
 		addSequential(new AutoPIDTurn(turn3));// NEW
     	addSequential(new AutoPIDTurn(turn4));
+    	addSequential(new AutoTimerWait(0.5));
 		addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
 		
 		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
         addSequential(new RunPath(Paths.straightLength(22), 0.5, 0), 2);
+        addSequential(new AutoPIDTurn(-15));// TODO
         addSequential(new AutoIntakeOn(false, RobotMap.AUTO_INTAKE, 0.75));
         addSequential(new RunPath(Paths.straightLength(24), -0.5, 0));
         
