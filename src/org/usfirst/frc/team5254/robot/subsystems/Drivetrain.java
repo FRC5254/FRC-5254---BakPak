@@ -35,8 +35,9 @@ public class Drivetrain extends PIDSubsystem {
 
 	// Initializing auto controllers
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static Encoder encoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);// 2,3 dont work
-
+	public static Encoder encoderLeft = new Encoder(0, 1, true, Encoder.EncodingType.k4X);// 2,3 dont work on comp bot ---- marked encoder that dont work on protobot, also unwired it
+	public static Encoder encoderRight = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+	
 	public static Timer timer = new Timer();
 
 	// Initializing auto variables
@@ -50,14 +51,14 @@ public class Drivetrain extends PIDSubsystem {
 	public Drivetrain() {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(1.0);
-		// getPIDController().setContinuous(true); TODO does commenting this harm autos?
+		// getPIDController().setContinuous(true); TODO does commenting this harm autos? no
 		getPIDController().setInputRange(-360.0, 360.0);
 		getPIDController().setOutputRange(-1, 1);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new DrivetrainDriveWithJoystick());
+			setDefaultCommand(new DrivetrainDriveWithJoystick());
 	}
 
 	// TeleOp Methods
@@ -89,13 +90,34 @@ public class Drivetrain extends PIDSubsystem {
 
 	// Auto Methods
 	public void initEncoder(boolean direction) {
-		encoder.reset();
-		encoder.setMaxPeriod(0.1);
-		encoder.setMinRate(1);
-		encoder.setDistancePerPulse(1);
-		encoder.setReverseDirection(direction);
-		encoder.setSamplesToAverage(7);
-
+		encoderLeft.reset();
+		encoderLeft.setMaxPeriod(0.1);
+		encoderLeft.setMinRate(1);
+		encoderLeft.setDistancePerPulse(1);
+		encoderLeft.setReverseDirection(direction);
+		encoderLeft.setSamplesToAverage(7);
+		encoderLeft.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
+				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));// * 100 <-- with one encoder add in this to the end
+		
+		encoderRight.reset();
+		encoderRight.setMaxPeriod(0.1);
+		encoderRight.setMinRate(1);
+		encoderRight.setDistancePerPulse(1);
+		encoderRight.setReverseDirection(direction);
+		encoderRight.setSamplesToAverage(7);
+		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
+				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
+		
+	}
+	
+	public double getRightDistance() {
+		return ((encoderRight.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
+				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));
+	}
+	
+	public double getLeftDistance() {
+		return ((encoderLeft.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
+				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));
 	}
 
 	public void timeDriveInit() {
@@ -120,10 +142,15 @@ public class Drivetrain extends PIDSubsystem {
 		timer.reset();
 		timer.start();
 	}
+	
+	public void setLeftRightSpeeds(double leftSpeed, double rightSpeed) {
+		driveControllersLeft.set(leftSpeed);
+		driveControllersRight.set(-rightSpeed);
+	}
 
 	public void autoDriveToDistance() {
 
-		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
+		remainingTicks = Math.abs(finalTicks) - Math.abs(encoderRight.get());
 		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO))
 				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI);
 
@@ -175,7 +202,7 @@ public class Drivetrain extends PIDSubsystem {
 	}
 
 	public void autoDistanceDriveFast() {
-		remainingTicks = Math.abs(finalTicks) - Math.abs(encoder.get());
+		remainingTicks = Math.abs(finalTicks) - Math.abs(encoderRight.get());
 		drive(-throttle, gyro.getAngle() + this.angle);
 	}
 
@@ -198,8 +225,8 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		drivetrain.arcadeDrive(0.0, -output * 0.9);
-		System.out.println("Angle: " + gyro.getAngle());
-		System.out.println("Output" + -output);
+		drivetrain.arcadeDrive(0.0, -output * 0.65);// * 0.8
+//		System.out.println("Angle: " + gyro.getAngle());
+//		System.out.println("Output" + -output);
 	}
 }

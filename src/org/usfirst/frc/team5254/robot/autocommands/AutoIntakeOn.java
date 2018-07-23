@@ -12,13 +12,15 @@ public class AutoIntakeOn extends Command {
 
 	boolean direction;
 	double time;
+	double speed;
 	Timer timer = new Timer();
 
-	public AutoIntakeOn(boolean direction, double Time) {
+	public AutoIntakeOn(boolean direction, double speed, double time) {
 		requires(Robot.Intake);
 
 		this.direction = direction;
-		this.time = Time;
+		this.time = time;
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -29,7 +31,14 @@ public class AutoIntakeOn extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Intake.on(direction);
+		if (direction == true) {
+			Robot.Intake.intakeLeftFlywheels.set(-speed);
+			Robot.Intake.intakeRightFlywheels.set(-speed + .10);
+		} else {
+			Robot.Intake.intakeLeftFlywheels.set(speed);
+			Robot.Intake.intakeRightFlywheels.set(speed);
+			
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

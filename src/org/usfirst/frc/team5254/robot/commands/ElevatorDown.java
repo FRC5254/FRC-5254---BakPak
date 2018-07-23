@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * DO NOT USE THIS COMMAND IN AUTO
  */
-public class ElevatorSlowDown extends Command {
+public class ElevatorDown extends Command {
 
 	double speed;
 	
-    public ElevatorSlowDown(double speed) {
+    public ElevatorDown(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.Elevator);

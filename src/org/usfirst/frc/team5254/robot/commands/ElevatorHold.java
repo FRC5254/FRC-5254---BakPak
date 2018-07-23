@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimberNoFire extends Command {
+public class ElevatorHold extends Command {
 
-    public ClimberNoFire() {
-    	requires(Robot.Climber);
+    public ElevatorHold() {
+    	requires (Robot.Elevator);
     }
 
     // Called just before this Command runs the first time
@@ -20,10 +20,25 @@ public class ClimberNoFire extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Climber.dontFireCrossbow();
-    	Robot.Climber.climberSliderUp();
-    	Robot.Climber.off();
+    	
+    	if (Math.abs(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)) < 0.1){ //If the Joystick is not being used
+  
+    		if ((Robot.Elevator.eleButton.get() == false) || (Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
+  			
+    			Robot.Elevator.off(); //Elevator off
+    			
+    		} else { //If the button is not pressed
+    			
+    			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
+    		}
+	
+    	} else { //If the joystick is being used		
+    
+    			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
+    		
+    		}
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NothingAuto extends CommandGroup {
 
 	public NothingAuto() {
+		
+		super("NothingAuto");
+
 		// Robot do nothing
+		// cool it works
 	}
 }

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.commands.*;
-import org.usfirst.frc.team5254.robot.triggers.DoubleButton;
+import org.usfirst.frc.team5254.robot.util.DoubleButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -51,34 +51,34 @@ public class OI {
 		
 
 		// Driver subcommands
-		 DriverButtonA.whenPressed(new ClimberFire());
-		 DriverButtonB.whenPressed(new ClimberNoFire());
-		 DriverButtonX.whenPressed(new ClimberSliderDown());
-		// DriverButtonY.whenPressed(commnd);
+//		DriverButtonA.whenPressed();
+//		DriverButtonB.whenPressed();
+//		DriverButtonX.whenPressed();
+//		DriverButtonY.whenPressed();
 		DriverLB.whenPressed(new DrivetrainShiftUp());
 		DriverLB.whenInactive(new DrivetrainShiftDown());
 		DriverRB.whenPressed(new DrivetrainShiftUp());
 		DriverRB.whenInactive(new DrivetrainShiftDown());
-		// DriverButtonStart.whenPressed(command);
+//		DriverButtonStart.whenPressed();
 		DriverButtonBack.whenPressed(new DrivetrainSlowTurn());
 		DriverButtonBack.whenInactive(new DrivetrainDriveWithJoystick());
-//		// DriverLJC.whenPressed(command);
+//		DriverLJC.whenPressed();
 //		DriverRJC.whenPressed(new DrivetrainSlowTurn());
 //		DriverRJC.whenInactive(new DrivetrainDriveWithJoystick());
 
 		// Operator Subcommands
-		OperatorButtonA.whenPressed(new ElevatorSetDown());// new ElevatorSetDown()
-		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+		OperatorButtonA.whenPressed(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
+		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
-		OperatorButtonRB.whenPressed(new IntakeOn(true));
+		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+		OperatorButtonRB.whenPressed(new IntakeOn(true, 0.75));
 		OperatorButtonRB.whenReleased(new IntakeOff());
-		OperatorButtonLB.whenPressed(new IntakeOn(false));
+		OperatorButtonLB.whenPressed(new IntakeOn(false, 0.75));
 		OperatorButtonLB.whenReleased(new IntakeOff());
-		OperatorButtonStart.whenPressed(new ElevatorRatchet());
-		OperatorButtonStart.whenReleased(new ElevatorUnratchet());
-		OperatorButtonBack.whenPressed(new ElevatorOn(RobotMap.ELE_DOWN_SPEED));
-//		OperatorLJC.whenPressed(command);
+		OperatorButtonStart.whenPressed(new IntakeOn(false, 0.5));
+		OperatorButtonStart.whenReleased(new IntakeOff());
+//		OperatorButtonBack.whenPressed();
+//		OperatorLJC.whenPressed(new ElevatorJoystickControl());
 		OperatorRJC.whenPressed(new ElevatorStop());
 	}
 }

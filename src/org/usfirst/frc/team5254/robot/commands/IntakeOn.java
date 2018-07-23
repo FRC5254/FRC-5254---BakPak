@@ -10,11 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeOn extends Command {
 
 	boolean direction;
+	double speed;
 
-	public IntakeOn(boolean direction) {
+	public IntakeOn(boolean direction, double speed) {
 		requires(Robot.Intake);
 
 		this.direction = direction;
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -23,7 +25,7 @@ public class IntakeOn extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Intake.on(direction);
+		Robot.Intake.on(direction, speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
