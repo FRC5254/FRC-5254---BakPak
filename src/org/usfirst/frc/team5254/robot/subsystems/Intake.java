@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The intake consists of two arms used to intake and hold cubes with. The arms are powered by 2 775 pros
+ * hooked up to two sparks. The main things this subsystem does is intake and outtake (sometimes varying speeds)
  */
 public class Intake extends Subsystem {
 
@@ -19,11 +20,16 @@ public class Intake extends Subsystem {
 	public Intake() {
 	}
 
-	// TeleOp Methods
+	/**
+	 * Turns on the flywheel motors in the direction and the speed set by the params
+	 * 
+	 * @param direction Boolean value to determine intaking (true) or outtaking (false)
+	 * @param speed The speed at which the intake will outtake
+	 */
 	public void on(boolean direction, double speed) {
 		if (direction == true) {
-			intakeLeftFlywheels.set(-1);
-			intakeRightFlywheels.set(-0.9);
+			intakeLeftFlywheels.set(-speed);
+			intakeRightFlywheels.set(-speed + 0.1);
 		} else {
 			intakeLeftFlywheels.set(speed);//both .75
 			intakeRightFlywheels.set(speed);
@@ -35,6 +41,11 @@ public class Intake extends Subsystem {
 		intakeRightFlywheels.set(0);
 	}
 	
+	/** 
+	 * used in RunPath2
+	 * 
+	 * @param direction <code>true</code> is intaking, <code>false</code> is outtaking
+	 */
 	public void autoOn(boolean direction) {
 		if (direction == true) {
 			intakeLeftFlywheels.set(-1);

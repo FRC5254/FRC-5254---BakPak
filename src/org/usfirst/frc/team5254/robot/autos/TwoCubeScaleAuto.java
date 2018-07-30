@@ -11,11 +11,15 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwoCubes
 
+	/**
+	 * @param leftside <code>true</code> If robot is lined up left side
+	 * 				   <code>false</code> Otherwise
+	 * @param path1 Scale travel
+	 * @param path2 Scale finish
+	 * @param path3 Pickup second cube
+	 */
     public TwoCubeScaleAuto(boolean leftside, Path path1, Path path2, Path path3) {
     	
     	super("TwoCubeScaleAuto");
@@ -36,7 +40,7 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 3000));
+    	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT + 3000)); // elevator wasn't going up fast enough
     	
     /** Place cube on scale **/
     	addSequential(new RunPath(path1, x -> {
@@ -48,8 +52,7 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	addSequential(new RunPath(path2, 0.5, 0));
     	addSequential(new AutoIntakeOn(false, 1, 1));
     	
-    /** Elevator down **/
-    	
+    /** Elevator down and turn for cube2 **/
     	addParallel(new AutoElevatorDownWait(0.25));
     	addSequential(new AutoPIDTurn(turn1));
     	

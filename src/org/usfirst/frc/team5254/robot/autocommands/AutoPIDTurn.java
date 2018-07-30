@@ -12,14 +12,14 @@ public class AutoPIDTurn extends Command {
 	double angle;
 
 	public AutoPIDTurn(double angle) {
-		requires(Robot.Drivetrain);
+		requires(Robot.drivetrain);
 
 		this.angle = angle;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.Drivetrain.PIDTurnInit(angle);
+		Robot.drivetrain.PIDTurnInit(angle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -28,12 +28,12 @@ public class AutoPIDTurn extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.Drivetrain.PIDTurnIsFinished();
+		return Robot.drivetrain.PIDTurnIsFinished();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.Drivetrain.disable();
+		Robot.drivetrain.disable();
 	}
 
 	// Called when another command which requires one or more of the same

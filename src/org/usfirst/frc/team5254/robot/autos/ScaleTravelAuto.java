@@ -8,11 +8,12 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class ScaleTravelAuto extends CommandGroup {
-
+	
+	/**
+	 * @param path1 Scale travel 1
+	 * @param path2 Scale travel 2
+	 */
     public ScaleTravelAuto(Path path1, Path path2) {
     	
     	super("ScaleTravelAuto");
@@ -21,7 +22,7 @@ public class ScaleTravelAuto extends CommandGroup {
      	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
-    /** Drive over to other side of field **/
+    /** Drive partly over to other side of field **/
     	addSequential(new RunPath(path1, x -> {
     		if (x < 0.05) return 0.5;
     		else return 0.8;

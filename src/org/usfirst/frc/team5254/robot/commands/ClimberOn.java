@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimberFire extends Command {
+public class ClimberOn extends Command {
 
-    public ClimberFire() {
-    	requires(Robot.Climber);
+    public ClimberOn() {
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -21,9 +21,9 @@ public class ClimberFire extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (Robot.oi.driver.getRawAxis(2) > 0.8) {
-        	Robot.Climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
+        	Robot.climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
     	} else {
-    		Robot.Climber.off();
+    		Robot.climber.off();
     	}
     }
 

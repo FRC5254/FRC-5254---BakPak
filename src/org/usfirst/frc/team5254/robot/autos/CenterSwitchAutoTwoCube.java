@@ -14,19 +14,25 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
+
 public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoLeftTwoCube
 
+	/**
+	 * @param path1 The first path that approaches the switch
+	 * @param path2 The second path that backs up from the switch
+	 * @param path3 The path that drives up to the pile to pick up a second cube
+	 * @param path4 The final path that places the cube into the switch again
+	 */
     public CenterSwitchAutoTwoCube(Path path1, Path path2, Path path3, Path path4) {
     	
 		super("CenterSwitchAutoTwoCube");
 
-    /** Place preload cube **/
+	/** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(1));
+		addSequential(new AutoTimerWait(1)); // might drop cube otherwise
+		
+	/** Place preload cube **/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new RunPath(path1, x -> {
 			if (x < 0.20) return 0.5;
@@ -43,11 +49,12 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			if (x < 0.75) return -0.85;
 			else return -0.4;
 		}, 0));
+	
+	/** Pick up second cube then back up **/
 		addParallel(new AutoIntakeOnWait(true, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
 		addSequential(new RunPath(path3, 0.4, 0), 4);//this number can probably be increased
-		
 		addParallel(new RunPath(Paths.straightLength(5), 0.5, 0));
-		addSequential(new AutoPIDTurn(-7));// NEW
+		addSequential(new AutoPIDTurn(-7));
     	addSequential(new AutoPIDTurn(7));
     	
 		addSequential(new RunPath(Paths.straightLength(35), -0.8, 0));
@@ -60,6 +67,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			else return 0.4;
 		}, 0));
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1.5));
+	/** Back up and lower elevator **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
 		addSequential(new AutoElevatorSetDown());
     }

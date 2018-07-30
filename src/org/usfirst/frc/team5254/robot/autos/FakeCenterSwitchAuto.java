@@ -9,11 +9,11 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- * TODO add more of the time limits on things in autos (especially paths)
- */
-public class FakeCenterSwitchAuto extends CommandGroup { // Very much not tested lol
+public class FakeCenterSwitchAuto extends CommandGroup { // NOT tested
 
+	/**
+	 * @param path1 Path of the side of the switch the robot will drive at
+	 */
 	public FakeCenterSwitchAuto(Path path1) {
 		
 	/** Pop cube **/
@@ -28,8 +28,7 @@ public class FakeCenterSwitchAuto extends CommandGroup { // Very much not tested
 			else return 0.3;
 		}, 0), 6);
 		
-		
-	/** Backs up and puts elevator down **/
+	/** Backs up **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
 	}
 }

@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Refer to CleanRunPath for comments
+ * 
+ * @see CleanRunPath
  */
 public class RunPath2 extends Command {
 	private final double arcDivisor = 19;
@@ -28,10 +30,16 @@ public class RunPath2 extends Command {
 	
 	private Function<Double, Double> speed;
 	
+	/**
+	 * @param path
+	 * @param speed
+	 * @param shift
+	 * @param outtake
+	 */
     public RunPath2(Path path, double speed, double shift, double outtake) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.Drivetrain);
+    	requires(Robot.drivetrain);
     	this.path = path;
     	this.leftSpeed = -speed;
     	this.rightSpeed = -speed;
@@ -39,16 +47,28 @@ public class RunPath2 extends Command {
     	this.shift = shift;
     	this.outtake = outtake;
     }
-    
+    /**
+     * @param path
+     * @param speed
+     * @param shift
+     * @param outtake
+     * @param reset
+     */
     public RunPath2(Path path, double speed, double shift, double outtake, boolean reset) {
     	this(path, speed, shift, outtake);
     	this.reset = reset;
     }
     
+    /**
+     * @param path
+     * @param speed
+     * @param shift
+     * @param outtake
+     */
     public RunPath2(Path path, Function<Double, Double> speed, double shift, double outtake) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.Drivetrain);
+    	requires(Robot.drivetrain);
     	this.path = path;
     	this.speed = speed;
     	this.shift = shift;
@@ -57,6 +77,13 @@ public class RunPath2 extends Command {
     	this.rightSpeed = speed.apply(0.0);
     }
     
+    /**
+     * @param path
+     * @param speed
+     * @param shift
+     * @param outtake
+     * @param reset
+     */
     public RunPath2(Path path, Function<Double, Double> speed, double shift, double outtake, boolean reset) {
     	this(path, speed, shift, outtake);
     	this.reset = reset;
@@ -72,15 +99,15 @@ public class RunPath2 extends Command {
 //    	Robot.drive.setBothDrive(leftSpeed, rightSpeed);
 //    	Robot.drive.resetBothEncoders();
 //    	Robot.drive.resetIMU();
-    	Robot.Drivetrain.encoderLeft.reset();
-    	Robot.Drivetrain.encoderRight.reset();
-    	Robot.Drivetrain.gyro.reset();
-    	Robot.Drivetrain.setLeftRightSpeeds(0, 0);
+    	Robot.drivetrain.encoderLeft.reset();
+    	Robot.drivetrain.encoderRight.reset();
+    	Robot.drivetrain.gyro.reset();
+    	Robot.drivetrain.setLeftRightSpeeds(0, 0);
     	System.out.println("RUNPATH INIT");
     }
     
     private double getDistance() {
-    	return ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2;
+    	return ( Math.abs( Robot.drivetrain.getRightDistance() ) + Math.abs( Robot.drivetrain.getLeftDistance() ) )/2;
 //    	return Math.abs(Robot.Drivetrain.getRightDistance()); // change this to average once you get two encoders -- done
     	//return (Math.abs(Robot.Drivetrain.getLeftDistance())) + (Math.abs(Robot.Drivetrain.getRightDistance()));
     }
@@ -106,7 +133,7 @@ public class RunPath2 extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double error = -deltaAngle(Robot.Drivetrain.gyro.getAngle());
+    	double error = -deltaAngle(Robot.drivetrain.gyro.getAngle());
     	
     	SmartDashboard.putNumber("getDistance", getDistance());
     	SmartDashboard.putNumber("getTotalLength", path.getTotalLength());
@@ -119,26 +146,26 @@ public class RunPath2 extends Command {
 //    		Robot.Drivetrain.shiftDown();
 //    	} else {
     		if (getDistance()/path.getTotalLength() <= shift) { // 0 is just low gear, 1 is just high gear
-        		Robot.Drivetrain.shiftUp();
+        		Robot.drivetrain.shiftUp();
         	} else {
-        		Robot.Drivetrain.shiftDown();
+        		Robot.drivetrain.shiftDown();
         	}
 //    	}
     		
     	if (getDistance()/path.getTotalLength() >= outtake) {
-    		Robot.Intake.autoOn(false);
+    		Robot.intake.autoOn(false);
     	} else {
-    		Robot.Intake.off();
+    		Robot.intake.off();
     	}
     	
     	System.out.println("error: " + error);
     	if(Math.abs(getDistance()) > 3) {
     		double speed = leftSpeed;
-    		Robot.Drivetrain.setLeftRightSpeeds(
+    		Robot.drivetrain.setLeftRightSpeeds(
         			(leftSpeed+((error)/(arcDivisor/Math.abs(speed)))), 
         			(rightSpeed-(((error)/(arcDivisor/Math.abs(speed))))));
     	} else {
-    		Robot.Drivetrain.setLeftRightSpeeds(leftSpeed, rightSpeed);
+    		Robot.drivetrain.setLeftRightSpeeds(leftSpeed, rightSpeed);
     	}
     }
 
@@ -155,7 +182,7 @@ public class RunPath2 extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.Drivetrain.setLeftRightSpeeds(0, 0);
+    	Robot.drivetrain.setLeftRightSpeeds(0, 0);
     }
 
     // Called when another command which requires one or more of the same

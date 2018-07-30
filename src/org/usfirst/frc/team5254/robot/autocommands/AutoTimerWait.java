@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Wait command that lasts however long the time param is
  */
 public class AutoTimerWait extends Command {
 

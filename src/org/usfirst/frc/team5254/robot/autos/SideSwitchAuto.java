@@ -10,25 +10,15 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class SideSwitchAuto extends CommandGroup { //used to be leftSwitchAutoLeft
 
+	/**
+	 * @param path1 Side switch travel
+	 * @param path2 Side switch place
+	 */
     public SideSwitchAuto(Path path1, Path path2) {
     	
     	super("SideSwitchAuto");
-//		OLD CODE NO SPLINES
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-//		addSequential(new AutoTimerWait(1.0));
-//		addSequential(new AutoDriveToDistance(1, 128));
-//		addSequential(new AutoPIDTurn(90));
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 0.5));
-//		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-//		addSequential(new AutoTimerWait(0.5));
-//		addSequential(new AutoTimedDrive(1, 1));
-//		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 15));
     	
     /** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));

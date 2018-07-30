@@ -18,17 +18,11 @@ public class CrossBaselineAuto extends CommandGroup {
 	public CrossBaselineAuto() {
 		super("CrossBaselineAuto");
 		
-		//		OLD CODE NO SPLINES
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-//		addSequential(new AutoTimerWait(1.0));
-//		addSequential(new AutoDriveToDistance(1.0, 100));
-		
 	/** Pop height **/
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		
-	/** Drive forward **/
+	/** Drive forward to cross the autoline **/
 		addSequential(new RunPath(Paths.straightLength(100), x -> {
 			if (x < 0.20) return 0.7;
 			if (x < 0.80) return 0.7;//0.75

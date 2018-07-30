@@ -9,31 +9,17 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- * 
- */
 public class FarScaleAuto extends CommandGroup {
 
+	/**
+	 * @param path1 Inital straight drive (scale travel)
+	 * @param path2 Second scale travel
+	 * @param path3 Scale finish
+	 */
     public FarScaleAuto(Path path1, Path path2, Path path3) { // LeftScaleAutoRight
     	
     	super("FarScaleAuto");
-
-//		OLD CODE NO SPLINES (old code wasn't ever tuned)
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-//		addSequential(new AutoTimerWait(1.0));
-//    	addSequential(new AutoDriveToDistance(1, 210));
-//     	addSequential(new AutoPIDTurn(90));
-//     	addSequential(new AutoTimerWait(.5));
-//     	addSequential(new AutoDriveToDistance(1, 195));
-//     	addSequential(new AutoPIDTurn(-90));
-//     	addSequential(new AutoTimerWait(.5));
-//     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-//     	addSequential(new AutoTimerWait(.5));
-//     	addSequential(new AutoDriveToDistance(0.5, 55));
-//     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 1));
-//     	addSequential(new AutoDriveToDistance(0.5, 24));
-     
+    	
     /** Pop cube **/
      	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
@@ -56,7 +42,7 @@ public class FarScaleAuto extends CommandGroup {
     	addSequential(new RunPath(path3, 0.25, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 1));
     
-    	/** Elevator down **/
+    /** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));
     	addSequential(new AutoElevatorDownWait(1.0));
     }

@@ -13,7 +13,7 @@ public class IntakeOn extends Command {
 	double speed;
 
 	public IntakeOn(boolean direction, double speed) {
-		requires(Robot.Intake);
+		requires(Robot.intake);
 
 		this.direction = direction;
 		this.speed = speed;
@@ -25,7 +25,7 @@ public class IntakeOn extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Intake.on(direction, speed);
+		Robot.intake.on(direction, speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

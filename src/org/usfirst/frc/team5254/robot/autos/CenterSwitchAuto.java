@@ -8,40 +8,22 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- * TODO add more of the time limits on things in autos (especially paths)
- */
 public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
-
+	// TODO add more of the time limits on things in autos (especially paths)
+	
+	/**
+	 * @param path1 The initial path that chooses which side of the switch to approach
+	 */
 	public CenterSwitchAuto(Path path1) {
 		
 		super("CenterSwitchAuto");
-//		OLD CODE, NO SPLINES (TODO look at parallels here are they in the wrong place? should the waits exist?)
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-//		addSequential(new AutoTimerWait(1.0));
-//		addSequential(new AutoDriveToDistance(1.0, 10));
-//		addSequential(new AutoTimerWait(.5));
-//		addSequential(new AutoPIDTurn(-35));
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//		addSequential(new AutoTimerWait(.5));
-//		addSequential(new AutoDriveToDistance(0.75, 95));
-//		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
-//		addSequential(new AutoTimerWait(.5));
-//		addSequential(new AutoPIDTurn(35));		
-//		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
-//		addSequential(new AutoTimerWait(.5));
-//		addSequential(new AutoTimedDrive(0.5, 1));
-//		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
-//		addSequential(new AutoDriveToDistance(-0.75, 24));
-//		addSequential(new AutoElevatorSetDown());
 		
 	/** Pop cube **/
 		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(0.25));// This is to prevent breaking the snake
 		
-	/** Robot approaches the switch on the left side **/
+	/** Robot approaches the switch on the side specified and raises the elevator**/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		addSequential(new RunPath(path1, x -> {
 			if (x < 0.20) return 0.5;// make .2 to .1

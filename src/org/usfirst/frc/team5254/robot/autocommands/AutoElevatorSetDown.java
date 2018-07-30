@@ -6,7 +6,7 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Use this and NOT just Elevator down - trust me
  */
 public class AutoElevatorSetDown extends CommandGroup {
 

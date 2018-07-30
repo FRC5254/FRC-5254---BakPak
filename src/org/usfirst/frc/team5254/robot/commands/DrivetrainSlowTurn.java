@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DrivetrainSlowTurn extends Command {
 
 	public DrivetrainSlowTurn() {
-		requires(Robot.Drivetrain);
+		requires(Robot.drivetrain);
 	}
 
 	// Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class DrivetrainSlowTurn extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Drivetrain.slowTurn(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
+		Robot.drivetrain.slowTurn(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS),
 				-Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS));
 	}
 

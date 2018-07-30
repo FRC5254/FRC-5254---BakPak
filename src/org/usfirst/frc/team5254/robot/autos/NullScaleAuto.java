@@ -11,11 +11,13 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
+
 public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
 
+	/**
+	 * @param leftSide <code>true</code> If the robot is lined up on the left side
+	 * 				   <code>false</code> Otherwise
+	 */
     public NullScaleAuto(boolean leftSide) {
     	
     	super("NullScaleAuto");

@@ -6,7 +6,7 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Elevator waits to go to switch height set point
  */
 public class AutoSwitchHeightWait extends CommandGroup {
 

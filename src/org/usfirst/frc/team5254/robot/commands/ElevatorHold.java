@@ -6,12 +6,13 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Powers the elevator at a hold speed unless the joysticks are operating the elevator
+ * or another command is using the elevator
  */
 public class ElevatorHold extends Command {
 
     public ElevatorHold() {
-    	requires (Robot.Elevator);
+    	requires (Robot.elevator);
     }
 
     // Called just before this Command runs the first time
@@ -23,18 +24,18 @@ public class ElevatorHold extends Command {
     	
     	if (Math.abs(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)) < 0.1){ //If the Joystick is not being used
   
-    		if ((Robot.Elevator.eleButton.get() == false) || (Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
+    		if ((Robot.elevator.eleButton.get() == false) || (Math.abs(Robot.elevator.elevator.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
   			
-    			Robot.Elevator.off(); //Elevator off
+    			Robot.elevator.off(); //Elevator off
     			
     		} else { //If the button is not pressed
     			
-    			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
+    			Robot.elevator.on(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
     		}
 	
     	} else { //If the joystick is being used		
     
-    			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
+    			Robot.elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
     		
     		}
     }

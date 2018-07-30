@@ -15,17 +15,17 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitchAutoLeft
 
+	/**
+	 * @param leftside <code>true</code> If robot is lined up on left side
+	 * 				   <code>false</code> Otherwise
+	 * @param path1 Back_Switch place cube1
+	 */
     public WranglerSwitchAuto(Boolean leftside, Path path1) {
     	
     	super("WranglerSwitchAuto");
-
     	
-    	// TODO consideer making the turn into switch more so first cube isnt so on the edge
     	// 2.0 (the more reliable auto)
     	double turn1 = 90.0;
     	double turn2 = -30.0;
@@ -41,7 +41,7 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
     		drive = 225.0;
     	}
     	
-    	/*GOes VroomM VroooM*/
+    	/** GOes VroomM VroooM **/
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.25));
         addSequential(new RunPath(Paths.straightLength(drive), x -> {
@@ -49,15 +49,14 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
 			if (x < 0.80) return 0.7;//0.75
 			else return 0.5;
 		}, 0.75));
-//        addSequential(new RunPath(path1, 0.5, 0));// Path, speed, high gear
         
-        /*UP goES eLE out gOES CuBE*/
+        /** UP goES eLE out gOES CuBE **/
         addSequential(new AutoPIDTurn(turn1));
     	addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(path1, 0.5, 0), 5);
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_INTAKE, 0.75));
     	
-    	/*MoaR CubES*/
+    	/** MoaR CubES **/
     	addSequential(new RunPath(Paths.straightLength(15), -0.75, 0));
     	addSequential(new AutoElevatorSetDown());
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 7));
@@ -70,11 +69,11 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
 		
 		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
         addSequential(new RunPath(Paths.straightLength(22), 0.5, 0), 2);
-        addSequential(new AutoPIDTurn(-15));// TODO
+        addSequential(new AutoPIDTurn(-15)); 
         addSequential(new AutoIntakeOn(false, RobotMap.AUTO_INTAKE, 0.75));
         addSequential(new RunPath(Paths.straightLength(24), -0.5, 0));
         
-		/* EvEN MOar CUbes*/
+		/** EvEN MOar CUbes **/
         addParallel(new AutoElevatorSetDown());
         addSequential(new AutoPIDTurn(turn2));
         addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2));

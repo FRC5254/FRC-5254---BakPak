@@ -12,9 +12,7 @@ public class ElevatorDown extends Command {
 	double speed;
 	
     public ElevatorDown(double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.Elevator);
+    	requires(Robot.elevator);
     	
     	this.speed = speed;
     }
@@ -25,20 +23,18 @@ public class ElevatorDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Elevator.on(speed);
+    	Robot.elevator.on(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.Elevator.endSlowDown();
-//    	return false;
+        return Robot.elevator.endSlowDown();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.Elevator.off();
-		Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
-//		Robot.Elevator.unratchet();
+    	Robot.elevator.off();
+		Robot.elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
     }
 
     // Called when another command which requires one or more of the same

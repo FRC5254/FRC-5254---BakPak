@@ -11,15 +11,18 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class StuyPulseSwitchAuto extends CommandGroup { // LeftBackSideSwitchAutoRight
 
+	/**
+	 * @param leftside <code>true</code> If robot is lied up on left side
+	 * 				   <code>false</code> Otherwise
+	 * @param path1 Far scale travel
+	 * @param path2 Far scale travel cut short
+	 * @param path3 WOOSH
+	 */
     public StuyPulseSwitchAuto(boolean leftside, Path path1, Path path2, Path path3) {
     	
     	super("StuyPulseSwitchAuto");
-
     	
     	double turn = 45;
     	double turn2 = 10;

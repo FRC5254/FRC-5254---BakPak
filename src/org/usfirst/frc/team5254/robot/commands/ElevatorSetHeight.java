@@ -12,7 +12,7 @@ public class ElevatorSetHeight extends Command {
 	int ticks;
 
 	public ElevatorSetHeight(int ticks) {
-		requires(Robot.Elevator);
+		requires(Robot.elevator);
 
 		this.ticks = ticks;
 	}
@@ -23,12 +23,12 @@ public class ElevatorSetHeight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Elevator.setToHeight(ticks);
+		Robot.elevator.setToHeight(ticks);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.Elevator.endSetHeight();
+		return Robot.elevator.endSetHeight();
 	}
 
 	// Called once after isFinished returns true
