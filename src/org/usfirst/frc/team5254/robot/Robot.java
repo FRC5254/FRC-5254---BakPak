@@ -24,16 +24,21 @@ public class Robot extends IterativeRobot {
 	String gameData;
 	int allianceNumber;
 	
-	public static Drivetrain Drivetrain = new Drivetrain();
-	public static Intake Intake = new Intake();
-	public static Elevator Elevator = new Elevator();
-	public static Climber Climber = new Climber();
+	public static Drivetrain Drivetrain;
+	public static Intake Intake; 
+	public static Elevator Elevator;
+	public static Climber Climber;
 	public static OI oi;
 	
 	Command autonomousCommand;
 	
 	@Override
 	public void robotInit() {
+		
+		Intake = new Intake();
+		Elevator = new Elevator();
+		Climber = new Climber();
+		Drivetrain = new Drivetrain();
 
 		// Initializing cameras
 		CameraServer.getInstance().startAutomaticCapture(1);
