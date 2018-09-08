@@ -23,7 +23,7 @@ public class ClimberFire extends Command {
     	if (Robot.oi.driver.getRawAxis(2) > 0.8) {
         	Robot.Climber.set(Robot.oi.driver.getRawAxis(RobotMap.DRIVER_RIGHT_TRIGGER_AXIS));
     	} else {
-    		Robot.Climber.off();
+    		Robot.Climber.set(0);
     	}
     }
 
