@@ -13,36 +13,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
 	// Initializing controllers
-	public Spark intakeLeftFlywheels = new Spark(RobotMap.CUBE_MECH_LEFT_FLYWHEEL);
-	public Spark intakeRightFlywheels = new Spark(RobotMap.CUBE_MECH_RIGHT_FLYWHEEL);
+	
+	public Spark intakeLeftFlywheels;
+	public Spark intakeRightFlywheels;
+	
+	public static final double autoSpeed = 0.65;
 
 	public Intake() {
-	}
-
-	// TeleOp Methods
-	public void on(boolean direction, double speed) {
-		if (direction == true) {
-			intakeLeftFlywheels.set(-1);
-			intakeRightFlywheels.set(-0.9);
-		} else {
-			intakeLeftFlywheels.set(speed);//both .75
-			intakeRightFlywheels.set(speed);
-		}
-	}
-
-	public void off() {
-		intakeLeftFlywheels.set(0);
-		intakeRightFlywheels.set(0);
+		intakeLeftFlywheels = new Spark(RobotMap.CUBE_MECH_LEFT_FLYWHEEL);
+		intakeRightFlywheels = new Spark(RobotMap.CUBE_MECH_RIGHT_FLYWHEEL);
 	}
 	
-	public void autoOn(boolean direction) {
-		if (direction == true) {
-			intakeLeftFlywheels.set(-1);
-			intakeRightFlywheels.set(-0.9);
-		} else {
-			intakeLeftFlywheels.set(0.65);
-			intakeRightFlywheels.set(0.65);
-		}
+	public void setSpeed(double speed) {
+		intakeLeftFlywheels.set(speed);//both .75
+		intakeRightFlywheels.set(speed);
 	}
 
 	// Default command

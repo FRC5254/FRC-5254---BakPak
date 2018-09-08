@@ -48,7 +48,7 @@ public class AutoIntakeOn extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.Intake.off();
+		Robot.Intake.setSpeed(0);
 		timer.stop();
 	}
 
