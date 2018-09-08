@@ -28,7 +28,7 @@ public class AutoTimedElevatorRaise extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Elevator.on(-1);
+		Robot.Elevator.setSpeed(-1);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -39,7 +39,7 @@ public class AutoTimedElevatorRaise extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		timer.stop();
-		Robot.Elevator.off();
+		Robot.Elevator.setSpeed(0);
 	}
 
 	// Called when another command which requires one or more of the same

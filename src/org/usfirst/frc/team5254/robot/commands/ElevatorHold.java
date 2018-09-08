@@ -25,16 +25,16 @@ public class ElevatorHold extends Command {
   
     		if ((Robot.Elevator.eleButton.get() == false) || (Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
   			
-    			Robot.Elevator.off(); //Elevator off
+    			Robot.Elevator.setSpeed(0.0); //Elevator off
     			
     		} else { //If the button is not pressed
     			
-    			Robot.Elevator.on(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
+    			Robot.Elevator.setSpeed(RobotMap.ELE_HOLD_SPEED); //Hold the elevator in place
     		}
 	
     	} else { //If the joystick is being used		
     
-    			Robot.Elevator.on(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
+    			Robot.Elevator.setSpeed(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
     		
     		}
     }
