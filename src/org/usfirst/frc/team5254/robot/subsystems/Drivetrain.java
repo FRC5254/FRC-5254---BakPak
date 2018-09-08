@@ -50,12 +50,12 @@ public class Drivetrain extends PIDSubsystem {
 		//Instantiating left drivetrain controllers
 		driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT);
 		driveControllerLeft2 = new VictorSP(RobotMap.DRIVETRAIN_LEFT2);
-		new SpeedControllerGroup(driveControllerLeft1, driveControllerLeft2);
+		driveControllersLeft = new SpeedControllerGroup(driveControllerLeft1, driveControllerLeft2);
 		
 		//Instantiating right drivetrain controllers
 		driveControllerRight1 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT);
 		driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT2);
-		new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
+		driveControllersRight = new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
 		
 		//Instantiating drivetrain
 		drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight);
@@ -82,7 +82,7 @@ public class Drivetrain extends PIDSubsystem {
 		encoderRight.setMaxPeriod(0.1);
 		encoderRight.setMinRate(1);
 		encoderRight.setDistancePerPulse(1);
-		encoderRight.setReverseDirection(true);
+		encoderRight.setReverseDirection(false);
 		encoderRight.setSamplesToAverage(7);
 		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
 				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
