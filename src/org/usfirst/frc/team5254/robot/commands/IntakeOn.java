@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,10 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IntakeOn extends Command {
 
-	boolean direction;
+	Direction direction;
 	double speed;
 
-	public IntakeOn(boolean direction, double speed) {
+	public IntakeOn(Direction direction, double speed) {
 		requires(Robot.intake);
 
 		this.direction = direction;

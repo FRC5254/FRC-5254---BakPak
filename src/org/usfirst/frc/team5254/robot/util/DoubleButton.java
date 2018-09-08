@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5254.robot.util;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * A custom button that is triggered when two buttons on a Joystick are

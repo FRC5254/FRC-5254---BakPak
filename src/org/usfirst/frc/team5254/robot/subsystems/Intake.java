@@ -3,6 +3,7 @@ package org.usfirst.frc.team5254.robot.subsystems;
 import org.usfirst.frc.team5254.robot.RobotMap;
 
 import org.usfirst.frc.team5254.robot.commands.IntakeOff;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,8 +27,8 @@ public class Intake extends Subsystem {
 	 * @param direction Boolean value to determine intaking (true) or outtaking (false)
 	 * @param speed The speed at which the intake will outtake
 	 */
-	public void on(boolean direction, double speed) {
-		if (direction == true) {
+	public void on(Direction direction, double speed) {
+		if (direction == Direction.INTAKE) {
 			intakeLeftFlywheels.set(-speed);
 			intakeRightFlywheels.set(-speed + 0.1);
 		} else {

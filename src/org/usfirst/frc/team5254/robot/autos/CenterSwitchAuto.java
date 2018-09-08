@@ -2,13 +2,18 @@ package org.usfirst.frc.team5254.robot.autos;
 
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.pathing.*;
-import org.usfirst.frc.team5254.robot.autocommands.*;
+import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
+import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
+import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
+public class CenterSwitchAuto extends CommandGroup {
 	// TODO add more of the time limits on things in autos (especially paths)
 	
 	/**
@@ -19,7 +24,7 @@ public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
 		super("CenterSwitchAuto");
 		
 	/** Pop cube **/
-		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+		addParallel(new AutoIntakeOn(Direction.INTAKE, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(0.25));// This is to prevent breaking the snake
 		
@@ -32,7 +37,7 @@ public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
 		}, 0), 6);
 		
 	/** Shoots cube into switch **/	
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 3));
+		addSequential(new AutoIntakeOn(Direction.OUTTAKE, RobotMap.AUTO_SWITCH_OUTAKE, 3));
 		
 	/** Backs up and puts elevator down **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));

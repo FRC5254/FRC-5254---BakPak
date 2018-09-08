@@ -8,28 +8,29 @@ import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.util.Direction;
+import org.usfirst.frc.team5254.robot.util.StartingSide;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 
-public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
+public class NullScaleAuto extends CommandGroup {
 
 	/**
-	 * @param leftSide <code>true</code> If the robot is lined up on the left side
-	 * 				   <code>false</code> Otherwise
+	 * @param startingSide 
 	 */
-    public NullScaleAuto(boolean leftSide) {
+    public NullScaleAuto(StartingSide startingSide) {
     	
     	super("NullScaleAuto");
 
     	double turn = 90.0;
     	
-    	if (!leftSide) {
+    	if (startingSide == StartingSide.RIGHT) {
     		turn = -turn;
     	}
     	
     /** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new AutoIntakeOn(Direction.INTAKE, RobotMap.AUTO_INTAKE, 1.5));
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place on left scale at a 90 deg. **/
@@ -40,7 +41,7 @@ public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
     	addSequential(new RunPath(Paths.straightLength(12), -0.5, 0), 4);
     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(Paths.straightLength(18), 0.5, 0));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE, 2));
+    	addSequential(new AutoIntakeOn(Direction.OUTTAKE, RobotMap.AUTO_SCALE_OUTAKE, 2));
     	
     /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -0.25, 0),2);

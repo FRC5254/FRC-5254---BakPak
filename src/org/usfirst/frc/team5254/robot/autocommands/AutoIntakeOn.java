@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.autocommands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoIntakeOn extends Command {
 
-	boolean direction;
+	Direction direction;
 	double time;
 	double speed;
 	Timer timer = new Timer();
 
-	public AutoIntakeOn(boolean direction, double speed, double time) {
+	public AutoIntakeOn(Direction direction, double speed, double time) {
 		requires(Robot.intake);
 
 		this.direction = direction;

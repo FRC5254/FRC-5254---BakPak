@@ -10,10 +10,12 @@ import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.util.Direction;
+import org.usfirst.frc.team5254.robot.util.FieldConfig;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLeftDriveLeft
+public class CenterSwitchScaleDrive extends CommandGroup {
 
 	/** 
 	 * @param samesideScale <code>true</code> if the robot is lined up on the left side
@@ -23,18 +25,18 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 	 * @param path3 Grabs second cube from cube pile path
 	 * @param path4 Drive to scale path
 	 */
-    public CenterSwitchScaleDrive(boolean samesideScale, Path path1, Path path2, Path path3, Path path4) {
+    public CenterSwitchScaleDrive(FieldConfig fieldConfig, Path path1, Path path2, Path path3, Path path4) {
     	
     	super("CenterSwitchScaleDrive");
 
     	double distance = 35;
     	
-    	if (!samesideScale) {
+    	if (fieldConfig == FieldConfig.LR || fieldConfig == FieldConfig.RL) {
     		distance = 45;
     	}
     	
 	/** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new AutoIntakeOn(Direction.INTAKE, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(0.25));
 	
@@ -45,7 +47,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 			if (x < 0.75) return 0.85;// make .75 greater
 			else return 0.4;// faster!
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
+		addSequential(new AutoIntakeOn(Direction.OUTTAKE, RobotMap.AUTO_SWITCH_OUTAKE, 1));
 		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time
 			
 	/** Drive the same path but backwards to return to starting position **/
@@ -63,7 +65,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 		}, 0));
 	
 	/** Pick up second cube then back up **/
-		addParallel(new AutoIntakeOnWait(true, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
+		addParallel(new AutoIntakeOnWait(Direction.INTAKE, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
 		addSequential(new RunPath(path3, 0.4, 0), 4);//this number can probably be increased
 		addParallel(new RunPath(Paths.straightLength(5), 0.5, 0));
 		addSequential(new AutoPIDTurn(-7));

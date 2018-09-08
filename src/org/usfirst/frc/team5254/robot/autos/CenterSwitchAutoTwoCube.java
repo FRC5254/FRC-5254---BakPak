@@ -11,11 +11,12 @@ import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 
-public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoLeftTwoCube
+public class CenterSwitchAutoTwoCube extends CommandGroup {
 
 	/**
 	 * @param path1 The first path that approaches the switch
@@ -28,7 +29,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 		super("CenterSwitchAutoTwoCube");
 
 	/** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new AutoIntakeOn(Direction.INTAKE, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(1)); // might drop cube otherwise
 		
@@ -39,7 +40,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			if (x < 0.75) return 0.85;
 			else return 0.4;
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
+		addSequential(new AutoIntakeOn(Direction.OUTTAKE, RobotMap.AUTO_SWITCH_OUTAKE, 1));
 		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time as needed
 		
 		
@@ -51,7 +52,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 		}, 0));
 	
 	/** Pick up second cube then back up **/
-		addParallel(new AutoIntakeOnWait(true, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
+		addParallel(new AutoIntakeOnWait(Direction.INTAKE, 0.5, 3.5));// these numbers need to be tuned (wait, intake)
 		addSequential(new RunPath(path3, 0.4, 0), 4);//this number can probably be increased
 		addParallel(new RunPath(Paths.straightLength(5), 0.5, 0));
 		addSequential(new AutoPIDTurn(-7));
@@ -66,7 +67,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			if (x < 0.75) return 0.85;
 			else return 0.4;
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1.5));
+		addSequential(new AutoIntakeOn(Direction.OUTTAKE, RobotMap.AUTO_SWITCH_OUTAKE, 1.5));
 	/** Back up and lower elevator **/
 		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
 		addSequential(new AutoElevatorSetDown());

@@ -15,6 +15,7 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 import org.usfirst.frc.team5254.robot.commands.IntakeOff;
 import org.usfirst.frc.team5254.robot.commands.IntakeOn;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -108,11 +109,11 @@ public class OI {
 		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-		OperatorButtonRB.whenPressed(new IntakeOn(true, 1)); 
+		OperatorButtonRB.whenPressed(new IntakeOn(Direction.INTAKE, 1)); 
 		OperatorButtonRB.whenReleased(new IntakeOff());
-		OperatorButtonLB.whenPressed(new IntakeOn(false, 0.75));
+		OperatorButtonLB.whenPressed(new IntakeOn(Direction.OUTTAKE, 0.75));
 		OperatorButtonLB.whenReleased(new IntakeOff());
-		OperatorButtonStart.whenPressed(new IntakeOn(false, 0.5));
+		OperatorButtonStart.whenPressed(new IntakeOn(Direction.OUTTAKE, 0.5));
 		OperatorButtonStart.whenReleased(new IntakeOff());
 		// OperatorButtonBack.whenPressed();
 		// OperatorLJC.whenPressed();

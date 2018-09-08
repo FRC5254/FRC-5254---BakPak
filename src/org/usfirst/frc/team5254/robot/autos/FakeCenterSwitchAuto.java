@@ -4,8 +4,8 @@ package org.usfirst.frc.team5254.robot.autos;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.*;
 import org.usfirst.frc.team5254.robot.autocommands.*;
-import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.util.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -17,7 +17,7 @@ public class FakeCenterSwitchAuto extends CommandGroup { // NOT tested
 	public FakeCenterSwitchAuto(Path path1) {
 		
 	/** Pop cube **/
-		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+		addParallel(new AutoIntakeOn(Direction.INTAKE, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		
 	/** Robot hits the switch on the side **/
