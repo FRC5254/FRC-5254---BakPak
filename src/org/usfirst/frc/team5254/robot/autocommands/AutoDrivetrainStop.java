@@ -19,7 +19,7 @@ public class AutoDrivetrainStop extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Drivetrain.stop();
+		Robot.Drivetrain.drive(0, 0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -15,38 +15,30 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class Drivetrain extends PIDSubsystem {
 
-	// Initializing left drivetrain controllers
-	public static VictorSP driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT);
-	public static VictorSP driveControllerLeft2 = new VictorSP(RobotMap.DRIVETRAIN_LEFT2);
-	public static SpeedControllerGroup driveControllersLeft = new SpeedControllerGroup(driveControllerLeft1,
-			driveControllerLeft2);
+	// Declaring left drivetrain controllers
+	public static VictorSP driveControllerLeft1;
+	public static VictorSP driveControllerLeft2;
+	public static SpeedControllerGroup driveControllersLeft;
 
-	// Initializing right drivetrain controllers
-	public static VictorSP driveControllerRight1 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT);
-	public static VictorSP driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT2);
-	public static SpeedControllerGroup driveControllersRight = new SpeedControllerGroup(driveControllerRight1,
-			driveControllerRight2);
+	// Declaring right drivetrain controllers
+	public static VictorSP driveControllerRight1;
+	public static VictorSP driveControllerRight2;
+	public static SpeedControllerGroup driveControllersRight;
 
-	// Initializing drivetrain
-	public static DifferentialDrive drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight);
-
-	// Initializing shifting piston
-	public static Solenoid shiftingPiston = new Solenoid(RobotMap.SHIFTING_PISTON);
-
-	// Initializing auto controllers
-	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static Encoder encoderLeft = new Encoder(0, 1, true, Encoder.EncodingType.k4X);// 2,3 dont work on comp bot ---- marked encoder that dont work on protobot, also unwired it
-	public static Encoder encoderRight = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+	// Declaring drivetrain
+	public static DifferentialDrive drivetrain;
 	
-	public static Timer timer = new Timer();
+	// Declaring shifting piston
+	public static Solenoid shiftingPiston;
 
-	// Initializing auto variables
+	// Declaring auto controllers
+	public static ADXRS450_Gyro gyro;
+	public static Encoder encoderLeft;// 2,3 dont work on comp bot ---- marked encoder that dont work on protobot, also unwired it
+	public static Encoder encoderRight;
+	
+
+	// Declaring auto variables
 	double angle;
-	private static int finalTicks;
-	private int remainingTicks;
-	private double remainingDistance;
-	private double throttle;
-	private double finalThrottle;
 
 	public Drivetrain() {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
@@ -54,6 +46,48 @@ public class Drivetrain extends PIDSubsystem {
 		// getPIDController().setContinuous(true); TODO does commenting this harm autos? no
 		getPIDController().setInputRange(-360.0, 360.0);
 		getPIDController().setOutputRange(-1, 1);
+		
+		//Instantiating left drivetrain controllers
+		driveControllerLeft1 = new VictorSP(RobotMap.DRIVETRAIN_LEFT);
+		driveControllerLeft2 = new VictorSP(RobotMap.DRIVETRAIN_LEFT2);
+		new SpeedControllerGroup(driveControllerLeft1, driveControllerLeft2);
+		
+		//Instantiating right drivetrain controllers
+		driveControllerRight1 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT);
+		driveControllerRight2 = new VictorSP(RobotMap.DRIVETRAIN_RIGHT2);
+		new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
+		
+		//Instantiating drivetrain
+		drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight);
+		 
+		//Instantiating shifting piston
+		shiftingPiston = new Solenoid(RobotMap.SHIFTING_PISTON);
+		
+		//Instantiating auto controllers
+		gyro = new ADXRS450_Gyro();
+		encoderLeft = new Encoder(0, 1, true, Encoder.EncodingType.k4X);// 2,3 dont work on comp bot ---- marked encoder that dont work on protobot, also unwired it
+		encoderRight = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+		
+		//Initializing encoders
+		encoderLeft.reset();
+		encoderLeft.setMaxPeriod(0.1);
+		encoderLeft.setMinRate(1);
+		encoderLeft.setDistancePerPulse(1);
+		encoderLeft.setReverseDirection(true);
+		encoderLeft.setSamplesToAverage(7);
+		encoderLeft.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
+				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));// * 100 <-- with one encoder add in this to the end
+		
+		encoderRight.reset();
+		encoderRight.setMaxPeriod(0.1);
+		encoderRight.setMinRate(1);
+		encoderRight.setDistancePerPulse(1);
+		encoderRight.setReverseDirection(true);
+		encoderRight.setSamplesToAverage(7);
+		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
+				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
+
+		
 	}
 
 	@Override
@@ -67,10 +101,6 @@ public class Drivetrain extends PIDSubsystem {
 		// System.out.println("drive: " + Throttle + ", "+ Turn);
 	}
 
-	public void stop() {
-		drivetrain.arcadeDrive(0.0, 0.0);
-		// System.out.println("stop");
-	}
 
 	public void shiftDown() {
 		shiftingPiston.set(true);
@@ -84,31 +114,8 @@ public class Drivetrain extends PIDSubsystem {
 		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
 	}
 	
-	public void slowControll(double Throttle, double Turn) {
-		drivetrain.arcadeDrive(Throttle * 0.5, Turn * 0.5);
-	}
 
 	// Auto Methods
-	public void initEncoder(boolean direction) {
-		encoderLeft.reset();
-		encoderLeft.setMaxPeriod(0.1);
-		encoderLeft.setMinRate(1);
-		encoderLeft.setDistancePerPulse(1);
-		encoderLeft.setReverseDirection(direction);
-		encoderLeft.setSamplesToAverage(7);
-		encoderLeft.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
-				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));// * 100 <-- with one encoder add in this to the end
-		
-		encoderRight.reset();
-		encoderRight.setMaxPeriod(0.1);
-		encoderRight.setMinRate(1);
-		encoderRight.setDistancePerPulse(1);
-		encoderRight.setReverseDirection(direction);
-		encoderRight.setSamplesToAverage(7);
-		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
-				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
-		
-	}
 	
 	public double getRightDistance() {
 		return ((encoderRight.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
@@ -119,92 +126,12 @@ public class Drivetrain extends PIDSubsystem {
 		return ((encoderLeft.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
 				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));
 	}
-
-	public void timeDriveInit() {
-		gyro.reset();
-	}
-
-	public void timeDrive(double Throttle) {
-		drive(-Throttle, gyro.getAngle() * RobotMap.Kp);
-	}
-
-	public void autoDistanceDriveInit(double Throttle, double Distance) {
-
-		this.throttle = Throttle;
-		finalTicks = (int) ((Distance / (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI)) * RobotMap.ENCODER_TICKS
-				* RobotMap.DRIVETRAIN_GEAR_RATIO);
-		if (Throttle > 0) {
-			initEncoder(true);
-		} else {
-			initEncoder(false);
-		}
-		gyro.reset();
-		timer.reset();
-		timer.start();
-	}
 	
 	public void setLeftRightSpeeds(double leftSpeed, double rightSpeed) {
 		driveControllersLeft.set(leftSpeed);
 		driveControllersRight.set(-rightSpeed);
 	}
 
-	public void autoDriveToDistance() {
-
-		remainingTicks = Math.abs(finalTicks) - Math.abs(encoderRight.get());
-		remainingDistance = (Math.abs(remainingTicks) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO))
-				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI);
-
-		if (throttle > 0) {// forward drive
-			if (remainingDistance < throttle * 10) {// TODO make 10 a constant (deceleration factor) // higher number = more deceleration
-				finalThrottle = remainingDistance / 10;// same number ^^
-			} else {
-				finalThrottle = throttle;
-			}
-
-			if (timer.get() < 0.25 && remainingDistance > 10.0) {
-				finalThrottle = timer.get() * 4.0;
-			}
-
-			if (finalThrottle > throttle) {
-				finalThrottle = throttle;
-			}
-
-			if (finalThrottle < 0.35) {
-				finalThrottle = 0.35;
-			}
-		} else { //backwards drive
-			if (remainingDistance < Math.abs(throttle) * 10) { // higher number = more deceleration
-				finalThrottle = -remainingDistance / 10; // same number ^^
-			} else {
-				finalThrottle = throttle;
-
-			}
-
-			if (timer.get() < 0.25 && remainingDistance > 10.0) {
-				finalThrottle = -timer.get() * 4.0;
-			}
-
-			if (finalThrottle < throttle) {
-				finalThrottle = throttle;
-			}
-
-			if (finalThrottle > -0.35) {
-				finalThrottle = -0.35;
-			}
-		}
-
-		drive(-finalThrottle, gyro.getAngle() * RobotMap.Kp);
-		// System.out.println("Remaining Distance: " + remainingDistance);
-	}
-
-	public boolean driveAutoIsFinished() {
-		return remainingTicks < 21;
-	}
-
-	public void autoDistanceDriveFast() {
-		remainingTicks = Math.abs(finalTicks) - Math.abs(encoderRight.get());
-		drive(-throttle, gyro.getAngle() + this.angle);
-	}
 
 	public void PIDTurnInit(double angle) {
 		gyro.reset();
@@ -214,9 +141,6 @@ public class Drivetrain extends PIDSubsystem {
 		// System.out.println("Setpoint: " + angle);
 	}
 
-	public boolean PIDTurnIsFinished() {
-		return onTarget();
-	}
 
 	@Override
 	protected double returnPIDInput() {
