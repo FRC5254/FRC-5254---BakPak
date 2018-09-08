@@ -126,9 +126,9 @@ public class RunPath2 extends Command {
 //    	}
     		
     	if (getDistance()/path.getTotalLength() >= outtake) {
-    		Robot.Intake.autoOn(false);
+    		Robot.Intake.setSpeed(Robot.Intake.autoSpeed);
     	} else {
-    		Robot.Intake.off();
+    		Robot.Intake.setSpeed(0);
     	}
     	
     	System.out.println("error: " + error);
