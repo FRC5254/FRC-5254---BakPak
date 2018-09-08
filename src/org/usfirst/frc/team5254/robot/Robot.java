@@ -1,31 +1,29 @@
 package org.usfirst.frc.team5254.robot;
 
-import org.usfirst.frc.team5254.robot.subsystems.*;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
-import org.usfirst.frc.team5254.robot.autos.*;
+import org.usfirst.frc.team5254.robot.autos.CenterSwitchAutoTwoCube;
+import org.usfirst.frc.team5254.robot.autos.CrossBaselineAuto;
+import org.usfirst.frc.team5254.robot.autos.FakeCenterSwitchAuto;
+import org.usfirst.frc.team5254.robot.subsystems.Climber;
+import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team5254.robot.subsystems.Elevator;
+import org.usfirst.frc.team5254.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Robot extends IterativeRobot {
 	
 	// AUTO SELECTOR THING
 	private static String startingPosition = "L"; // L/R/C
 
-	NetworkTable table;
 	String gameData;
 	int allianceNumber;
 	
-	Timer timer = new Timer();
-	Timer autoTimer = new Timer();
-
 	public static Drivetrain Drivetrain = new Drivetrain();
 	public static Intake Intake = new Intake();
 	public static Elevator Elevator = new Elevator();
@@ -33,14 +31,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	Command autonomousCommand;
-	Command someCommand;
 	
 	@Override
 	public void robotInit() {
-
-		// Config smartdash
-		NetworkTableInstance inst = NetworkTableInstance.getDefault();
-		NetworkTable table = inst.getTable("SmartDashboard");
 
 		// Initializing cameras
 		CameraServer.getInstance().startAutomaticCapture(1);
@@ -48,7 +41,7 @@ public class Robot extends IterativeRobot {
 
 		// This MUST BE LAST or a NullPointerException will be thrown
 		oi = new OI();
-		}
+	}
 
 	@Override
 	public void autonomousInit() {
@@ -155,24 +148,6 @@ public class Robot extends IterativeRobot {
 			}
 			break;
        }	
-		
-//		TODO DELETE THESE [ONE DAY :]
-//		autonomousCommand = new CrossBaselineAuto();
-//		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER .SWITCH_LEFT_FORWARD); weren't tested
-//		autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD); ^^^^^^^^^^^^^
-//		autonomousCommand = new NullScaleAuto(true);
-		autonomousCommand = new NullScaleAuto(false);
-//		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);
-//		autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_RIGHT_FORWARD, Paths.FROM_CENTER.SWITCH_RIGHT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.RIGHT_SWITCH_AFTER_GRAB_CUBE);
-//		autonomousCommand = new WranglerSwitchAuto(true, Paths.FROM_LEFT.BACK_SWITCH_PLACE_CUBE1);
-//		autonomousCommand = new WranglerSwitchAuto(false, Paths.FROM_RIGHT.BACK_SWITCH_PLACE_CUBE1);
-//		autonomousCommand = new StuyPulseSwitchAuto(true, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2_CUT_SHORT, Paths.FROM_LEFT.BACK_SWITCH_BACKUP);
-//		autonomousCommand = new StuyPulseSwitchAuto(false, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT, Paths.FROM_RIGHT.BACK_SWITCH_BACKUP);
-//		autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
-//		autonomousCommand = new TwoCubeScaleAuto(false, Paths.FROM_RIGHT.SCALE_RIGHT_TRAVEL, Paths.FROM_RIGHT.SCALE_RIGHT_FINISH, Paths.FROM_RIGHT.SCALE_RIGHT_SECOND_CUBE_GRAB);
-//		autonomousCommand = new FarScaleAuto(Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL, Paths.FROM_LEFT.SCALE_RIGHT_TRAVEL_2, Paths.FROM_LEFT.SCALE_RIGHT_FINISH);
-//		autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
-//		autonomousCommand = new TestAuto();
 		
 //		String autonomousCommandString = autonomousCommand.toString();
 //		SmartDashboard.putString("DB/String 0", autonomousCommandString);
