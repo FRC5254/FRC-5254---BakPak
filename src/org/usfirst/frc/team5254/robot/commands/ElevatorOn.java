@@ -2,6 +2,8 @@ package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,7 +25,14 @@ public class ElevatorOn extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.Elevator.on(power);
+		if (Robot.Elevator.eleButton.get() == false) { // if the button is pressed
+			if (power > 0) { // and if elevator is going down
+				Robot.Elevator.setSpeed( 0.0);// stop
+				Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
+			} 
+		} else {// if button isnt pressed
+			Robot.Elevator.setSpeed(power);// motor at set speed
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

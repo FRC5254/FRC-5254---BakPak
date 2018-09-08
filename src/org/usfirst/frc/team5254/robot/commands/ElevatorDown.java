@@ -25,20 +25,18 @@ public class ElevatorDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Elevator.on(speed);
+    	Robot.Elevator.setSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return Robot.Elevator.endSlowDown();
-//    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.Elevator.off();
+    	Robot.Elevator.setSpeed(0.0);
 		Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
-//		Robot.Elevator.unratchet();
     }
 
     // Called when another command which requires one or more of the same
