@@ -31,6 +31,7 @@ public class RobotMap {
 	public static final int OPERATOR_JOYSTICK = 1;
 
 	public static final int DRIVER_THROTTLE_AXIS = 1;
+	public static final int DRIVER_LEFT_TRIGGER_AXIS = 2;
 	public static final int DRIVER_RIGHT_TRIGGER_AXIS = 3;
 	public static final int DRIVER_TURN_AXIS = 4;
 

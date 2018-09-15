@@ -2,7 +2,7 @@ package org.usfirst.frc.team5254.robot.subsystems;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 
-import org.usfirst.frc.team5254.robot.commands.IntakeOff;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -31,6 +31,6 @@ public class Intake extends Subsystem {
 
 	// Default command
 	public void initDefaultCommand() {
-		setDefaultCommand(new IntakeOff());
+		setDefaultCommand(new IntakeSetSpeed(0));
 	}
 }

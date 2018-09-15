@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeOn extends Command {
+public class IntakeSetSpeed extends Command {
 
 	double speed;
 
-	public IntakeOn(double speed) {
+	public IntakeSetSpeed(double speed) {
 		requires(Robot.Intake);
 
 		this.speed = speed;

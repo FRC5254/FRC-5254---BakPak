@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5254.robot.subsystems;
 
+import org.usfirst.frc.team5254.robot.Robot;
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.commands.ElevatorHold;
 
@@ -33,16 +34,22 @@ public class Elevator extends Subsystem {
 	public void setSpeed(double speed) {
 		elevator.set(ControlMode.PercentOutput, speed);
 	}
+	
+	public int getHeight() {
+		return  Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0));
+	}
 
-
-	public boolean endSetHeight(double ticks) {
+	public boolean isAboveHeight(double ticks) {
 		return (Math.abs(elevator.getSelectedSensorPosition(0)) > ticks);// return true when elevator reaches set point
 	}
 
-	public boolean endSlowDown() {
+	public boolean isAtBottom() {
 		return (eleButton.get() == false); // returns true when button is pressed
 	}
 
+	public void resetEncoder() {
+		elevator.setSelectedSensorPosition(0, 0, 10);
+	}
 	// Auto Methods
 	
 	// Defualt Command
@@ -51,7 +58,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public boolean mightBreak() {
-		// If this ever equals true I'e failed as a programmer
+		// If this ever equals true I've failed as a programmer
 		return false;
 	}
 	
