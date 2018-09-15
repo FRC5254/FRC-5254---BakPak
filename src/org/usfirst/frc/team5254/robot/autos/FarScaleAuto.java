@@ -5,9 +5,11 @@ import org.usfirst.frc.team5254.robot.autocommands.*;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * 
@@ -52,12 +54,13 @@ public class FarScaleAuto extends CommandGroup {
     	
     /** Place cube on scale **/
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-    	addSequential(new AutoTimerWait(0.25));
+    	addSequential(new WaitCommand(0.25));
     	addSequential(new RunPath(path3, 0.25, 0));
     	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 1));
     
     	/** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));
-    	addSequential(new AutoElevatorDownWait(1.0));
+    	addSequential(new WaitCommand(1.0));
+    	addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
     }
 }

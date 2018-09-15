@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
@@ -14,6 +12,7 @@ import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -65,7 +64,7 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
 		addParallel(new RunPath(Paths.straightLength(12), 0.5, 0), 3);
 		addSequential(new AutoPIDTurn(turn3));// NEW
     	addSequential(new AutoPIDTurn(turn4));
-    	addSequential(new AutoTimerWait(0.5));
+    	addSequential(new WaitCommand(0.5));
 		addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
 		
 		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));

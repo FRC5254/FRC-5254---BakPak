@@ -1,16 +1,16 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
-import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -29,7 +29,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 	/** Pop cube **/
     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(0.25));
+		addSequential(new WaitCommand(0.25));
 	
 	/** Place pre-load cube **/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
@@ -39,18 +39,24 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 			else return 0.4;// faster!
 		}, 0));
 		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
-		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time
+	
 			
 	/** Drive the same path but backwards to return to starting position **/
-		addSequential(new RunPath(path2, x -> {
+		addParallel(new RunPath(path2, x -> {
 			if (x < 0.20) return -0.5;// same as above changes bc y not
 			if (x < 0.75) return -0.85;
 			else return -0.4;
 		}, 0));
-		addParallel(new AutoIntakeOnWait(true, 1, 2.5));
+		addSequential(new WaitCommand(1.5));// decrease wait time
+		addSequential(new ElevatorDown(1.5));
+		
+		
 			
 	/** Grabs closest cube from cube zone **/
-		addSequential(new RunPath(path3, 0.35, 0));//this number can probably not be increased
+		addParallel(new RunPath(path3, 0.35, 0));//this number can probably not be increased
+		addSequential(new WaitCommand(1));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2.5);
+		
 		addSequential(new RunPath(Paths.straightLength(distance), -0.8, 0));
 			
 	/** Drive to the side of the switch the scale is on **/

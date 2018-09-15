@@ -7,6 +7,7 @@ import org.usfirst.frc.team5254.robot.autocommands.*;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * TODO add more of the time limits on things in autos (especially paths)
@@ -39,7 +40,7 @@ public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
 	/** Pop cube **/
 		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
-		addSequential(new AutoTimerWait(0.25));// This is to prevent breaking the snake
+		addSequential(new WaitCommand(0.25));// This is to prevent breaking the snake
 		
 	/** Robot approaches the switch on the left side **/
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));

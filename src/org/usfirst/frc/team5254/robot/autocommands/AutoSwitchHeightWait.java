@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoSwitchHeightWait extends CommandGroup {
 
     public AutoSwitchHeightWait(double time) {
-    	addSequential(new AutoTimerWait(time));
+//    	addSequential(new AutoTimerWait(time));
     	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     }
 }

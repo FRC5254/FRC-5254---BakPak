@@ -4,12 +4,12 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
-import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -32,9 +32,9 @@ public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
     	
     /** Place on left scale at a 90 deg. **/
     	addSequential(new RunPath(Paths.straightLength(302), 0.9, 0));
-    	addSequential(new AutoTimerWait(0.5));
+    	addSequential(new WaitCommand(0.5));
     	addSequential(new AutoPIDTurn(turn));
-    	addSequential(new AutoTimerWait(0.5));
+    	addSequential(new WaitCommand(0.5));
     	addSequential(new RunPath(Paths.straightLength(12), -0.5, 0), 4);
     	addSequential(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new RunPath(Paths.straightLength(18), 0.5, 0));
