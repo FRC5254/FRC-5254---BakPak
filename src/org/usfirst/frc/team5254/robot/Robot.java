@@ -51,6 +51,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		
+		Robot.Drivetrain.shiftDown();
+		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		allianceNumber = DriverStation.getInstance().getLocation();
 		
@@ -181,6 +183,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.Drivetrain.shiftDown();
 	}
 
 	@Override

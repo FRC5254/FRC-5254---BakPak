@@ -110,10 +110,6 @@ public class Drivetrain extends PIDSubsystem {
 		shiftingPiston.set(false);
 	}
 
-	public void slowTurn(double Throttle, double Turn) {
-		drivetrain.arcadeDrive(Throttle, 0.5 * Turn);
-	}
-	
 
 	// Auto Methods
 	
