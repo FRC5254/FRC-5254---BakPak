@@ -183,6 +183,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.Drivetrain.shiftDown();
 	}
 
 	@Override
