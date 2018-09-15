@@ -48,7 +48,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 			else return -0.4;
 		}, 0));
 		addSequential(new WaitCommand(1.5));// decrease wait time
-		addSequential(new ElevatorDown(1.5));
+		addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
 		
 		
 			
