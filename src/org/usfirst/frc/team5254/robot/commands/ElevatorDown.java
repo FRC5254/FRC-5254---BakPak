@@ -30,13 +30,13 @@ public class ElevatorDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.Elevator.endSlowDown();
+        return Robot.Elevator.isAtBottom();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.Elevator.setSpeed(0.0);
-		Robot.Elevator.elevator.setSelectedSensorPosition(0, 0, 10);// zero encoder
+		Robot.Elevator.resetEncoder();// zeros encoder
     }
 
     // Called when another command which requires one or more of the same

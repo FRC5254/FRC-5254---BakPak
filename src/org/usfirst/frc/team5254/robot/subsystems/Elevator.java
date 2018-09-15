@@ -43,10 +43,13 @@ public class Elevator extends Subsystem {
 		return (Math.abs(elevator.getSelectedSensorPosition(0)) > ticks);// return true when elevator reaches set point
 	}
 
-	public boolean endSlowDown() {
+	public boolean isAtBottom() {
 		return (eleButton.get() == false); // returns true when button is pressed
 	}
 
+	public void resetEncoder() {
+		elevator.setSelectedSensorPosition(0, 0, 10);
+	}
 	// Auto Methods
 	
 	// Defualt Command
@@ -55,7 +58,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public boolean mightBreak() {
-		// If this ever equals true I'e failed as a programmer
+		// If this ever equals true I've failed as a programmer
 		return false;
 	}
 	

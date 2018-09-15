@@ -71,12 +71,12 @@ public class OI {
 		OperatorButtonB.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));
 		OperatorButtonX.whenPressed(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
 		OperatorButtonY.whenPressed(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
-		OperatorButtonRB.whenPressed(new IntakeOn(-0.75));
-		OperatorButtonRB.whenReleased(new IntakeOff());
-		OperatorButtonLB.whenPressed(new IntakeOn(0.75));
-		OperatorButtonLB.whenReleased(new IntakeOff());
-		OperatorButtonStart.whenPressed(new IntakeOn(0.5));
-		OperatorButtonStart.whenReleased(new IntakeOff());
+		OperatorButtonRB.whenPressed(new IntakeSetSpeed(-0.75));
+		OperatorButtonRB.whenReleased(new IntakeSetSpeed(0));
+		OperatorButtonLB.whenPressed(new IntakeSetSpeed(0.75));
+		OperatorButtonLB.whenReleased(new IntakeSetSpeed(0));
+		OperatorButtonStart.whenPressed(new IntakeSetSpeed(0.5));
+		OperatorButtonStart.whenReleased(new IntakeSetSpeed(0));
 //		OperatorButtonBack.whenPressed();
 //		OperatorLJC.whenPressed(new ElevatorJoystickControl());
 		OperatorRJC.whenPressed(new ElevatorStop());
