@@ -25,7 +25,7 @@ public class ElevatorSetHeight extends Command {
 	protected void execute() {
 //		Robot.Elevator.setToHeight(ticks);
 		
-		if (ticks > Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0))) { // if i'm not at set position
+		if (ticks > Robot.Elevator.getHeight()) { // if i'm not at set position
 			Robot.Elevator.setSpeed(-1);//elevator go up 100% power
 		} else { // at/past set position
 			Robot.Elevator.setSpeed(0.0);// sets elevator motor to 0% power
@@ -34,7 +34,7 @@ public class ElevatorSetHeight extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.Elevator.endSetHeight(ticks);
+		return Robot.Elevator.isAboveHeight(ticks);
 	}
 
 	// Called once after isFinished returns true
