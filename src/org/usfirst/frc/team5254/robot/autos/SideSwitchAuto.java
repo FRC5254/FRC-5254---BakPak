@@ -1,12 +1,12 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -31,7 +31,7 @@ public class SideSwitchAuto extends CommandGroup { //used to be leftSwitchAutoLe
 //		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 15));
     	
     /** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1.5);
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Place into switch at a 90 deg **/
@@ -41,10 +41,10 @@ public class SideSwitchAuto extends CommandGroup { //used to be leftSwitchAutoLe
     	}, 0));
     	addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(path2, 0.4, 0));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 2));
+    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE),2);
     	
     /** Elevator down **/
     	addSequential(new RunPath(Paths.straightLength(30), -0.3, 0));
-    	addSequential(new AutoElevatorSetDown());
+    	addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
     }
 }

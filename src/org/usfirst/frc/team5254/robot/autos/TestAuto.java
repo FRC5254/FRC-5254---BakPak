@@ -2,10 +2,8 @@ package org.usfirst.frc.team5254.robot.autos;
 
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
-import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
-
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -32,7 +30,7 @@ public class TestAuto extends CommandGroup {
 //		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
 //		
 //		 /** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2);
     	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 //    	
 //    /** First cube on scale **/

@@ -2,15 +2,15 @@ package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
-import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorSetDown;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoPIDTurn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,7 +24,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 		super("CenterSwitchAutoTwoCube");
 
     /** Place preload cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1.5);
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(1));
 		addParallel(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
@@ -33,7 +33,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			if (x < 0.75) return 0.85;
 			else return 0.4;
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE),1);
 		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time as needed
 		
 		
@@ -59,8 +59,8 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			if (x < 0.75) return 0.85;
 			else return 0.4;
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1.5));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE),1.5);
 		addSequential(new RunPath(Paths.straightLength(24), -0.75, 0));
-		addSequential(new AutoElevatorSetDown());
+		addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
     }
 }

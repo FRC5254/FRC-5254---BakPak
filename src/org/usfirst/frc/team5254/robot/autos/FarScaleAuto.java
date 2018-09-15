@@ -1,11 +1,13 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.*;
+import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
+import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -35,7 +37,7 @@ public class FarScaleAuto extends CommandGroup {
 //     	addSequential(new AutoDriveToDistance(0.5, 24));
      
     /** Pop cube **/
-     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
+     	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE) ,1);
     	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
     	
     /** Drive over to other side of field **/
@@ -54,7 +56,7 @@ public class FarScaleAuto extends CommandGroup {
     	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new AutoTimerWait(0.25));
     	addSequential(new RunPath(path3, 0.25, 0));
-    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.15, 1));
+    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SCALE_OUTAKE - 0.15), 1);
     
     	/** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));

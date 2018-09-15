@@ -2,13 +2,13 @@ package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.autocommands.AutoElevatorDownWait;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOnWait;
 import org.usfirst.frc.team5254.robot.autocommands.AutoTimerWait;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -27,7 +27,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
     		distance = 45;
     	}
 	/** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1.5);
 		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 		addSequential(new AutoTimerWait(0.25));
 	
@@ -38,7 +38,7 @@ public class CenterSwitchScaleDrive extends CommandGroup { // CenterSwitchAutoLe
 			if (x < 0.75) return 0.85;// make .75 greater
 			else return 0.4;// faster!
 		}, 0));
-		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SWITCH_OUTAKE, 1));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE) ,1);
 		addParallel(new AutoElevatorDownWait(1.5));// decrease wait time
 			
 	/** Drive the same path but backwards to return to starting position **/
