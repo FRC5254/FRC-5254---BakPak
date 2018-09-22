@@ -2,10 +2,9 @@ package org.usfirst.frc.team5254.robot.autos;
 
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
-import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
-
+import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSetAndHold;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -25,22 +24,23 @@ public class TestAuto extends CommandGroup {
 		
 		//Tests intake release in auto
 //		addParallel(new AutoIntakeOn(true,RobotMap.AUTO_INTAKE, 1.5));
-//		addSequential(new ElevatorSetHeight(RobotMap.SWITCH_HEIGHT));
+//		addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
 		
 //    	addSequential(new AutoPIDTurn(90));
 		
 //		addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
 //		
 //		 /** Pop cube **/
-    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 2));
-    	addParallel(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+//    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2);
+    	addParallel(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
+    	addSequential(new RunPath(Paths.straightLength(10), 0.2, 0));
 //    	
 //    /** First cube on scale **/
 //    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, x -> {
 //			if (x < .05) return 0.5;
 //			else return 1.0;
 //    	}, 0));
-//    	addParallel(new ElevatorSetHeight(RobotMap.UNOWNED_SCALE_HEIGHT));
+//    	addParallel(new ElevatorSetAndHold(RobotMap.UNOWNED_SCALE_HEIGHT));
 //    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_FINISH, 0.5, 0));
 //    	addSequential(new AutoIntakeOn(false, RobotMap.AUTO_SCALE_OUTAKE - 0.25, 1));
 //    	

@@ -1,10 +1,11 @@
 package org.usfirst.frc.team5254.robot.autos;
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.AutoIntakeOn;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSetAndHold;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
+import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -18,8 +19,8 @@ public class ScaleTravelAuto extends CommandGroup {
     	super("ScaleTravelAuto");
 
     /** Pop cube **/
-     	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1));
-    	addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
+     	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1);
+    	addSequential(new ElevatorSetAndHold(RobotMap.POP_HEIGHT));
     	
     /** Drive over to other side of field **/
     	addSequential(new RunPath(path1, x -> {

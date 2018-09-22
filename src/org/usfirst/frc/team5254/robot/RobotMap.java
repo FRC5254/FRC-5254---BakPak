@@ -70,7 +70,7 @@ public class RobotMap {
 	public static final int SLOW_DRIVE_TICK_THRESHOLD = 20000;//Height at which the elevator is to enable a slow drive measured in ticks
 	
 	//AUTO
-	public static final double AUTO_INTAKE = 1;
+	public static final double AUTO_INTAKE = -1;
 	public static final double AUTO_SWITCH_OUTAKE = 0.75;
 	public static final double AUTO_SCALE_OUTAKE = 0.75;
 }
