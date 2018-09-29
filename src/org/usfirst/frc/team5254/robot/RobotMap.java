@@ -17,10 +17,6 @@ public class RobotMap {
 	public static final int GYRO = 1;
 	
 	// MotorControllers
-	public static final int DRIVETRAIN_LEFT = 2;
-	public static final int DRIVETRAIN_LEFT2 = 3;
-	public static final int DRIVETRAIN_RIGHT = 0;
-	public static final int DRIVETRAIN_RIGHT2 = 1;
 	public static final int CUBE_MECH_LEFT_FLYWHEEL = 6;
 	public static final int CUBE_MECH_RIGHT_FLYWHEEL = 7;
 	public static final int CLIMBER = 8;
@@ -41,6 +37,10 @@ public class RobotMap {
 	
 	// CAN Talon
 	public static final int ELEVATOR = 6;// is 4 not on comp bot
+	public static final int DRIVETRAIN_LEFT = 2;
+	public static final int DRIVETRAIN_LEFT2 = 10;
+	public static final int DRIVETRAIN_RIGHT = 9;
+	public static final int DRIVETRAIN_RIGHT2 = 12;
 
 	// Misc
 	
