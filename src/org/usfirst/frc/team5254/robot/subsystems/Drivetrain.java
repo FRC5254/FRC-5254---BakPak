@@ -59,6 +59,12 @@ public class Drivetrain extends PIDSubsystem {
 		
 		driveControllersRight = new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
 		
+		driveControllerLeft1.configOpenloopRamp(0.5);
+		driveControllerLeft2.configOpenloopRamp(0.5);
+		driveControllerRight1.configOpenloopRamp(0.5);
+		driveControllerRight2.configOpenloopRamp(0.5);
+		
+		
 		drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight);
 		 
 		//Instantiating shifting piston

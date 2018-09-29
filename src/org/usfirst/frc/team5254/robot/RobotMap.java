@@ -7,7 +7,7 @@ public class RobotMap {
 	public static final int CLIMBER_SLIDER_PISTON_OUT = 3;
 	public static final int NO_FIRE_CROSSBOW = 4;
 	public static final int FIRE_CROSSBOW = 5;
-	public static final int SHIFTING_PISTON = 7;
+	public static final int SHIFTING_PISTON = 1;// was 7  
 	
 
 	// Sensors
