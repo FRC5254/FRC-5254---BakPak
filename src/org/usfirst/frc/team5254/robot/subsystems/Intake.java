@@ -4,6 +4,7 @@ import org.usfirst.frc.team5254.robot.RobotMap;
 
 import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,6 +18,8 @@ public class Intake extends Subsystem {
 	public Spark intakeLeftFlywheels;
 	public Spark intakeRightFlywheels;
 	
+	public DoubleSolenoid intakePistons;
+	
 	public static final double autoSpeed = 0.65;
 
 	public Intake() {
@@ -29,6 +32,14 @@ public class Intake extends Subsystem {
 		intakeRightFlywheels.set(speed);
 	}
 
+	public void open() {
+		intakePistons.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void close() {
+		intakePistons.set(DoubleSolenoid.Value.kForward);
+	}
+	
 	// Default command
 	public void initDefaultCommand() {
 		setDefaultCommand(new IntakeSetSpeed(0));
