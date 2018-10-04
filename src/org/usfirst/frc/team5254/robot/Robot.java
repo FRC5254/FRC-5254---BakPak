@@ -204,6 +204,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("right", Drivetrain.getRightDistance());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 //		System.out.println(Robot.Elevator.eleButton.get());
+		
+		SmartDashboard.putNumber("POV", oi.driver.getPOV());
 
 
 		SmartDashboard.putNumber("elevator height", Robot.Elevator.getHeight());
