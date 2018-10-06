@@ -36,12 +36,11 @@ public class RobotMap {
 	public static final int OPERATOR_RIGHT_TRIGGER_AXIS = 3;
 	
 	// CAN Talon
-	public static final int ELEVATOR = 6;// is 4 not on comp bot
-	public static final int DRIVETRAIN_LEFT = 2;
-	public static final int DRIVETRAIN_LEFT2 = 10;
-	public static final int DRIVETRAIN_RIGHT = 9;
-	public static final int DRIVETRAIN_RIGHT2 = 12;
-
+	public static final int ELEVATOR = 8;// 6
+	public static final int DRIVETRAIN_LEFT = 1;//2
+	public static final int DRIVETRAIN_LEFT2 = 7;//10
+	public static final int DRIVETRAIN_RIGHT = 5;//9
+	public static final int DRIVETRAIN_RIGHT2 = 11;//12
 	// Misc
 	
 		//Drivetrain
