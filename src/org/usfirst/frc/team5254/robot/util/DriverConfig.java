@@ -22,25 +22,24 @@ public enum DriverConfig {
 	 * RY 5
 	 */
 
-	SAM (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, true, 0.5), //TODO update pref
-	NICK (DriveControl.TANK, 1, 4, 1, 7, 2, 6, true, 0.5),// TODO rm Nick 
-	KAT (DriveControl.CURVATURE, 1, 4, 1, 7, 2, 6, true, 0.5);
+	SAM (DriveControl.TANK, 1, 5, 1, 7, 2, 6, true, 0.5), //TODO update pref 
+	KAT (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, true, 0.3);
 	
 	public DriveControl dc;
 	public int joystick1;
-	public int Joystick2;
+	public int joystick2;
 	public int turnButton;
 	public int slowTurnButton; // TODO is it useful to have them as two separate buttons? or should it just be 1?
 	public int slowDrive;//				^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	public int shiftButton;
-	public boolean lowGearDefault;
+	public boolean lowGearDefault; // this value does nothing <:)
 	public double voltageRampingFactor;
 	
 	DriverConfig(DriveControl dc, int joystick1, int joystick2, int turnButton, int slowTurnButton,
 			int slowDrive, int shiftButton, boolean lowGearDefault, double voltageRampingFactor) {
 		this.dc = dc;
 		this.joystick1 = joystick1;
-		this.Joystick2 = joystick2;
+		this.joystick2 = joystick2;
 		this.turnButton = turnButton;
 		this.slowTurnButton = slowTurnButton;
 		this.slowDrive = slowDrive;

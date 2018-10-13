@@ -22,10 +22,8 @@ public enum OperatorConfig {
 	 * RY 5
 	 */
 	
-	WREN (1, 1, 3, 2, 4, 6, 5, 8), //TODO update pref
-	IAN (1, 1, 3, 2, 4, 6, 5, 8), //TODO update pref
-	JADEN (1, 1, 3, 2, 4, 6, 5, 8), //TODO update pref
-	KAT (1, 1, 3, 2, 4, 6, 5, 8);
+	WREN (5, 1, 2, 3, 4, 6, 5, 8), //TODO update pref
+	JADEN (1, 1, 3, 2, 4, 6, 5, 8); //TODO update pref
 	
 	public int elevatorUpAxis;
 	public int downButton;

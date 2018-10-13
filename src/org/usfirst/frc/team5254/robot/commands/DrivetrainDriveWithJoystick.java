@@ -1,9 +1,8 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
-import org.usfirst.frc.team5254.robot.RobotMap;
+import org.usfirst.frc.team5254.robot.util.DriveControl;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,14 +22,14 @@ public class DrivetrainDriveWithJoystick extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
-		double left = Robot.oi.driver.getRawAxis(RobotMap.DRIVER_THROTTLE_AXIS);
-		double right = -Robot.oi.driver.getRawAxis(RobotMap.DRIVER_TURN_AXIS);
+		double left = Robot.oi.driver.getRawAxis(Robot.dp.joystick1);
+		double right = -Robot.oi.driver.getRawAxis(Robot.dp.joystick2);
 		
-		// speed acceleration code
-//		Robot.Drivetrain.drive(Math.abs(left)*left,
-//				Math.abs(right)*right); // When you invert these make them inverted in slow turn
-		
-		Robot.Drivetrain.drive(left, right);
+		if (Robot.dp.dc == DriveControl.TANK) {
+			Robot.Drivetrain.drive(left, -right);
+		} else {
+			Robot.Drivetrain.drive(left, right);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

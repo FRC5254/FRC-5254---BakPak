@@ -2,8 +2,9 @@ package org.usfirst.frc.team5254.robot.autos;
 
 
 import org.usfirst.frc.team5254.robot.RobotMap;
-import org.usfirst.frc.team5254.robot.autocommands.pathing.*;
-import org.usfirst.frc.team5254.robot.autocommands.*;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Path;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
+import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetAndHold;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
@@ -20,7 +21,7 @@ public class CenterSwitchAuto extends CommandGroup { // CenterSwitchAutoLeft
 	public CenterSwitchAuto(Path path1) {
 		
 		super("CenterSwitchAuto");
-//		OLD CODE, NO SPLINES (TODO look at parallels here are they in the wrong place? should the waits exist?)
+//		OLD CODE, NO SPLINES // TODO Delete old spline code 
 //		addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 1.5));
 //		addSequential(new ElevatorSetHeight(RobotMap.POP_HEIGHT));
 //		addSequential(new AutoTimerWait(1.0));

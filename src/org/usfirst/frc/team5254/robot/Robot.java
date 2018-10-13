@@ -14,6 +14,8 @@ import org.usfirst.frc.team5254.robot.subsystems.Climber;
 import org.usfirst.frc.team5254.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team5254.robot.subsystems.Elevator;
 import org.usfirst.frc.team5254.robot.subsystems.Intake;
+import org.usfirst.frc.team5254.robot.util.DriverConfig;
+import org.usfirst.frc.team5254.robot.util.OperatorConfig;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -35,6 +37,9 @@ public class Robot extends IterativeRobot {
 	public static Elevator Elevator;
 	public static Climber Climber;
 	public static OI oi;
+	
+	public final static DriverConfig dp = DriverConfig.KAT;
+	public final static OperatorConfig op = OperatorConfig.WREN;
 	
 	Command autonomousCommand;
 	
