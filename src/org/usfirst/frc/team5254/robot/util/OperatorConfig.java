@@ -15,15 +15,15 @@ public enum OperatorConfig {
 	 * RJC 10
 	 * 
 	 * LX 0
-	 * LY 1
+	 * LY 1 
 	 * LT 2
 	 * RT 3
 	 * RX 4
 	 * RY 5
 	 */
 	
-	WREN (5, 1, 2, 3, 4, 6, 5, 8), //TODO update pref
-	JADEN (1, 1, 3, 2, 4, 6, 5, 8); //TODO update pref
+	WREN (1, 1, 3, 2, 4, 6, 5, 8), //TODO update pref
+	JADEN (1, 1, 2, 3, 4, 6, 5, 8); //TODO update pref
 	
 	public int elevatorUpAxis;
 	public int downButton;

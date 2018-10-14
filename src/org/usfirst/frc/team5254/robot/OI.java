@@ -23,7 +23,7 @@ public class OI {
 //		Button DriverButtonX = new JoystickButton(driver, 3);
 //		Button DriverButtonY = new JoystickButton(driver, 4);
 		Button DrivetrainShiftDown = new JoystickButton(driver, Robot.dp.shiftButton);
-		Button DrivetrainShiftUp = new JoystickButton(driver, 7);
+		Button DrivetrainShiftUp = new JoystickButton(driver, 8);
 		Button DrivetrainSlowTurn = new JoystickButton(driver, Robot.dp.slowTurnButton);
 //		Button DriverButtonStart = new JoystickButton(driver, 8);
 //		Button DriverLJC = new JoystickButton(driver, 9);
