@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeClose extends Command {
+public class intakeClamp extends Command {
 
-    public IntakeClose() {
+    public intakeClamp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,7 +20,7 @@ public class IntakeClose extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.Intake.close();
+    	Robot.Intake.clamp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
