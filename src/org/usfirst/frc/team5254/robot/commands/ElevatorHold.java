@@ -35,10 +35,13 @@ public class ElevatorHold extends Command {
     		}
 	
     	} else { //If the joystick is being used		
-    
+    		if(Robot.oi.operator.getRawAxis(elevatorUpAxis) > 0) {
+    			Robot.Elevator.setSpeed(-Robot.oi.operator.getRawAxis(elevatorUpAxis) * 0.5);
+    		} else {
     			Robot.Elevator.setSpeed(-Robot.oi.operator.getRawAxis(elevatorUpAxis)); //the joystick controls the elevator
     		
     		}
+    	}
     }
     
 

@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	public final static DriverConfig dp = DriverConfig.KAT;
-	public final static OperatorConfig op = OperatorConfig.JADEN;
+	public final static OperatorConfig op = OperatorConfig.WREN;
 	
 	Command autonomousCommand;
 	

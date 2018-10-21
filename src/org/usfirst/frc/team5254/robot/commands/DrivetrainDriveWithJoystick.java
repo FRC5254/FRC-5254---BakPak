@@ -2,6 +2,7 @@ package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
 import org.usfirst.frc.team5254.robot.util.DriveControl;
+import org.usfirst.frc.team5254.robot.util.DriverConfig;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -28,7 +29,12 @@ public class DrivetrainDriveWithJoystick extends Command {
 		if (Robot.dp.dc == DriveControl.TANK) {
 			Robot.Drivetrain.drive(left, -right);
 		} else {
-			Robot.Drivetrain.drive(left, right);
+			if (Robot.dp == DriverConfig.RORY) {
+				Robot.Drivetrain.drive(left,  right * 0.75);
+			} else {
+				Robot.Drivetrain.drive(left, right);
+			}
+			
 		}
 	}
 
