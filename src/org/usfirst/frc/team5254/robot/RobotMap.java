@@ -3,10 +3,10 @@ package org.usfirst.frc.team5254.robot;
 public class RobotMap {
 
 	// Solenoids
-	public static final int CLIMBER_SLIDER_PISTON_IN = 2;
-	public static final int CLIMBER_SLIDER_PISTON_OUT = 3;
-	public static final int NO_FIRE_CROSSBOW = 4;
-	public static final int FIRE_CROSSBOW = 5;
+	public static final int INTAKE_ARMS_OUT = 4;
+	public static final int INTAKE_ARMS_IN = 5;
+	public static final int INTAKE_CLAMP = 2;
+	public static final int INTAKE_RELEASE = 3;
 	public static final int SHIFTING_PISTON = 1;// was 7  
 	
 
