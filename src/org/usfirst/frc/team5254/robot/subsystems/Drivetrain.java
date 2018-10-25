@@ -33,9 +33,12 @@ public class Drivetrain extends PIDSubsystem {
 
 	// Declaring auto controllers
 	public static ADXRS450_Gyro gyro;
-	public static Encoder encoderLeft;// 2,3 dont work on comp bot ---- marked encoder that dont work on protobot, also unwired it
+	public static Encoder encoderLeft;
 	public static Encoder encoderRight;
 	
+	// Ramping factor
+	public static double rampingFactor; 
+	// TODO ask when to use public/private and static and final and void and protected (which can't be used consecutively?
 
 	// Declaring auto variables
 	double angle;
@@ -43,7 +46,11 @@ public class Drivetrain extends PIDSubsystem {
 	public Drivetrain() {
 		super("DriveTrain", RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D);
 		setAbsoluteTolerance(1.0);
-		// getPIDController().setContinuous(true); TODO does commenting this harm autos? no
+		// getPIDController().setContinuous(true);
+		/* ^^^ TODO does uncommenting this harm autos? 
+		 * (note: commented in 2017 bc the robot was just spinning in circles when we ran auto.
+		 * When we commented this its stopped doing that and ran the auto we wanted it to.)
+		 */
 		getPIDController().setInputRange(-360.0, 360.0);
 		getPIDController().setOutputRange(-1, 1);
 	    
@@ -87,8 +94,6 @@ public class Drivetrain extends PIDSubsystem {
 		encoderRight.setSamplesToAverage(7);
 		encoderRight.setDistancePerPulse((RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO) /
 				 (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI * 100));
-
-		
 	}
 
 	@Override
@@ -97,8 +102,23 @@ public class Drivetrain extends PIDSubsystem {
 	}
 
 	// TeleOp Methods
+	/* Goes through a switch depending on who is driving and what their preferences are 
+	 * For the case that the controls are TankDrive the Throttle variable is really leftSideDrive
+	 * and the Turn variable is really rightSideDrive
+	 */
 	public void drive(double Throttle, double Turn) {
-		drivetrain.arcadeDrive(Throttle, Turn);
+		switch(Robot.dp.dc) {
+		case ARCADE:	
+			drivetrain.arcadeDrive(Throttle, Turn);
+			break;
+		case TANK:
+			drivetrain.tankDrive(Throttle, Turn);
+			break;
+		case CURVATURE:
+			drivetrain.curvatureDrive(Throttle, Turn, false); // TODO true or false? QuickTurn? variable?
+			break;
+		}
+		
 		// System.out.println("drive: " + Throttle + ", "+ Turn);
 	}
 
