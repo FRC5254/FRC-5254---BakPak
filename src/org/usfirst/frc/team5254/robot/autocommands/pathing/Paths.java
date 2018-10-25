@@ -236,7 +236,7 @@ public class Paths {
         		
         /** Scale Right**/
         public static final Path SCALE_RIGHT_TRAVEL = new Path(
-                straightLength(160).getPathAtDistance(10));
+                straightLength(155).getPathAtDistance(10));
         public static final Path SCALE_RIGHT_TRAVEL_2 = new Path(
         		new PathSegment(t -> 
         		/* {"start":{"x":0,"y":0},"mid1":{"x":84,"y":-5},"mid2":{"x":59,"y":83},"end":{"x":64,"y":155}} */
@@ -265,10 +265,15 @@ public class Paths {
         		);
         
         public static final Path SCALE_RIGHT_FINISH = new Path(
+//        		new PathSegment(t -> 
+//        		/* {"start":{"x":0,"y":100},"mid1":{"x":58,"y":110},"mid2":{"x":48,"y":85},"end":{"x":48,"y":80}} */
+//        		(30 + -210 * t + 165 * Math.pow(t, 2))/ (174 + -408 * t + 234 * Math.pow(t, 2)) 
+//        		, 64)
+        		
         		new PathSegment(t -> 
-        		/* {"start":{"x":0,"y":100},"mid1":{"x":58,"y":110},"mid2":{"x":48,"y":85},"end":{"x":48,"y":80}} */
-        		(30 + -210 * t + 165 * Math.pow(t, 2))/ (174 + -408 * t + 234 * Math.pow(t, 2)) 
-        		, 64)
+        		/* {"start":{"x":0,"y":100},"mid1":{"x":58,"y":110},"mid2":{"x":48,"y":90},"end":{"x":48,"y":84}} */
+        		(30 + -180 * t + 132 * Math.pow(t, 2))/ (174 + -408 * t + 234 * Math.pow(t, 2)) 
+        		, 62)
         		);
         
         public static final Path SECOND_CUBE_LEFT = new Path(

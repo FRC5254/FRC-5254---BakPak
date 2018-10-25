@@ -59,7 +59,7 @@ public class FarScaleAuto extends CommandGroup {
     	addParallel(new ElevatorSetAndHold(RobotMap.UNOWNED_SCALE_HEIGHT));
     	addSequential(new WaitCommand(0.25));
     	addSequential(new RunPath(path3, 0.25, 0));
-    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SCALE_OUTAKE - 0.15), 1);
+    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SCALE_OUTAKE - 0.25), 1);
     
     	/** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));

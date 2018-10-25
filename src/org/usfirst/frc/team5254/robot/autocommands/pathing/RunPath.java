@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Refer to CleanRunPath for comments
  */
 public class RunPath extends Command {
-	private final double arcDivisor = 19;
+	private final double arcDivisor = 15;
 
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
@@ -77,7 +77,7 @@ public class RunPath extends Command {
     }
     
     private double getDistance() {
-    	return ( Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2;
+    	return (Math.abs( Robot.Drivetrain.getRightDistance() ) + Math.abs( Robot.Drivetrain.getLeftDistance() ) )/2;
 //    	return Math.abs(Robot.Drivetrain.getRightDistance()); // change this to average once you get two encoders -- done
     	//return (Math.abs(Robot.Drivetrain.getLeftDistance())) + (Math.abs(Robot.Drivetrain.getRightDistance()));
     }
