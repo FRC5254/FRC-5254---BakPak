@@ -27,7 +27,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
     	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1);
 		addSequential(new ElevatorSetAndHold(RobotMap.POP_HEIGHT));
 //		addSequential(new ElevatorHold(), 0.5);
-		addSequential(new WaitCommand(1));
+//		addSequential(new WaitCommand(1));
 		addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
 		addSequential(new ElevatorHold(), 0.5);
 		addSequential(new RunPath(path1, x -> {
@@ -52,11 +52,12 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
 			else return -0.4;
 		}, 0));
 		
-		addParallel(new RunPath(path3, 0.4, 0), 4);
-		addSequential(new WaitCommand(0.5));
-		addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 3.5);// these numbers need to be tuned (wait, intake)
+		addParallel(new RunPath(path3, 0.4, 0), 4);// drvies too far here also all the wiggle and intake things are off
+//		addSequential(new WaitCommand(0.5));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2.5);// these numbers need to be tuned (wait, intake)
 		
 		addParallel(new RunPath(Paths.straightLength(5), 0.5, 0));
+		addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2.5);
 		addSequential(new AutoPIDTurn(-7));// NEW
     	addSequential(new AutoPIDTurn(7));
     	

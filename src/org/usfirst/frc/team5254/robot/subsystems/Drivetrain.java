@@ -66,14 +66,6 @@ public class Drivetrain extends PIDSubsystem {
 		
 		driveControllersRight = new SpeedControllerGroup(driveControllerRight1, driveControllerRight2);
 		
-		rampingFactor = Robot.dp.voltageRampingFactor;	
-		
-		driveControllerLeft1.configOpenloopRamp(rampingFactor);
-		driveControllerLeft2.configOpenloopRamp(rampingFactor);
-		driveControllerRight1.configOpenloopRamp(rampingFactor);
-		driveControllerRight2.configOpenloopRamp(rampingFactor);
-		
-		
 		drivetrain = new DifferentialDrive(driveControllersLeft, driveControllersRight);
 		 
 		//Instantiating shifting piston
@@ -140,7 +132,12 @@ public class Drivetrain extends PIDSubsystem {
 
 
 	// Auto Methods
-	
+	public void setRamping(double rampingSpeed) {
+		driveControllerLeft1.configOpenloopRamp(rampingSpeed);
+		driveControllerLeft2.configOpenloopRamp(rampingSpeed);
+		driveControllerRight1.configOpenloopRamp(rampingSpeed);
+		driveControllerRight2.configOpenloopRamp(rampingSpeed);
+	}
 	public double getRightDistance() {
 		return ((encoderRight.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
 				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));
