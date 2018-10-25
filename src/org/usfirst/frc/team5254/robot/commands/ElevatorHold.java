@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ElevatorHold extends Command {
 
     public ElevatorHold() {
-    	requires (Robot.Elevator); 
+    	requires (Robot.Elevator);
     }
 
     // Called just before this Command runs the first time
@@ -21,11 +21,9 @@ public class ElevatorHold extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	int elevatorUpAxis = Robot.op.elevatorUpAxis; // TODO is here the right spot 
-    	
-		if (Math.abs(Robot.oi.operator.getRawAxis(elevatorUpAxis)) < 0.1){ //If the Joystick is not being used
+    	if (Math.abs(Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)) < 0.1){ //If the Joystick is not being used
   
-    		if ((Robot.Elevator.eleButton.get() == false) || (Math.abs(Robot.Elevator.elevatorTalon.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
+    		if ((Robot.Elevator.eleButton.get() == false) || (Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0)) < 1000)) { //If the button is pressed
   			
     			Robot.Elevator.setSpeed(0.0); //Elevator off
     			
@@ -35,13 +33,10 @@ public class ElevatorHold extends Command {
     		}
 	
     	} else { //If the joystick is being used		
-    		if(Robot.oi.operator.getRawAxis(elevatorUpAxis) > 0) {
-    			Robot.Elevator.setSpeed(-Robot.oi.operator.getRawAxis(elevatorUpAxis) * 0.5);
-    		} else {
-    			Robot.Elevator.setSpeed(-Robot.oi.operator.getRawAxis(elevatorUpAxis)); //the joystick controls the elevator
+    
+    			Robot.Elevator.setSpeed(-Robot.oi.operator.getRawAxis(RobotMap.OPERATOR_THROTTLE_AXIS)); //the joystick controls the elevator
     		
     		}
-    	}
     }
     
 

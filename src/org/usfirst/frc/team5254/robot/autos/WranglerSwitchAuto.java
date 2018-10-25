@@ -7,6 +7,7 @@ import org.usfirst.frc.team5254.robot.autocommands.pathing.Paths;
 import org.usfirst.frc.team5254.robot.autocommands.pathing.RunPath;
 import org.usfirst.frc.team5254.robot.commands.ElevatorDown;
 import org.usfirst.frc.team5254.robot.commands.ElevatorSetAndHold;
+import org.usfirst.frc.team5254.robot.commands.ElevatorSetHeight;
 import org.usfirst.frc.team5254.robot.commands.IntakeSetSpeed;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -68,7 +69,7 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
 		
 		addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
         addSequential(new RunPath(Paths.straightLength(22), 0.5, 0), 2);
-        addSequential(new AutoPIDTurn(-15));
+        addSequential(new AutoPIDTurn(-15));// TODO
         addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE) , .75);
         addSequential(new RunPath(Paths.straightLength(24), -0.5, 0));
         

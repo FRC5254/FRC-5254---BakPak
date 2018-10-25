@@ -16,32 +16,31 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Elevator extends Subsystem {
 
 	// Initializing auto Controllers
-	public TalonSRX elevatorTalon;
+	public TalonSRX elevator;
 	
 	// Init Button
 	public DigitalInput eleButton;
 
 	public Elevator() {
 		
-		elevatorTalon = new TalonSRX(RobotMap.ELEVATOR);
+		elevator = new TalonSRX(RobotMap.ELEVATOR);
 		eleButton = new DigitalInput(RobotMap.ELE_BUTTON);
 		
-		//TODO put like a modeConfig here (brake vs coast) i forgot which one - ask Rory
-		elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); // from example code
-		elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);// sets the encoder to the mag encode on GB
+		elevator.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); // from example code
+		elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);// sets the encoder to the mag encode on GB
 	}
 
 	// TeleOp Method
 	public void setSpeed(double speed) {
-		elevatorTalon.set(ControlMode.PercentOutput, speed);
+		elevator.set(ControlMode.PercentOutput, speed);
 	}
 	
 	public int getHeight() {
-		return  Math.abs(Robot.Elevator.elevatorTalon.getSelectedSensorPosition(0));
+		return  Math.abs(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 	}
 
 	public boolean isAboveHeight(double ticks) {
-		return (Math.abs(elevatorTalon.getSelectedSensorPosition(0)) > ticks);// return true when elevator reaches set point
+		return (Math.abs(elevator.getSelectedSensorPosition(0)) > ticks);// return true when elevator reaches set point
 	}
 
 	public boolean isAtBottom() {
@@ -49,7 +48,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void resetEncoder() {
-		elevatorTalon.setSelectedSensorPosition(0, 0, 10);
+		elevator.setSelectedSensorPosition(0, 0, 10);
 	}
 	// Auto Methods
 	

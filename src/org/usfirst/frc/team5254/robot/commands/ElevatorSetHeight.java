@@ -13,6 +13,7 @@ public class ElevatorSetHeight extends Command {
 
 	public ElevatorSetHeight(int ticks) {
 		requires(Robot.Elevator);
+
 		this.ticks = ticks;
 	}
 
@@ -22,6 +23,8 @@ public class ElevatorSetHeight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+//		Robot.Elevator.setToHeight(ticks);
+    
 		if (ticks > Math.abs(Robot.Elevator.getHeight())) { // if i'm not at set position
 			Robot.Elevator.setSpeed(1);//elevator go up 100% power
 
