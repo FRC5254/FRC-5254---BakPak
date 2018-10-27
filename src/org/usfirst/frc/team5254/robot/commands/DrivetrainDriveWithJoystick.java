@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5254.robot.commands;
 
 import org.usfirst.frc.team5254.robot.Robot;
+import org.usfirst.frc.team5254.robot.RobotMap;
 import org.usfirst.frc.team5254.robot.util.DriveControl;
 import org.usfirst.frc.team5254.robot.util.DriverConfig;
 
@@ -26,16 +27,17 @@ public class DrivetrainDriveWithJoystick extends Command {
 		double left = Robot.oi.driver.getRawAxis(Robot.dp.joystick1);
 		double right = -Robot.oi.driver.getRawAxis(Robot.dp.joystick2);
 		
-		if (Robot.dp.dc == DriveControl.TANK) {
-			Robot.Drivetrain.drive(left, -right);
-		} else {
-			if (Robot.dp == DriverConfig.RORY) {
-				Robot.Drivetrain.drive(left,  right * 0.75);
-			} else {
-				Robot.Drivetrain.drive(left, right);
-			}
-			
-		}
+//		if (Robot.dp.dc == DriveControl.TANK) {
+//			Robot.Drivetrain.drive(left, -right);
+//		} else {
+//			Robot.Drivetrain.drive(left, right);
+//		}
+		
+		if (Robot.oi.driver.getRawAxis(RobotMap.DRIVER_LEFT_TRIGGER_AXIS) > 0.5) {
+			Robot.Drivetrain.drive(left, right * 0.5);
+    	} else {
+    		Robot.Drivetrain.drive(left, right);
+    	}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

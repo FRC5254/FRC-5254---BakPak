@@ -8,6 +8,7 @@ import org.usfirst.frc.team5254.robot.autos.FakeCenterSwitchAuto;
 import org.usfirst.frc.team5254.robot.autos.FarScaleAuto;
 import org.usfirst.frc.team5254.robot.autos.NullScaleAuto;
 import org.usfirst.frc.team5254.robot.autos.StuyPulseSwitchAuto;
+import org.usfirst.frc.team5254.robot.autos.TestAuto;
 import org.usfirst.frc.team5254.robot.autos.TwoCubeScaleAuto;
 import org.usfirst.frc.team5254.robot.autos.WranglerSwitchAuto;
 import org.usfirst.frc.team5254.robot.subsystems.Climber;
@@ -38,8 +39,8 @@ public class Robot extends IterativeRobot {
 	public static Climber Climber;
 	public static OI oi;
 	
-	public final static DriverConfig dp = DriverConfig.KAT;
-	public final static OperatorConfig op = OperatorConfig.WREN;
+	public final static DriverConfig dp = DriverConfig.RORY;	
+	public final static OperatorConfig op = OperatorConfig.KAT;
 	
 	Command autonomousCommand;
 	
@@ -80,7 +81,7 @@ public class Robot extends IterativeRobot {
 		
 		case "LL": // when switch and scale are on left side 
 			
-//			autonomousCommand = new CrossBaselineAuto();
+			autonomousCommand = new CrossBaselineAuto();
 //			autonomousCommand = new CenterSwitchAuto(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD);
 //			autonomousCommand = new CenterSwitchAutoTwoCube(Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SWITCH_AFTER_GRAB_CUBE);			
 //			autonomousCommand = new CenterSwitchScaleDrive(true, Paths.FROM_CENTER.SWITCH_LEFT_FORWARD, Paths.FROM_CENTER.SWITCH_LEFT_BACKWARD, Paths.FROM_CENTER.GRAB_SECOND_CUBE_FORWARD, Paths.FROM_CENTER.LEFT_SIDE_AFTER_GRAB_CUBE);
@@ -88,7 +89,7 @@ public class Robot extends IterativeRobot {
 //			autonomousCommand = new StuyPulseSwitchAuto(false, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT, Paths.FROM_RIGHT.BACK_SWITCH_BACKUP);
 //			autonomousCommand = new CloseScaleAuto(Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new NullScaleAuto(true);
-			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
+//			autonomousCommand = new TwoCubeScaleAuto(true, Paths.FROM_LEFT.SCALE_LEFT_TRAVEL, Paths.FROM_LEFT.SCALE_LEFT_FINISH, Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB);
 //			autonomousCommand = new FarScaleAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2, Paths.FROM_RIGHT.SCALE_LEFT_FINISH);
 //			autonomousCommand = new ScaleTravelAuto(Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL, Paths.FROM_RIGHT.SCALE_LEFT_TRAVEL_2_CUT_SHORT);
 //			autonomousCommand = new NothingAuto();
@@ -168,7 +169,7 @@ public class Robot extends IterativeRobot {
 			break;
        }	
 		// Defaults to run the Test Auto
-//		autonomousCommand = new TestAuto();
+		autonomousCommand = new TestAuto();
 		
 //		String autonomousCommandString = autonomousCommand.toString();
 //		SmartDashboard.putString("DB/String 0", autonomousCommandString);
@@ -199,7 +200,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		Robot.Drivetrain.shiftDown();
-		Robot.Drivetrain.setRamping(0.35);
+		Robot.Drivetrain.setRamping(dp.voltageRampingFactor);//TODO make this update according to driver
 	}
 
 	@Override
@@ -212,8 +213,6 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("gyro", Drivetrain.gyro.getAngle());
 //		System.out.println(Robot.Elevator.elevator.getSelectedSensorPosition(0));
 //		System.out.println(Robot.Elevator.eleButton.get());
-		
-		SmartDashboard.putNumber("POV", oi.driver.getPOV());
 
 
 		SmartDashboard.putNumber("elevator height", Robot.Elevator.getHeight());

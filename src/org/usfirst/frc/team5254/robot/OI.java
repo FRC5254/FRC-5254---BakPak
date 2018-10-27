@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5254.robot;
-
 import org.usfirst.frc.team5254.robot.commands.*;
-
+import org.usfirst.frc.team5254.robot.util.DriverConfig;
+import org.usfirst.frc.team5254.robot.util.OperatorConfig;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -38,16 +38,17 @@ public class OI {
 		Button SlowOuttake = new JoystickButton(operator, Robot.op.slowOuttakeButton);
 //		Button OperatorLJC = new JoystickButton(operator, 9);
 //		Button OperatorRJC = new JoystickButton(operator, 10);
-
+		// Driver subcommands
 		
+	
 		// Driver subcommands
 		DrivetrainSlowDrive.whenActive(new DrivetrainSlowDrive());
 		DrivetrainSlowDrive.whenInactive(new DrivetrainDriveWithJoystick());
-		DrivetrainShiftUp.whenPressed(new DrivetrainShiftUp());// TODO test (this is new)
+		DrivetrainShiftUp.whenPressed(new DrivetrainShiftUp());
 		DrivetrainShiftDown.whenPressed(new DrivetrainShiftDown());
 		DrivetrainSlowTurn.whenActive(new DrivetrainSlowTurn());
 		DrivetrainSlowTurn.whenInactive(new DrivetrainDriveWithJoystick());
-
+		
 		// Operator Subcommands
 		ElevatorDown.whenPressed(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
 		ElevatorOwnedScaleHeight.whenPressed(new ElevatorSetHeight(RobotMap.OWNED_SCALE_HEIGHT));

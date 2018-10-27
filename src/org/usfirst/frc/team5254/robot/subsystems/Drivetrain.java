@@ -138,6 +138,7 @@ public class Drivetrain extends PIDSubsystem {
 		driveControllerRight1.configOpenloopRamp(rampingSpeed);
 		driveControllerRight2.configOpenloopRamp(rampingSpeed);
 	}
+	
 	public double getRightDistance() {
 		return ((encoderRight.get()) / (RobotMap.ENCODER_TICKS * RobotMap.DRIVETRAIN_GEAR_RATIO)
 				* (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI));

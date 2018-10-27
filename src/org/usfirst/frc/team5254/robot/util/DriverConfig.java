@@ -22,11 +22,9 @@ public enum DriverConfig {
 	 * RY 5
 	 */
 
-	SAM (DriveControl.TANK, 1, 5, 1, 7, 2, 5, 6, true, 0.5), //TODO update prefs (who else?)
-	ASHTON (DriveControl.TANK, 1, 5, 1, 7, 2, 6, 5, true, 0.5),
-	COLBY (DriveControl.TANK, 1, 5, 1, 7, 2, 6, 5, true, 0.5),
-	RORY (DriveControl.TANK, 1, 5, 1, 7, 2, 6, 5, true, 0.5),
-	KAT (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.3);
+
+	COLBY (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.5),
+	RORY (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.5);
 	
 	public DriveControl dc;
 	public int joystick1;
