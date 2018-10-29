@@ -55,7 +55,7 @@ public class TestAuto extends CommandGroup {
 //    /** Pick up second cube **/
 //    	addParallel(new AutoIntakeOn(true, RobotMap.AUTO_INTAKE, 6));
 //    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_GRAB, 0.6, 0), 4);
-    	addSequential(new RunPath(Paths.straightLength(20), 0.3, 0));
+//    	addSequential(new RunPath(Paths.straightLength(20), 0.3, 0));
     	
 //    	addSequential(new RunPath(Paths.FROM_LEFT.SCALE_LEFT_SECOND_CUBE_PLACE, 0.25));
 	}

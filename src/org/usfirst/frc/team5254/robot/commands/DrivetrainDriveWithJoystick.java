@@ -36,7 +36,11 @@ public class DrivetrainDriveWithJoystick extends Command {
 		if (Robot.oi.driver.getRawAxis(RobotMap.DRIVER_LEFT_TRIGGER_AXIS) > 0.5) {
 			Robot.Drivetrain.drive(left, right * 0.5);
     	} else {
-    		Robot.Drivetrain.drive(left, right);
+    		if (Robot.dp == DriverConfig.RORY) {
+    			Robot.Drivetrain.drive(left, right * 0.8);
+    		}  else {
+    			Robot.Drivetrain.drive(left, right);
+    		}
     	}
 	}
 

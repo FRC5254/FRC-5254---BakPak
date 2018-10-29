@@ -24,7 +24,7 @@ public enum DriverConfig {
 
 
 	COLBY (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.5),
-	RORY (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.5);
+	RORY (DriveControl.ARCADE, 1, 4, 1, 7, 2, 6, 5, true, 0.3);
 	
 	public DriveControl dc;
 	public int joystick1;
