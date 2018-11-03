@@ -40,8 +40,8 @@ public class Robot extends IterativeRobot {
 	public static Climber Climber;
 	public static OI oi;
 	
-	public final static DriverConfig dp = DriverConfig.COLBY;	
-	public final static OperatorConfig op = OperatorConfig.WREN;
+	public final static DriverConfig dp = DriverConfig.RORY;	
+	public final static OperatorConfig op = OperatorConfig.KAT;
 	
 	Command autonomousCommand;
 	
@@ -170,7 +170,7 @@ public class Robot extends IterativeRobot {
 			break;
        }	
 		// Defaults to run the Test Auto
-		autonomousCommand = new TestAuto();
+//		autonomousCommand = new TestAuto();
 		
 //		String autonomousCommandString = autonomousCommand.toString();
 //		SmartDashboard.putString("DB/String 0", autonomousCommandString);
@@ -204,7 +204,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		Robot.Drivetrain.shiftDown();
+		Robot.Drivetrain.shiftUp();
 		Robot.Drivetrain.setRamping(dp.voltageRampingFactor);//TODO make this update according to driver
 	}
 
