@@ -52,7 +52,7 @@ public class StuyPulseSwitchAuto extends CommandGroup { // LeftBackSideSwitchAut
     	addParallel(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT + 7000)); //was 10,000
     	addSequential(new AutoPIDTurn(turn));
     	addSequential(new RunPath(Paths.straightLength(17), 0.65, 0), 4);
-    	addSequential(new IntakeSetSpeed(1.0), 1.5);
+    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE), 1.5);
     	
     	/** Backs up and puts elevator down **/
 		addSequential(new RunPath(Paths.straightLength(10), -0.75, 0));
@@ -65,7 +65,7 @@ public class StuyPulseSwitchAuto extends CommandGroup { // LeftBackSideSwitchAut
 		addSequential(new RunPath(Paths.straightLength(10), -0.25, 0));
 	    addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT + 10000));
 	    addSequential(new RunPath(Paths.straightLength(distance), 0.65, 0));
-	    addSequential(new IntakeSetSpeed(1.0), 0.75);
+	    addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE), 0.75);
 	    
 	    addParallel(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
 	    addSequential(new RunPath(path3, -0.75, 1));

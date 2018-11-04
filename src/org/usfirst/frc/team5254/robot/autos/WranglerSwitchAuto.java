@@ -53,7 +53,7 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
         addSequential(new AutoPIDTurn(turn1));
     	addParallel(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
     	addSequential(new RunPath(path1, 0.5, 0), 5);
-    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE),0.75);
+    	addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE), 0.75);
     	
     	/*MoaR CubES*/
     	addSequential(new RunPath(Paths.straightLength(15), -0.75, 0));
@@ -69,7 +69,7 @@ public class WranglerSwitchAuto extends CommandGroup { // was LeftBackSideSwitch
 		addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
         addSequential(new RunPath(Paths.straightLength(22), 0.5, 0), 2);
         addSequential(new AutoPIDTurn(-15));
-        addSequential(new IntakeSetSpeed(RobotMap.AUTO_INTAKE) , .75);
+        addSequential(new IntakeSetSpeed(RobotMap.AUTO_SWITCH_OUTAKE) , .75);
         addSequential(new RunPath(Paths.straightLength(24), -0.5, 0));
         
 		/* EvEN MOar CUbes*/

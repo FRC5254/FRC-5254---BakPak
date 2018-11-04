@@ -63,6 +63,6 @@ public class FarScaleAuto extends CommandGroup {
     	/** Elevator down **/
     	addParallel(new RunPath(Paths.straightLength(30), -0.25, 0));
     	addSequential(new WaitCommand(1.0));
-    	addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
+//    	addSequential(new ElevatorDown(RobotMap.ELE_DOWN_SPEED));
     }
 }
