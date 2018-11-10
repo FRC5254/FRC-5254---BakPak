@@ -22,8 +22,8 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	super("TwoCubeScaleAuto");
     	
     	double turn1 = 85;
-    	double turn2 = 7;
-    	double turn3 = -7;
+    	double turn2 = -10;
+    	double turn3 = 10;
     	double turn4 = -180;
     	double intakeTime = 4.5;
     	
@@ -61,6 +61,7 @@ public class TwoCubeScaleAuto extends CommandGroup { // was LeftScaleAutoLeftTwo
     	addSequential(new RunPath(path3, 0.45, 0), 2.5);
     	addSequential(new AutoPIDTurn(turn2));
     	addSequential(new AutoPIDTurn(turn3));
+    	addSequential(new RunPath(Paths.straightLength(5), 0.75, 0));
     	addSequential(new RunPath(Paths.straightLength(10), -0.3, 0));
     	
     /** Place second cube**/

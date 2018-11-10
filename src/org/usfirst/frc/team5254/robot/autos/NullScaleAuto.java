@@ -27,13 +27,15 @@ public class NullScaleAuto extends CommandGroup { // was LeftNullScaleAutoLeft
     	}
     	
     /** Pop cube **/
-    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 0.5);
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 2);
     	addParallel(new ElevatorSetAndHold(RobotMap.POP_HEIGHT));
     	
     /** Place on left scale at a 90 deg. **/
     	addSequential(new RunPath(Paths.straightLength(302), 0.9, 0));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 0.5);
     	addSequential(new WaitCommand(0.5));
     	addSequential(new AutoPIDTurn(turn));
+    	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 0.5);
     	addSequential(new WaitCommand(0.5));
     	addSequential(new RunPath(Paths.straightLength(12), -0.5, 0), 4);
     	addSequential(new ElevatorSetAndHold(RobotMap.UNOWNED_SCALE_HEIGHT));

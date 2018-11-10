@@ -27,7 +27,7 @@ public class CenterSwitchAutoTwoCube extends CommandGroup { // CenterSwitchAutoL
     	addParallel(new IntakeSetSpeed(RobotMap.AUTO_INTAKE), 1);
 		addSequential(new ElevatorSetAndHold(RobotMap.POP_HEIGHT));
 //		addSequential(new ElevatorHold(), 0.5);
-//		addSequential(new WaitCommand(1));
+		addSequential(new WaitCommand(1));
 		addSequential(new ElevatorSetAndHold(RobotMap.SWITCH_HEIGHT));
 		addSequential(new ElevatorHold(), 0.5);
 		addSequential(new RunPath(path1, x -> {
